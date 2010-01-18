@@ -1,0 +1,9 @@
+component	messaging_config
+source  	\sf\mw\messagingmw\messagingfw\msgconf
+binary  	\sf\mw\messagingmw\messagingfw\msgconf\group all
+exports		\sf\mw\messagingmw\messagingfw\msgconf\group
+notes_source	\component_defs\release.src
+
+
+ipr E 
+

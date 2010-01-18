@@ -1,0 +1,18 @@
+component	messaging_framework
+
+source  \sf\mw\messagingmw\messagingfw\msgsrvnstore
+
+source	\sf\mw\messagingmw\messagingfw\msgsrvnstore\group\msgerr.ra
+source	\sf\mw\messagingmw\messagingfw\msgsrvnstore\group\msgerr.rls
+source	\sf\mw\messagingmw\messagingfw\msgsrvnstore\group\GtMessaging.iby
+
+binary	\sf\mw\messagingmw\messagingfw\msgsrvnstore\group	all
+exports	\sf\mw\messagingmw\messagingfw\msgsrvnstore\group	
+
+notes_source	\component_defs\release.src
+
+ipr E 
+ipr T \sf\mw\messagingmw\messagingfw\msgsrvnstore\mtmbase\test
+ipr T \sf\mw\messagingmw\messagingfw\msgsrvnstore\server\test
+
+

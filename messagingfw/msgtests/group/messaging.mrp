@@ -1,0 +1,10 @@
+component	messaging
+
+source	\sf\mw\messagingmw\messagingfw\msgtests\documentation
+source	\sf\mw\messagingmw\messagingfw\msgtests\group
+
+notes_source	\component_defs\release.src
+
+
+ipr T
+

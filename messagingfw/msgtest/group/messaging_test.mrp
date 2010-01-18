@@ -1,0 +1,14 @@
+component	messaging_test
+
+source  \sf\mw\messagingmw\messagingfw\msgtest
+binary	\sf\mw\messagingmw\messagingfw\msgtest\group	all
+exports	\sf\mw\messagingmw\messagingfw\msgtest\group	
+
+notes_source	\component_defs\release.src
+
+
+ipr T 
+ipr E \sf\mw\messagingmw\messagingfw\msgtest\integration\email\pefromance
+ipr T \sf\mw\messagingmw\messagingfw\msgtest\integration\email\pefromance\testdriver
+ipr G \sf\mw\messagingmw\messagingfw\msgtest\tools\spoofserver
+

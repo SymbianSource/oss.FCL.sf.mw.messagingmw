@@ -1,0 +1,6 @@
+component           messagingmw_metadata
+source   \sf\mw\messagingmw\messagingmw_info\messagingmw_metadata 
+source   \sf\mw\messagingmw\package_definition.xml
+source   \sf\mw\messagingmw\distribution.policy.s60
+notes_source      \component_defs\release.src
+ipr T 

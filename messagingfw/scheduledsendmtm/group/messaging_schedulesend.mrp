@@ -1,0 +1,11 @@
+component	messaging_schedulesend
+source  \sf\mw\messagingmw\messagingfw\scheduledsendmtm
+binary	\sf\mw\messagingmw\messagingfw\scheduledsendmtm\group	all
+exports	\sf\mw\messagingmw\messagingfw\scheduledsendmtm\group	
+
+notes_source	\component_defs\release.src
+
+
+ipr E 
+ipr T \sf\mw\messagingmw\messagingfw\scheduledsendmtm\test
+

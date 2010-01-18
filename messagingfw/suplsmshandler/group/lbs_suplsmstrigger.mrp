@@ -1,0 +1,13 @@
+component	lbs_suplsmstrigger
+
+source	\sf\mw\messagingmw\messagingfw\suplsmshandler\
+
+binary	\sf\mw\messagingmw\messagingfw\suplsmshandler\group all
+
+exports	\sf\mw\messagingmw\messagingfw\suplsmshandler\group
+
+notes_source	\component_defs\release.src
+
+
+ipr T 
+

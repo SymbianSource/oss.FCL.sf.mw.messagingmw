@@ -1,0 +1,9 @@
+component	messaging_testframework
+
+source  \sf\mw\messagingmw\messagingfw\msgtestfw
+binary	\sf\mw\messagingmw\messagingfw\msgtestfw\group	all
+exports	\sf\mw\messagingmw\messagingfw\msgtestfw\group	
+
+notes_source	\component_defs\release.src
+
+ipr T

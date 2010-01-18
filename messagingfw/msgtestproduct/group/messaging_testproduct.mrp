@@ -1,0 +1,12 @@
+#messaging_testproduct.mrp
+#
+#Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+#
+component	messaging_testproduct
+source	\sf\mw\messagingmw\messagingfw\msgtestproduct
+
+notes_source	\component_defs\release.src
+
+
+ipr T 
+

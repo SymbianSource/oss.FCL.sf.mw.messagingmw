@@ -1,0 +1,14 @@
+component	messaging_watcher
+
+source	\sf\mw\messagingmw\messagingfw\watcherfw
+
+binary	\sf\mw\messagingmw\messagingfw\watcherfw\group	all
+exports	\sf\mw\messagingmw\messagingfw\watcherfw\group	
+
+notes_source	\component_defs\release.src
+
+
+ipr E 
+ipr T \sf\mw\messagingmw\messagingfw\watcherfw\test
+
+

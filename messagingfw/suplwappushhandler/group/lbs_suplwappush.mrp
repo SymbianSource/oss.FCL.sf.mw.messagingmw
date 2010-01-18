@@ -1,0 +1,13 @@
+component	lbs_suplwappush
+
+source	\sf\mw\messagingmw\messagingfw\suplwappushhandler\
+
+binary	\sf\mw\messagingmw\messagingfw\suplwappushhandler\group all
+
+exports	\sf\mw\messagingmw\messagingfw\suplwappushhandler\group
+
+notes_source	\component_defs\release.src
+
+
+ipr E 
+ipr T \sf\mw\messagingmw\messagingfw\suplwappushhandler\test

@@ -1,0 +1,12 @@
+component	messaging_sendas2
+
+source	\sf\mw\messagingmw\messagingfw\sendas
+binary	\sf\mw\messagingmw\messagingfw\sendas\group	all
+exports	\sf\mw\messagingmw\messagingfw\sendas\group	
+
+notes_source	\component_defs\release.src
+
+
+ipr E 
+ipr T \sf\mw\messagingmw\messagingfw\sendas\test
+
