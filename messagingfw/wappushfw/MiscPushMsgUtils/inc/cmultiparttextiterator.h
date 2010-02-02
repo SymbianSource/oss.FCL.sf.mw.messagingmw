@@ -26,8 +26,8 @@
 #include <e32std.h>
 #include <e32base.h>
 
-#include "cmultipartiteratorbase.h"
-#include "pushdispatcher.h"
+#include <push/cmultipartiteratorbase.h>
+#include <push/pushdispatcher.h>
 
 
 _LIT(KMultipartText, "multipart/");

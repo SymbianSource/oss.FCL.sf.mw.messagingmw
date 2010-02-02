@@ -18,7 +18,7 @@
 
 /**
  @file
- @internalTechnology
+ @publishedPartner
  @released
 */
 
@@ -55,7 +55,7 @@ const TInt KUserAgentAppHandler = 0;
 //##ModelId=3B659EE80221
 class PushAppDispatcher
 /**
-@internalTechnology
+@publishedPartner
 @released
 */
 	{
@@ -90,7 +90,7 @@ private:
 //##ModelId=3B659EE902E1
 class PushContentTypeDispatcher 
 /**
-@internalTechnology
+@publishedPartner
 @released
 */
 	{

@@ -18,12 +18,12 @@ PRJ_PLATFORMS
    
 PRJ_EXPORTS
 ../../pushutils/inc/PushMessage.h	SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(push/pushmessage.h)
-#ifdef SYMBIAN_OLD_EXPORT_LOCATION
-../../pushutils/inc/WapDecoder.h	/epoc32/include/push/wapdecoder.h
-#endif
+../../pushutils/inc/WapDecoder.h	SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(push/wapdecoder.h)
 ../../pushutils/inc/PluginKiller.h	SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(push/pluginkiller.h)
 #ifdef SYMBIAN_OLD_EXPORT_LOCATION
 ../../pushutils/inc/PushDispatcher.h	/epoc32/include/push/pushdispatcher.h
+#else
+../../pushutils/inc/PushDispatcher.h	SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(Push/pushdispatcher.h)
 #endif
 ../../pushutils/inc/thttpfields.h	SYMBIAN_MW_LAYER_PUBLIC_EXPORT_PATH(thttpfields.h)
 

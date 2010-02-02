@@ -22,8 +22,8 @@
 #ifndef __CMULTIPARTBINITERATOR_H__
 #define __CMULTIPARTBINITERATOR_H__
 
-#include "wapdecoder.h"
-#include "cmultipartiteratorbase.h"
+#include <push/wapdecoder.h>
+#include <push/cmultipartiteratorbase.h>
 
 //##ModelId=3B659EE10005
 class CMultipartBinIterator : public CMultipartIteratorBase
