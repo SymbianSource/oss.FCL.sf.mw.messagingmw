@@ -38,7 +38,7 @@ LIBRARY         euser.lib  msgs.lib
 #ifdef WINS
 DEFFILE       ../../bwins/PUSHMTMCLIENTSERVER.DEF
 #elif defined(GCC32)
-DEFFILE       ..\..\BMarm\PushMtmClientServer.def
+DEFFILE       ../../BMarm/PushMtmClientServer.def
 #else
 DEFFILE       ../../eabi/PushMtmClientServer.def
 #endif  

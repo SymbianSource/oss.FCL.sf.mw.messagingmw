@@ -20,24 +20,24 @@ UID 0
 VENDORID 			0x70000001
 
 
-USERINCLUDE			..\Framework\inc
-USERINCLUDE			..\TestActions\Sample\inc 
-USERINCLUDE 		..\TestActions\Base\inc 
-USERINCLUDE 		..\TestActions\Base\attachments\inc 
+USERINCLUDE			../Framework/inc
+USERINCLUDE			../TestActions/Sample/inc 
+USERINCLUDE 		../TestActions/Base/inc 
+USERINCLUDE 		../TestActions/Base/attachments/inc 
 
-USERINCLUDE			..\TestActions\Email\Common\inc 
-USERINCLUDE			..\TestActions\Framework\inc
-USERINCLUDE			..\TestActionUtils\inc
-USERINCLUDE			..\TestActions\Pigeon\inc
-USERINCLUDE			..\TestCases\NonScriptedTestCases\inc 
+USERINCLUDE			../TestActions/Email/Common/inc 
+USERINCLUDE			../TestActions/Framework/inc
+USERINCLUDE			../TestActionUtils/inc
+USERINCLUDE			../TestActions/Pigeon/inc
+USERINCLUDE			../TestCases/NonScriptedTestCases/inc 
 
-USERINCLUDE			..\..\msgtests\Framework\server\inc
-USERINCLUDE			..\..\watcherfw\inc
-USERINCLUDE			..\..\scheduledsendmtm\test\unit\inc
+USERINCLUDE			../../msgtests/Framework/server/inc
+USERINCLUDE			../../watcherfw/inc
+USERINCLUDE			../../scheduledsendmtm/test/unit/inc
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
-SOURCEPATH			..\TestActions\Base\src 
+SOURCEPATH			../TestActions/Base/src 
 SOURCE				CMtfTestActionGetBaseConstants.cpp 
 SOURCE				CMtfTestActionGetEntryPriorityEnums.cpp 
 SOURCE				CMtfTestActionSleep.cpp 

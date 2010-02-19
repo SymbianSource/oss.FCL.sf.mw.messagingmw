@@ -17,9 +17,9 @@ TARGET        	T_SERIALLOG.EXE
 TARGETTYPE    	exe
 
 CAPABILITY All -TCB
-SOURCEPATH		..\seriallog
+SOURCEPATH		../seriallog
 SOURCE        	t_seriallog.cpp
-USERINCLUDE   	\epoc32\include
+USERINCLUDE   	/epoc32/include
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY       	euser.lib bafl.lib efsrv.lib
 EPOCSTACKSIZE 	0x4000

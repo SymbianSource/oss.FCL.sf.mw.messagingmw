@@ -23,7 +23,7 @@ TARGET          biodb.dll
 TARGETTYPE      dll
 
 CAPABILITY All -TCB
-//TARGETPATH	\system\libs
+//TARGETPATH	/system/libs
 UID      0x10003C5E 0x10005542
 VENDORID 0x70000001
 SOURCEPATH	../../BDBSRC

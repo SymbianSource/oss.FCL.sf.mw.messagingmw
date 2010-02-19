@@ -40,7 +40,7 @@
 #ifdef SYMBIAN_MESSAGESTORE_UNIT_TESTCODE
 _LIT(KTestDbFileName, "c:\\messaging.db");
 #else
-_LIT(KTestDbFileName, "c:[1000484b]testDB.db");
+_LIT(KTestDbFileName, "c:[1000484B]testDB.db");
 #endif
 _LIT(KSTDMSGINI, "C:\\private\\1000484b\\msgcache.ini");
 _LIT(KMSGINI_2, "C:\\private\\1000484b\\msgcache2.ini");

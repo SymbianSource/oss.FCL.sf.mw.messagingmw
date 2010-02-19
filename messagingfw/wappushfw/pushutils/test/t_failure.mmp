@@ -21,7 +21,7 @@ USERINCLUDE		./. ../inc  ../../pushwatcher/inc
 USERINCLUDE		../../pushwatcher/test
 USERINCLUDE		../../plugins/inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
-SOURCEPATH		./. ..\src
+SOURCEPATH		./. ../src
 SOURCE		t_failure.cpp  
 SOURCEPATH		../../pushwatcher/test
 SOURCE		pushlog.cpp

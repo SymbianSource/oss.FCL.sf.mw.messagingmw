@@ -436,8 +436,8 @@ PRJ_TESTEXPORTS
 //required for load Testing
 ../testdata/EmailMessage/VCards.txt	/epoc32/winscw/c/msgtest/config/emailmessage/vcards.txt
 ../testdata/EmailMessage/DRM_SeparateDelivery01.txt /epoc32/winscw/c/msgtest/config/emailmessage/drm_separatedelivery01.txt
-//..\testdata\EmailMessage\test4_mail.txt  \epoc32\winscw\c\msgtest\Config\EmailMessage\test4_mail.txt
-//..\testdata\EmailMessage\test2_mail.txt  \epoc32\winscw\c\msgtest\Config\EmailMessage\test2_mail.txt
+//../testdata/EmailMessage/test4_mail.txt  /epoc32/winscw/c/msgtest/Config/EmailMessage/test4_mail.txt
+//../testdata/EmailMessage/test2_mail.txt  /epoc32/winscw/c/msgtest/Config/EmailMessage/test2_mail.txt
 
 ../testdata/EmailMessage/simpleemail.txt   /epoc32/winscw/c/msgtest/config/emailmessage/simpleemail.txt
 ../testdata/EmailMessage/mutliattach.txt /epoc32/winscw/c/msgtest/config/emailmessage/mutliattach.txt 
@@ -450,9 +450,9 @@ PRJ_TESTEXPORTS
 ../testdata/EmailMessage/music1mb.txt            /epoc32/winscw/c/msgtest/config/emailmessage/music1mb.txt 
 ../testdata/EmailMessage/musicExtraLarge.txt /epoc32/winscw/c/msgtest/config/emailmessage/musicextralarge.txt
 
-//..\testdata\EmailMessage\ccsimpleemail.txt  //\epoc32\winscw\c\msgtest\Config\EmailMessage\ccsimpleemail.txt
-//..\testdata\EmailMessage\ccsimpleemailmutiattach.txt  //\epoc32\winscw\c\msgtest\Config\ccsimpleemailmutiattach.txt
-//..\testdata\EmailMessage\ccsimpleemailzeroattach.txt //\epoc32\winscw\c\msgtest\Config\ccsimpleemailzeroattach.txt
+//../testdata/EmailMessage/ccsimpleemail.txt  ///epoc32/winscw/c/msgtest/Config/EmailMessage/ccsimpleemail.txt
+//../testdata/EmailMessage/ccsimpleemailmutiattach.txt  ///epoc32/winscw/c/msgtest/Config/ccsimpleemailmutiattach.txt
+//../testdata/EmailMessage/ccsimpleemailzeroattach.txt ///epoc32/winscw/c/msgtest/Config/ccsimpleemailzeroattach.txt
 
 ../scripts/codenomicon/msg-imap-codenomicon-search.script /epoc32/winscw/c/msgtest/email/imap/codenomicon/msg-imap-codenomicon-search.script
 ../scripts/codenomicon/msg-imap-codenomicon-rename.script /epoc32/winscw/c/msgtest/email/imap/codenomicon/msg-imap-codenomicon-rename.script

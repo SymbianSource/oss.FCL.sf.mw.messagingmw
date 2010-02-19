@@ -18,23 +18,23 @@
 	TARGETTYPE		exe
 	UID				0x1000007A 0x101F7774
 
-USERINCLUDE		..\Framework\inc
-USERINCLUDE		..\TestActions\Sample\inc ..\TestActions\Base\inc 
-USERINCLUDE		..\TestActions\Email\Common\inc ..\TestActions\Email\Imap4\inc ..\TestActions\Email\Pop3\inc ..\TestActions\Email\Smtp\inc
-USERINCLUDE		..\TestActions\Sms\inc 
-USERINCLUDE		..\TestActions\Mms\inc
-USERINCLUDE		..\TestActions\Framework\inc
-USERINCLUDE		..\TestActionUtils\inc
-USERINCLUDE		..\TestActions\Pigeon\inc
-USERINCLUDE		..\TestCases\NonScriptedTestCases\inc 
+USERINCLUDE		../Framework/inc
+USERINCLUDE		../TestActions/Sample/inc ../TestActions/Base/inc 
+USERINCLUDE		../TestActions/Email/Common/inc ../TestActions/Email/Imap4/inc ../TestActions/Email/Pop3/inc ../TestActions/Email/Smtp/inc
+USERINCLUDE		../TestActions/Sms/inc 
+USERINCLUDE		../TestActions/Mms/inc
+USERINCLUDE		../TestActions/Framework/inc
+USERINCLUDE		../TestActionUtils/inc
+USERINCLUDE		../TestActions/Pigeon/inc
+USERINCLUDE		../TestCases/NonScriptedTestCases/inc 
 
-USERINCLUDE		..\..\msgtests\Framework\server\inc
-USERINCLUDE		..\..\watcherfw\inc
-USERINCLUDE		..\..\scheduledsendmtm\test\unit\inc
+USERINCLUDE		../../msgtests/Framework/server/inc
+USERINCLUDE		../../watcherfw/inc
+USERINCLUDE		../../scheduledsendmtm/test/unit/inc
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
-SOURCEPATH	..\Framework\src
+SOURCEPATH	../Framework/src
 SOURCE		CMtfTestAction.cpp CMtfTestActionManager.cpp CMtfTestActionWait.cpp 
 SOURCE		CMtfTestCase.cpp CMtfTestActionSectionComplete.cpp CMtfTestBeginManager.cpp
 SOURCE		CMtfTestParameterStore.cpp CMtfTestActionNamePair.cpp CMtfTestCaseNamePair.cpp
@@ -42,12 +42,12 @@ SOURCE		CMtfTestActionParameters.cpp CMtfTestServer.cpp CMtfSynchronousTestActio
 SOURCE		CMtfScriptedTestCase.cpp CMtfTestParameter.cpp CMtfConfigurationType.cpp
 SOURCE		CMtfEnumeratorConverter.cpp CMtfSetConfigurationTestStep.cpp
 
-SOURCEPATH	..\TestActions\Sample\src 
+SOURCEPATH	../TestActions/Sample/src 
 SOURCE		CMtfTestActionSampleActionA.cpp CMtfTestActionSampleActionB.cpp
 SOURCE		CMtfTestActionSampleActionC.cpp CMtfTestActionSampleActionD.cpp
 SOURCE		CMtfTestActionSampleActionE.cpp CMtfTestActionSampleActionF.cpp
 
-SOURCEPATH	..\TestActions\Base\src 
+SOURCEPATH	../TestActions/Base/src 
 SOURCE		CMtfTestActionGetBaseConstants.cpp 
 SOURCE		CMtfTestActionGetEntryPriorityEnums.cpp 
 SOURCE		CMtfTestActionSleep.cpp 
@@ -95,14 +95,14 @@ SOURCE		CMtfTestActionGetEntry.cpp
 SOURCE		CMtfTestActionGetStore.cpp
 
 
-SOURCEPATH	..\TestActions\Email\Common\src 
+SOURCEPATH	../TestActions/Email/Common/src 
 SOURCE		CMtfTestActionInitNtRas.cpp 
 SOURCE		CMtfTestActionGetEmailConstants.cpp 
 SOURCE		CMtfTestActionPruneMessages.cpp
 SOURCE		CMtfTestActionStopAllSocketConnections.cpp
 SOURCE		CMtfTestActionLaunchAutoSend.cpp
 
-SOURCEPATH	..\TestActions\Email\Imap4\src 
+SOURCEPATH	../TestActions/Email/Imap4/src 
 SOURCE		CMtfTestActionCreateImap4Service.cpp CMtfTestActionDeleteImap4Service.cpp 
 SOURCE		CMtfTestActionCreateImap4Mtm.cpp CMtfTestActionDeleteImap4Mtm.cpp 
 SOURCE		CMtfTestActionSetImap4ServiceParameters.cpp
@@ -149,13 +149,13 @@ SOURCE		CMtfTestActionGetImapAccountSettings.cpp
 
 
 
-//ssaging\testframework\TestActionUtils\src
-SOURCEPATH	..\TestActionUtils\src 
+//ssaging/testframework/TestActionUtils/src
+SOURCEPATH	../TestActionUtils/src 
 // utility files for setting up service params
 SOURCE 		CMtfTestActionUtilsImapScripts.cpp
 SOURCE 		CMtfTestActionUtilsPopScripts.cpp
 
-SOURCEPATH	..\TestActions\Email\Pop3\src 
+SOURCEPATH	../TestActions/Email/Pop3/src 
 SOURCE		CMtfTestActionCreatePop3Service.cpp CMtfTestActionDeletePop3Service.cpp 
 SOURCE		CMtfTestActionCreatePop3Mtm.cpp CMtfTestActionDeletePop3Mtm.cpp 
 SOURCE		CMtfTestActionSetPop3ServiceParameters.cpp
@@ -187,7 +187,7 @@ SOURCE		CMtfTestActionModifyPopSettings.cpp
 SOURCE		CMtfTestActionGetPopAccountSettings.cpp
 
 
-SOURCEPATH	..\TestActions\Email\Smtp\src 
+SOURCEPATH	../TestActions/Email/Smtp/src 
 SOURCE		CMtfTestActionCreateSmtpService.cpp 
 SOURCE		CMtfTestActionDeleteSmtpService.cpp 
 SOURCE		CMtfTestActionCreateSmtpMtm.cpp 
@@ -229,7 +229,7 @@ SOURCE		CMtfTestActionSmtpModifyAttachmentInfo.cpp
 
 
 
-SOURCEPATH	..\TestActions\Sms\src 
+SOURCEPATH	../TestActions/Sms/src 
 SOURCE		CMtfTestActionGetSmsConstants.cpp
 SOURCE		CMtfTestActionCreateSmsService.cpp
 SOURCE		CMtfTestActionSetDefaultSmsSettings.cpp
@@ -261,13 +261,13 @@ SOURCE		CMtfTestActionSaveSmsSettings.cpp
 SOURCE		CMtfTestActionCompareLastSegmentReport.cpp
 
 
-//URCEPATH	..\TestActions\Mms\src 
+//URCEPATH	../TestActions/Mms/src 
 //SOURCE		CMtfTestActionCreateMmsService.cpp CMtfTestActionDeleteMmsService.cpp 
 //SOURCE		CMtfTestActionCreateMmsMtm.cpp CMtfTestActionDeleteMmsMtm.cpp 
 //SOURCE		CMtfTestActionSetMmsServiceParameters.cpp
 //SOURCE		CMtfTestActionCreateMmsMessageFromSmilFile.cpp
 
-SOURCEPATH	..\TestActions\Framework\src 
+SOURCEPATH	../TestActions/Framework/src 
 SOURCE		CMtfTestActionGetEntryTypeConstants.cpp	
 SOURCE		CMtfTestActionCreateAttachmentForWrite.cpp
 SOURCE		CMtfTestActionDeleteAttachment.cpp
@@ -278,8 +278,8 @@ SOURCE		CMtfTestActionDeleteFileStore.cpp
 SOURCE		CMtfTestActionFileStoreExists.cpp
 SOURCE 		CMtfTestActionReplaceFileStore.cpp
 
-USERINCLUDE	..\TestActions\Base\Attachments\inc
-SOURCEPATH	..\TestActions\Base\Attachments\src
+USERINCLUDE	../TestActions/Base/Attachments/inc
+SOURCEPATH	../TestActions/Base/Attachments/src
 SOURCE		CMtfTestActionAddFileAttachmentByPath.cpp
 SOURCE		CMtfTestActionAddFileAttachmentByPathSync.cpp
 SOURCE		CMtfTestActionAddFileAttachmentByHandle.cpp
@@ -311,7 +311,7 @@ SOURCE		CMtfTestActionVerifyAttachmentInfo.cpp
 SOURCE		CMtfTestActionRemoveAllAttachments.cpp
 SOURCE		CMtfTestActionAddAttachmentAsLink.cpp
 
-SOURCEPATH	..\TestActions\Pigeon\src
+SOURCEPATH	../TestActions/Pigeon/src
 SOURCE		CMtfTestActionCreatePigeonMessage.cpp
 SOURCE		CMtfTestActionGetPigeonMtmConstant.cpp
 SOURCE		CMtfTestActionSchedulePigeonMessage.cpp
@@ -319,19 +319,19 @@ SOURCE		CMtfTestActionLaunchSchSendExe.cpp
 SOURCE		CMtfTestActionCheckIfMessageScheduleDateExpired.cpp
 SOURCE		CMtfTestActionLaunchScheduleMessageExe.cpp
 
-USERINCLUDE	..\TestActions\Obex\Ir\inc
-SOURCEPATH	..\TestActions\Obex\Ir\src
+USERINCLUDE	../TestActions/Obex/Ir/inc
+SOURCEPATH	../TestActions/Obex/Ir/src
 
 SOURCE		CMtfTestActionGetIRMTMUId.cpp
 SOURCE		CMtfTestActionGetIrMTMCommandParameters.cpp
 
-USERINCLUDE	..\TestActions\Obex\Bt\inc
-SOURCEPATH	..\TestActions\Obex\Bt\src
+USERINCLUDE	../TestActions/Obex/Bt/inc
+SOURCEPATH	../TestActions/Obex/Bt/src
 
 SOURCE		CMtfTestActionGetBTMTMUId.cpp
 SOURCE		CMtfTestActionGetBtMTMCommandParameters.cpp
 
-SOURCEPATH	..\TestActionUtils\src
+SOURCEPATH	../TestActionUtils/src
 SOURCE		CMtfTestActionUtilsTimer.cpp CMtfTestActionUtilsDeleteAllChildren.cpp 
 SOURCE		CMtfTestActionUtilsConfigFileParser.cpp 
 SOURCE		MtfTestActionUtilsUser.cpp
@@ -342,7 +342,7 @@ SOURCE		CMtfTestActionUtils.cpp
 SOURCE		CMtfTestActionUtilsEmailMessage.cpp
 
 
-SOURCEPATH	..\TestCases\NonScriptedTestCases\src
+SOURCEPATH	../TestCases/NonScriptedTestCases/src
 SOURCE		CMtfTestCaseSample001.cpp
 SOURCE		CMtfTestCaseCreateSendReceivePop3Email.cpp
 SOURCE		CMtfTestCaseCreateSendReceiveImap4Email.cpp
@@ -382,9 +382,9 @@ EPOCSTACKSIZE		0x6000
 
 
 #ifdef WINS
-DEFFILE				..\bwins\wins.def
+DEFFILE				../bwins/wins.def
 #else
-DEFFILE				..\bmarm\marm.def
+DEFFILE				../bmarm/marm.def
 #endif
 
 VENDORID 0x70000001

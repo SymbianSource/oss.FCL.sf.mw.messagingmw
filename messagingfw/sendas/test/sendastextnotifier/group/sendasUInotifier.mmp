@@ -43,6 +43,6 @@ end
 #ifdef WINS 
 DEFFILE		./v2_wins.def
 #else
-DEFFILE		.\v2_eabi.def
+DEFFILE		./v2_eabi.def
 #endif
 SMPSAFE

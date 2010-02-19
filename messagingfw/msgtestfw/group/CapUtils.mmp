@@ -11,7 +11,7 @@
 // Contributors:
 //
 // Description:
-// TestFramework\group\CapUtils.mmp
+// TestFramework/group/CapUtils.mmp
 // 
 //
 
@@ -23,7 +23,7 @@ library			euser.lib efsrv.lib
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 
-//romtarget		\system\bin\ //
+//romtarget		/system/bin/ //
 // No ROM target as will go in sis file
 
 macro			__SECURE_API__

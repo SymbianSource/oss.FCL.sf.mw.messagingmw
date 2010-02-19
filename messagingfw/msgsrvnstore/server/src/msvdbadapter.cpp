@@ -48,8 +48,8 @@
 		_LIT(KMainDummyDBName, "\\messaging_master.db");
 		_LIT(KMessagingDBName, "\\messaging.db");
 	#else
-		_LIT(KMainDummyDBName, "[1000484b]messaging_master.db");
-		_LIT(KMessagingDBName, "[1000484b]messaging.db");
+		_LIT(KMainDummyDBName, "[1000484B]messaging_master.db");
+		_LIT(KMessagingDBName, "[1000484B]messaging.db");
 	#endif
 
 	_LIT(KLogicalName, "DB");

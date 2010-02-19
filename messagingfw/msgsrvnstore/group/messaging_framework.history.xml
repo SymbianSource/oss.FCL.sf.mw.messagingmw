@@ -4,6 +4,10 @@
     Framework for storage, retrieval, editing, sending and receiving of messages such as email or SMS.
   </purpose>
 
+  <defect number="EMPA-7ZNF42" title="Message store setting to E, is crashing the application after restart" revision= "130">
+   	messaging DB name was passed [1000484b]messaging.db instead of [1000484B]messaging.db to SQL Server
+  </defect>
+
   <defect number="DEF141963" title="converter test case is failing" revision= "129">
    	changed error handling while creating conversion status table.
   </defect>  

@@ -74,11 +74,11 @@ LANG                    SC
 #else
 
 #ifdef WINS
-	DEFFILE     ..\..\BWins\MISCPUSHMSGUTILS.def
+	DEFFILE     ../../BWins/MISCPUSHMSGUTILS.def
 #elif defined X86GCC
 	DEFFILE     ../../bx86gcc/MISCPUSHMSGUTILS.def
 #else
-	DEFFILE     ..\..\EABI\MISCPUSHMSGUTILS.def
+	DEFFILE     ../../EABI/MISCPUSHMSGUTILS.def
 #endif  
 
 #endif // __MESSAGING_API_V2__

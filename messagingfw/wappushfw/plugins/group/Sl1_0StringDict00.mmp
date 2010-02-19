@@ -29,9 +29,9 @@ UID 			0x10009D8D 0x10282653
 VENDORID 0x70000001
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
-//  USERINCLUDE 	+\build\generated\wappush\Plugins\StringDictionaries
+//  USERINCLUDE 	+/build/generated/wappush/Plugins/StringDictionaries
 
-//SOURCEPATH		+\build\generated\wappush\Plugins\StringDictionaries
+//SOURCEPATH		+/build/generated/wappush/Plugins/StringDictionaries
 
 
 START STRINGTABLE ../../plugins/StringDictionaries/ServiceLoading/Sl1_0StringDict00TagTable.st

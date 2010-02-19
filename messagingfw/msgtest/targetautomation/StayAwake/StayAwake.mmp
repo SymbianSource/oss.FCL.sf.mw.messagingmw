@@ -18,8 +18,8 @@ targettype      exe
 
 CAPABILITY All -TCB
 
-sourcepath		..\StayAwake
-systeminclude   \epoc32\include
+sourcepath		../StayAwake
+systeminclude   /epoc32/include
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 source  		StayAwake.cpp
 

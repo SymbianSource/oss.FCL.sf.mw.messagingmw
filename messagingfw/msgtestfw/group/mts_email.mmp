@@ -21,36 +21,36 @@ VENDORID 		0x70000001
 
 
 
-USERINCLUDE			..\Framework\inc
-USERINCLUDE			..\TestActions\Sample\inc 
-USERINCLUDE 		..\TestActions\Base\inc 
-USERINCLUDE			..\TestActions\Email\Common\inc 
-USERINCLUDE			..\TestActions\Email\Imap4\inc 
-USERINCLUDE			..\TestActions\Email\Pop3\inc 
-USERINCLUDE			..\TestActions\Email\Smtp\inc
-USERINCLUDE			..\TestActions\Sms\inc 
-USERINCLUDE			..\TestActions\Mms\inc
-USERINCLUDE			..\TestActions\Framework\inc
-USERINCLUDE			..\TestActionUtils\inc
-USERINCLUDE			..\TestActions\Base\Attachments\inc
-USERINCLUDE			..\TestActions\Pigeon\inc
-USERINCLUDE			..\TestCases\NonScriptedTestCases\inc 
+USERINCLUDE			../Framework/inc
+USERINCLUDE			../TestActions/Sample/inc 
+USERINCLUDE 		../TestActions/Base/inc 
+USERINCLUDE			../TestActions/Email/Common/inc 
+USERINCLUDE			../TestActions/Email/Imap4/inc 
+USERINCLUDE			../TestActions/Email/Pop3/inc 
+USERINCLUDE			../TestActions/Email/Smtp/inc
+USERINCLUDE			../TestActions/Sms/inc 
+USERINCLUDE			../TestActions/Mms/inc
+USERINCLUDE			../TestActions/Framework/inc
+USERINCLUDE			../TestActionUtils/inc
+USERINCLUDE			../TestActions/Base/Attachments/inc
+USERINCLUDE			../TestActions/Pigeon/inc
+USERINCLUDE			../TestCases/NonScriptedTestCases/inc 
 
-USERINCLUDE			..\..\msgtests\Framework\server\inc
-USERINCLUDE			..\..\watcherfw\inc
-USERINCLUDE			..\..\scheduledsendmtm\test\unit\inc
+USERINCLUDE			../../msgtests/Framework/server/inc
+USERINCLUDE			../../watcherfw/inc
+USERINCLUDE			../../scheduledsendmtm/test/unit/inc
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 
-SOURCEPATH			..\TestActions\Email\Common\src 
+SOURCEPATH			../TestActions/Email/Common/src 
 SOURCE				CMtfTestActionInitNtRas.cpp 
 SOURCE				CMtfTestActionGetEmailConstants.cpp 
 SOURCE				CMtfTestActionPruneMessages.cpp
 SOURCE				CMtfTestActionStopAllSocketConnections.cpp
 SOURCE				CMtfTestActionLaunchAutoSend.cpp
 
-SOURCEPATH			..\TestActions\Email\Imap4\src 
+SOURCEPATH			../TestActions/Email/Imap4/src 
 SOURCE				CMtfTestActionCreateImap4Service.cpp CMtfTestActionDeleteImap4Service.cpp 
 SOURCE				CMtfTestActionCreateImap4Mtm.cpp CMtfTestActionDeleteImap4Mtm.cpp 
 SOURCE				CMtfTestActionSetImap4ServiceParameters.cpp
@@ -97,13 +97,13 @@ SOURCE				CMtfTestActionGetImapAccountSettings.cpp
 
 
 
-//ssaging\testframework\TestActionUtils\src
-SOURCEPATH			..\TestActionUtils\src 
+//ssaging/testframework/TestActionUtils/src
+SOURCEPATH			../TestActionUtils/src 
 // utility files for setting up service params
 SOURCE 				CMtfTestActionUtilsImapScripts.cpp
 SOURCE 				CMtfTestActionUtilsPopScripts.cpp
 
-SOURCEPATH			..\TestActions\Email\Pop3\src 
+SOURCEPATH			../TestActions/Email/Pop3/src 
 SOURCE				CMtfTestActionCreatePop3Service.cpp CMtfTestActionDeletePop3Service.cpp 
 SOURCE				CMtfTestActionCreatePop3Mtm.cpp CMtfTestActionDeletePop3Mtm.cpp 
 SOURCE				CMtfTestActionSetPop3ServiceParameters.cpp
@@ -135,7 +135,7 @@ SOURCE				CMtfTestActionModifyPopSettings.cpp
 SOURCE				CMtfTestActionGetPopAccountSettings.cpp
 
 
-SOURCEPATH			..\TestActions\Email\Smtp\src 
+SOURCEPATH			../TestActions/Email/Smtp/src 
 SOURCE				CMtfTestActionCreateSmtpService.cpp 
 SOURCE				CMtfTestActionDeleteSmtpService.cpp 
 SOURCE				CMtfTestActionCreateSmtpMtm.cpp 
