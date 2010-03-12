@@ -426,6 +426,7 @@ private:
 	//variables for bulk creation of entries
 	CMsvEntrySelection* iBulkCreationSelection;
 	CMsvEntrySelection* iBulkChangeSelection;
+	TBool iReleasedForRestore;
 	TBuf<2> iSystemDrive;
 
 	// Reference to freepool object.

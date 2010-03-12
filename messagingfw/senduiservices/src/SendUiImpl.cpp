@@ -1285,7 +1285,6 @@ void CSendUiImpl::ConstructL()
 TBool CSendUiImpl::IsMailboxAvailableL(void)
 {
     TBool mailbox = EFalse;
-    TBool retval = EFalse;
     
     CMsvSession& msv = iSingleton->MsvSessionL();
     CMsvEntry* entry = msv.GetEntryL( KMsvRootIndexEntryId );
@@ -1313,12 +1312,6 @@ TBool CSendUiImpl::IsMailboxAvailableL(void)
      
          CleanupStack::PopAndDestroy( entry );
 
-         // if accounts defined, 
-         if ( mailbox )
-             {
-             retval =  mailbox;
-             }   
-         
      return mailbox; 
 }
 

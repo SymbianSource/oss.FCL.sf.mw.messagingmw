@@ -4,6 +4,10 @@
     Framework for storage, retrieval, editing, sending and receiving of messages such as email or SMS.
   </purpose>
 
+ <defect number="PDEF142159/EHGO-7V4CS2 " title="A note is displayed after formatting Memory card when "Memory in use" " revision= "131">
+   	Updated the Notification wrt DiskRemove and Disk Insert.
+  </defect>
+
   <defect number="EMPA-7ZNF42" title="Message store setting to E, is crashing the application after restart" revision= "130">
    	messaging DB name was passed [1000484b]messaging.db instead of [1000484B]messaging.db to SQL Server
   </defect>

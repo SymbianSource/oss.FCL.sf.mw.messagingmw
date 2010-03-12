@@ -39,14 +39,6 @@
 
 // LOCAL CONSTANTS AND MACROS
 
-#if defined (__WINS__)
-//_LIT( KFileProtTempDir, "c:\\system\\temp\\fileprot_temp\\");
-_LIT( KFileProtTempDir, "\x43:\\system\\temp\\fileprot_temp\\");
-#else
-//_LIT( KFileProtTempDir, "d:\\system\\temp\\fileprot_temp\\");
-_LIT( KFileProtTempDir, "\x44:\\system\\temp\\fileprot_temp\\");
-#endif
-
 // MODULE DATA STRUCTURES
 
 // LOCAL FUNCTION PROTOTYPES

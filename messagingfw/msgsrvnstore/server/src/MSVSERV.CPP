@@ -251,7 +251,7 @@ CMsvMtmOperationQueue::~CMsvMtmOperationQueue()
 
 
 CMsvServer::CMsvServer(TInt aPriority, TBool aDebug)
-:   CPolicyServer(aPriority, msgServerPolicy), iSessionNumber(1), iMtmOperationQueueArray(KMsvMtmOpsQueueArrayGranularity), iDebug(aDebug)
+:   CPolicyServer(aPriority, msgServerPolicy), iSessionNumber(1), iMtmOperationQueueArray(KMsvMtmOpsQueueArrayGranularity), iDebug(aDebug), iReleasedForRestore(EFalse)
 //
 //
 //
@@ -2015,15 +2015,6 @@ EXPORT_C void CMsvServer::CreateIndexL(TBool aSync)
 			iStartupState = EMsvMediaUnavailable;
 			drive = iSystemDrive;
 			}
-		else if (iNewContext->Config().iUniqueID != 0 && iNewContext->Config().iUniqueID != volume.iUniqueID)
-			{
-#ifndef _NO_SERVER_LOGGING_
-			Log(_L("The media is incorrect %d != %d - using default"), iNewContext->Config().iUniqueID, volume.iUniqueID);
-#endif
-			// The media is incorrect - use default
-			iStartupState = EMsvMediaIncorrect;
-			drive = iSystemDrive;
-			}
 		iNewContext->CreateIndexL(drive, aSync);
 		return;
 		}
@@ -2277,8 +2268,14 @@ TBool CMsvServer::DiskRemoved(const TDriveUnit& aDrive)
 #ifndef _NO_SERVER_LOGGING_
 	Log(_L("Disk %d removed"), TInt(aDrive));
 #endif
-
-	NotifyChanged(EMsvMediaUnavailable, KMsvNullIndexEntryId, TInt(aDrive));
+	if(iContext->IndexAdapter()->ErrorState() != KMsvIndexRestore)
+		{
+		NotifyChanged(EMsvMediaUnavailable, KMsvNullIndexEntryId, TInt(aDrive));
+		}
+	else
+		{
+		iReleasedForRestore = ETrue;
+		}
 	iContext->IndexAdapter()->SetErrorState(KMsvMediaUnavailable);
 	iContext->IndexAdapter()->DeleteDbAdapter();
 
@@ -2296,8 +2293,14 @@ TBool CMsvServer::DiskInserted(const TDriveUnit& aDrive)
 #ifndef _NO_SERVER_LOGGING_
 	Log(_L("Disk %d inserted"), TInt(aDrive));
 #endif
-
-	NotifyChanged(EMsvMediaAvailable, KMsvNullIndexEntryId, TInt(aDrive));
+	if(!iReleasedForRestore)
+		{
+		NotifyChanged(EMsvMediaAvailable, KMsvNullIndexEntryId, TInt(aDrive));
+		}
+	else
+		{
+		iReleasedForRestore = EFalse;
+		}
 
 	iContext->IndexAdapter()->SetErrorState(KErrNone);
 
