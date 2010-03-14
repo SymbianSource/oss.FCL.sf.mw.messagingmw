@@ -78,10 +78,10 @@ void TMsvTime::ExternalizeL(RWriteStream& aStream) const
 
 TTime TMsvTime::MinTime() const
 	{
-	return TTime(TDateTime(1980,EJanuary,0,0,0,0,0));
+	return TTime(TDateTime(1900,EJanuary,0,0,0,0,0));
 	}
 
 TTime TMsvTime::MaxTime() const
 	{
-	return TTime(TDateTime(2100,EDecember,30,0,0,0,0));
+	return TTime(TDateTime(2100,EDecember,30,23,59,59,0));
 	}

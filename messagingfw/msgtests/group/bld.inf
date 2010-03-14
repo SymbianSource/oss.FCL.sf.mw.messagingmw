@@ -41,7 +41,7 @@ DEFAULT
 #ifdef USE_IMAP_V2
 #include "../../../../../app/messaging/email/imap4mtm/group/bld.inf"
 #else
-#include "..\..\..\..\..\app\messaging\email\pop3andsmtpmtm\imapservermtm\group\bld.inf"
+#include "../../../../../app/messaging/email/pop3andsmtpmtm/imapservermtm/group/bld.inf"
 #endif
 #include "../../../../../app/messaging/mobilemessaging/smsmtm/group/bld.inf"
 #include "../../../../../app/messaging/messagingappbase/obexmtms/Group/bld.inf"

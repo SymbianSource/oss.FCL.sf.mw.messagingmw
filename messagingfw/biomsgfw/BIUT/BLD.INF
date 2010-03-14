@@ -37,6 +37,6 @@ PRJ_MMPFILES
 group/BIUT.MMP
 
 PRJ_TESTMMPFILES
-//..\Biuttsrc\t_biomsg.mmp
+//../Biuttsrc/t_biomsg.mmp
 ../BIUTTSRC/t_ipaddr.mmp
 

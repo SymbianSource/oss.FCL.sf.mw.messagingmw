@@ -47,6 +47,7 @@ SOURCEPATH	.
 SOURCEPATH	.
 
 START RESOURCE        TestHandler.rss
+DEPENDS aknfep.rsg
 TARGET testhandler.rsc
 TARGETPATH /resource/apps
 HEADER
@@ -54,12 +55,14 @@ LANG	SC
 END
 
 START RESOURCE	TestHandler_loc.rss
+DEPENDS aknfep.rsg
 TARGETPATH resource/apps
 HEADER
 LANG	SC
 END
 
 START RESOURCE	TestHandler_reg.rss
+DEPENDS aknfep.rsg
 TARGETPATH		/private/10003a3f/apps
 END
 

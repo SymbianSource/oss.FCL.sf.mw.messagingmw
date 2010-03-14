@@ -51,7 +51,7 @@ LIBRARY         euser.lib msgs.lib estor.lib pushmsgentry.lib
 #ifdef WINS
 	DEFFILE     ../../bwins/SISLPUSHMSGUTILS.DEF
 #elif defined(GCC32)
-	DEFFILE     ..\..\BMarm\SISLPUSHMSGUTILS.def
+	DEFFILE     ../../BMarm/SISLPUSHMSGUTILS.def
 #else
 	DEFFILE     ../../eabi/SISLPUSHMSGUTILS.def
 #endif  

@@ -19,17 +19,17 @@ TARGETTYPE    				lib
 UID 0
 VENDORID 					0x70000001
 
-USERINCLUDE					..\Framework\inc
-USERINCLUDE					..\TestActions\sms\inc
-USERINCLUDE					..\TestActionUtils\inc
-USERINCLUDE					..\TestActions\Mms\inc
+USERINCLUDE					../Framework/inc
+USERINCLUDE					../TestActions/sms/inc
+USERINCLUDE					../TestActionUtils/inc
+USERINCLUDE					../TestActions/Mms/inc
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 
 
 
-SOURCEPATH					..\TestActions\Sms\src 
+SOURCEPATH					../TestActions/Sms/src 
 SOURCE						CMtfTestActionGetSmsConstants.cpp
 SOURCE						CMtfTestActionCreateSmsService.cpp
 SOURCE						CMtfTestActionSetDefaultSmsSettings.cpp
@@ -60,7 +60,7 @@ SOURCE						CMtfTestActionSaveSmsSettings.cpp
 
 
 
-SOURCEPATH	..\TestActions\Mms\src 
+SOURCEPATH	../TestActions/Mms/src 
 SOURCE						CMtfTestActionCreateMmsService.cpp 
 SOURCE						CMtfTestActionDeleteMmsService.cpp 
 SOURCE						CMtfTestActionCreateMmsMtm.cpp 
@@ -71,16 +71,16 @@ SOURCE						CMtfTestActionCreateMmsMessageFromSmilFile.cpp
 
 
 
-USERINCLUDE	..\TestActions\Obex\Ir\inc
-SOURCEPATH	..\TestActions\Obex\Ir\src
+USERINCLUDE	../TestActions/Obex/Ir/inc
+SOURCEPATH	../TestActions/Obex/Ir/src
 
 SOURCE		CMtfTestActionGetIRMTMUId.cpp
 SOURCE		CMtfTestActionGetIrMTMCommandParameters.cpp
 
 
 
-USERINCLUDE	..\TestActions\Obex\Bt\inc
-SOURCEPATH	..\TestActions\Obex\Bt\src
+USERINCLUDE	../TestActions/Obex/Bt/inc
+SOURCEPATH	../TestActions/Obex/Bt/src
 
 SOURCE		CMtfTestActionGetBTMTMUId.cpp
 SOURCE		CMtfTestActionGetBtMTMCommandParameters.cpp

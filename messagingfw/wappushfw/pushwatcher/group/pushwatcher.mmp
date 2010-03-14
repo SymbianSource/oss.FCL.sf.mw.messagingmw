@@ -35,7 +35,7 @@ target pushwatcher.rsc
 #endif
 end
 #else
-TARGETPATH 		\system\libs\watchers
+TARGETPATH 		/system/libs/watchers
 TARGETTYPE		dll
 
 UID      0x1027433D 0x10009145
@@ -66,11 +66,11 @@ LIBRARY	    watcher.lib wapmsgcli.lib
 #ifndef __WATCHER_API_V2__
 
 #ifdef WINS
-DEFFILE       ..\..\BWins\WapPushW.def
+DEFFILE       ../../BWins/WapPushW.def
 #elif defined(GCC32)
-DEFFILE       ..\..\BMarm\WapPushM.def
+DEFFILE       ../../BMarm/WapPushM.def
 #else
-DEFFILE       ..\..\EABI\WapPush.def
+DEFFILE       ../../EABI/WapPush.def
 #endif  
 
 #endif	// __WATCHER_API_V2__

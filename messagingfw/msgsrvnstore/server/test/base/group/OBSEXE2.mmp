@@ -13,15 +13,15 @@
 // Description:
 //
 
-TARGETPATH		\system\programs
+TARGETPATH		/system/programs
 TARGET			obsexe2.exe
 TARGETTYPE		exe
 
 CAPABILITY All -TCB
 UID		0x1000007a 0x10004F2B
 VENDORID 0x70000001
-SOURCEPATH		..\src
-USERINCLUDE		..\inc
+SOURCEPATH		../src
+USERINCLUDE		../inc
 SOURCE			obsexe2.cpp
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			euser.lib efsrv.lib

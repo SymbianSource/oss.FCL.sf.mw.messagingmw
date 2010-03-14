@@ -29,7 +29,7 @@ static _LIT_SECURITY_POLICY_PASS(KAllowAllPolicy);
 #if (defined SYMBIAN_MESSAGESTORE_UNIT_TESTCODE)
 	_LIT(KMessagingDBName, "\\messaging.db");
 #else
-	_LIT(KMessagingDBName,"[1000484b]messaging.db");
+	_LIT(KMessagingDBName,"[1000484B]messaging.db");
 #endif
 
 

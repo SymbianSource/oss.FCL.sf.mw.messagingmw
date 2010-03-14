@@ -14,7 +14,7 @@
 //
 
 TARGET        t_ipaddr.exe
-//TARGETPATH    \system\libs
+//TARGETPATH    /system/libs
 TARGETTYPE    exe
 
 CAPABILITY All -TCB

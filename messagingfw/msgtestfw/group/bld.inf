@@ -2088,7 +2088,7 @@ PRJ_TESTEXPORTS
 ../Configurations/EmailSettings/SmtpSettings-lon-cn-exchng2k_81a.txt    										/epoc32/wins/c/msgtest/testframework/configurations/emailsettings/smtpsettings-lon-cn-exchng2k_81a.txt
 ../Configurations/EmailSettings/SmtpSettings-lon-cn-exchng2k_81b.txt    										/epoc32/wins/c/msgtest/testframework/configurations/emailsettings/smtpsettings-lon-cn-exchng2k_81b.txt
 ../Configurations/EmailMessage/Email-Simple-Imap4Idle.txt													/epoc32/wins/c/msgtest/testframework/configurations/emailmessage/email-simple-imap4idle.txt
-//..\Configurations\EmailMessage\2att.txt																	\epoc32\wins\c\msgtest\TestFramework\Configurations\EmailMessage\2att.txt
+//../Configurations/EmailMessage/2att.txt																	/epoc32/wins/c/msgtest/TestFramework/Configurations/EmailMessage/2att.txt
 ../Configurations/EmailSettings/Imap4Settings-IdleSupport.txt												/epoc32/wins/c/msgtest/testframework/configurations/emailsettings/imap4settings-idlesupport.txt
 ../Configurations/EmailSettings/Imap4Settings-NoIdleSupport.txt												/epoc32/wins/c/msgtest/testframework/configurations/emailsettings/imap4settings-noidlesupport.txt
 ../Configurations/EmailSettings/SmtpSettings-IdleSupport.txt 												/epoc32/wins/c/msgtest/testframework/configurations/emailsettings/smtpsettings-idlesupport.txt

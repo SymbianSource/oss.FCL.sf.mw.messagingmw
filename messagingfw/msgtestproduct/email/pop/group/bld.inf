@@ -19,7 +19,7 @@ PRJ_TESTMMPFILES
 T_PopServer.mmp
 
 PRJ_TESTMMPFILES
-// makefile ..\..\group\machinename.mak
+// makefile ../../group/machinename.mak
 
 
 PRJ_TESTEXPORTS

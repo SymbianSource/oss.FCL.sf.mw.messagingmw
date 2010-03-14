@@ -21,13 +21,13 @@ CAPABILITY ReadDeviceData WriteDeviceData NetworkServices LocalServices ReadUser
 UID			0x10009D8D 0x101F3E60 // <-----TODO...Match to same UID resource file
 VENDORID 0x70000001
 
-SOURCEPATH	..\PushAppHandlerEx
+SOURCEPATH	../PushAppHandlerEx
 SOURCE		PushAppHandlerEx.cpp 
 SOURCE		PushAppHandlerExGroupProxy.cpp
 SOURCE		PushAppHandlerExMain.cpp
 
 
-USERINCLUDE      .\.
+USERINCLUDE      ./.
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 LIBRARY     euser.lib ECom.lib WapPushUtils.lib

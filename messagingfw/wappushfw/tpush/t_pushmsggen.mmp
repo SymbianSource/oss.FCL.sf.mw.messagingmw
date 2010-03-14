@@ -16,7 +16,7 @@
 TARGET		t_pushmsggen.exe
 TARGETTYPE      exe
 CAPABILITY readdevicedata writedevicedata protserv networkcontrol networkservices localservices readuserdata
-SOURCEPATH	..\tpush
+SOURCEPATH	../tpush
 SOURCE          t_pushmsggen.cpp wappushmsggen.cpp
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY         euser.lib

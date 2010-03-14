@@ -14,11 +14,11 @@
 //
 
 TARGET		T_UI.exe
-TARGETPATH	\system\programs
+TARGETPATH	/system/programs
 TARGETTYPE	epocexe
 
 CAPABILITY All -TCB
-SOURCEPATH	..\src
+SOURCEPATH	../src
 SOURCE		T_UI.cpp
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY		euser.lib msgs.lib mtur.lib

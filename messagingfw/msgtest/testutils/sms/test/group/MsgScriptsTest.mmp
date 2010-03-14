@@ -20,7 +20,7 @@ CAPABILITY All -TCB
 SOURCEPATH	.
 SOURCE			MsgScriptsTest.cpp
 USERINCLUDE		.
-USERINCLUDE		..\inc
+USERINCLUDE		../inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			euser.lib efsrv.lib smstestutils.lib
 

@@ -18,8 +18,8 @@ TARGETTYPE      exe
 
 CAPABILITY All -TCB
 
-SOURCEPATH	..\test
-USERINCLUDE     ..\inc
+SOURCEPATH	../test
+USERINCLUDE     ../inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 SOURCE          T_WapWatcher.cpp
 LIBRARY         euser.lib efsrv.lib etext.lib BAFL.lib estor.lib esock.lib WapWatcher.lib gsmu.lib smsu.lib watcher.lib MsvTestUtils.lib bits.lib

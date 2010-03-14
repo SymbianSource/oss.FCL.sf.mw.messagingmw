@@ -22,20 +22,20 @@ UID		0x1000007A 0x102050E4
 CAPABILITY ProtServ AllFiles WriteDeviceData ReadDeviceData
 
 // Source:
-SOURCEPATH		..\testserver\src
+SOURCEPATH		../testserver/src
 SOURCE			t_burtestserver.cpp
 SOURCE			t_storagemanager.cpp
 SOURCE 			t_asyncbackuptransferhandler.cpp
 
-SOURCEPATH		..\teststeps\src
+SOURCEPATH		../teststeps/src
 SOURCE			t_burteststepbase.cpp
 SOURCE			t_teststepbackup.cpp
 SOURCE			t_teststeprestore.cpp
 SOURCE			t_teststepbackupasync.cpp
 SOURCE			t_teststeprestoreasync.cpp
 
-USERINCLUDE		..\testserver\inc
-USERINCLUDE		..\teststeps\inc
+USERINCLUDE		../testserver/inc
+USERINCLUDE		../teststeps/inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			estlib.lib 
 LIBRARY			euser.lib

@@ -50,7 +50,7 @@ LIBRARY         euser.lib ecom.lib inetprotutil.lib
 #ifdef WINS
 DEFFILE       ../../bwins/WAPPUSHUTILS.DEF
 #elif defined(GCC32)
-DEFFILE       ..\..\BMarm\WapPushUtils.def
+DEFFILE       ../../BMarm/WapPushUtils.def
 #else
 DEFFILE       ../../eabi/WapPushUtils.def
 #endif  
