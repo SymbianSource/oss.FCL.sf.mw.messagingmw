@@ -97,5 +97,6 @@ LIBRARY         caf.lib
 #ifdef RD_MULTIPLE_DRIVE
 LIBRARY         platformenv.lib
 #endif
+LIBRARY		senduidatautils.lib
 
 /* End of File */

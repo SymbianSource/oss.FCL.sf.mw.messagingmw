@@ -56,7 +56,8 @@
 #include "propertyobserver.h"
 #include "senduilauncher.h"
 #include "SendUiInternalConsts.h"
-
+#include "SendUiFileRightsEngine.h"
+#include "CSendUiAttachment.h"
 
 const TInt KArrayGranularity = 2;
 const TInt KSendUiServiceOrderArrayGranularity = 6;
@@ -207,6 +208,14 @@ TUid CSendUiImpl::ShowTypedQueryL(
     CArrayFix<TUid>*            aServicesToDim,
     const TDesC&                aTitleText )
     {
+        if(aMessageData)
+        {
+        TBool continueSending = ValidateAttachmentsL(aMessageData);
+        if(!continueSending)
+            {
+               return  KNullUid;
+            }
+        }
     // Implemented for CR # 401-1806 >>    
     // This section to enable/disable features (supported by feature manager) at run time, is to be revised,
     // once an observer class is available from feature manager side to intimate about feature state
@@ -1364,6 +1373,40 @@ TBool CSendUiImpl::IsEmailAppendableL(TMsvEntry atentry)
         }
     return appendEmail;
     }
-
+// -----------------------------------------------------------------------------
+// ValidateAttachmentsL
+// Validates if all the attachments are DRM protected 
+// -----------------------------------------------------------------------------
+//
+TBool CSendUiImpl::ValidateAttachmentsL(const CMessageData*  aMessageData)
+    {
+    CArrayPtrFlat<CSendUiAttachment>* attachments = NULL;
+    TInt cleanupItems(0);
+    TBool okToSend = EFalse;
+    CSendUiFileRightsEngine* fileRightsEngine = CSendUiFileRightsEngine::NewLC( iCoeEnv->FsSession() );
+    cleanupItems++;
+    // Get attachments
+    if ( aMessageData )
+        {
+        attachments = CSendUiAttachment::InitAttachmentArrayLCC( 
+            aMessageData->AttachmentArray(), 
+            aMessageData->AttachmentHandleArray(),
+            iCoeEnv->FsSession() );
+        cleanupItems += 2;
+        }   
+    fileRightsEngine->ConfirmDrmFileRightsL( attachments );
+    if ( attachments->Count() <= 0 )
+        {
+        fileRightsEngine->ShowDrmAndMmsInfoL();
+        }
+    else
+        {
+		// there are one or more files that can be sent, so dont shown error note now.
+        okToSend = ETrue;
+        }
+    CleanupStack::PopAndDestroy( cleanupItems );
+    
+    return okToSend;
+    }
 // end of file
 

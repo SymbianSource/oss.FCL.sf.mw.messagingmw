@@ -43,6 +43,8 @@ class RSendUiServiceClient;
 class CPropertyObserver;
 class TDataType;
 class CSendUiSingleton;
+class CSendUiAttachment;
+class CSendUiFileRightsEngine;
 
 /**
  *  Implementation of SendUI API
@@ -334,6 +336,17 @@ public:
       */ 
      
      TBool IsEmailAppendableL(TMsvEntry tentry);
+	 
+     /**
+      * Validates if all the attachments are DRM protected 
+      *
+      * @since S60 v5.0
+      * @param TBool
+      * @return ETrue, if it atleast one of the attachments can be sent 
+      *         EFalse, if no attachment can be sent
+      */ 
+     
+     TBool ValidateAttachmentsL(const CMessageData*  aMessageData);
      
      
 private:

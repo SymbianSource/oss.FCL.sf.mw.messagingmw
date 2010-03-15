@@ -3567,6 +3567,7 @@ void CMsvServer::StartOperationL(CMsvMtmOperation& aOperation, TInt aSessionId, 
 	// if an operation is already running, queue this one
 	if (opRunning)
 		{
+        aOperation.SetCapability(hasCapability);
 		QueueOperationL(aOperation, aSessionId);
 		return;
 		}
@@ -3745,7 +3746,8 @@ void CMsvServer::StartNextOperation(CMsvMtmOperationQueue* aQueue, TInt aQueueIn
 			return;
 			}
 		}
-	aQueue->At(0)->Start(*aQueue->iMtm, EFalse);
+	
+	aQueue->At(0)->Start(*aQueue->iMtm, aQueue->At(0)->Capability());
 	aQueue->At(0)->SetState(EMsvOperationRunning);
 	}
 
