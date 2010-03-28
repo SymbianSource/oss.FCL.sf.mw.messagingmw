@@ -231,7 +231,7 @@ class CMsgTextUtils : public CBase
         * @param    aFile       IN (Text) file to be recognized
         * @return   CharConv id of the character set
         */
-        IMPORT_C static TUint CMsgTextUtils::RecognizeCharSetL( RFs& aFs, RFile& aFile );
+        IMPORT_C static TUint RecognizeCharSetL( RFs& aFs, RFile& aFile );
 
         /*
         * GetSafeAttachmentNameLC

@@ -93,7 +93,7 @@ public: // Construct & destruct
     *
     * @return CContactMatcher* Pointer to newly created instance.
     */
-    IMPORT_C static CContactMatcher* CContactMatcher::NewLC( RFs* aFsSession );
+    IMPORT_C static CContactMatcher* NewLC( RFs* aFsSession );
 
     /**
     * C++ destructor.
@@ -564,8 +564,8 @@ private: // Methods
         const MVPbkFieldType& aFType ) const;
     static CVPbkContactStoreUriArray* GetStoreArrayLC(
         const TDesC& (* const aFuncPtrs[])() );
-    void CContactMatcher::OpenStoreL( const TDesC& (* const aFuncPtrs[])() );
-    void CContactMatcher::OpenStoreL( const TDesC& (* const aFuncPtrs[])(),
+    void OpenStoreL( const TDesC& (* const aFuncPtrs[])() );
+    void OpenStoreL( const TDesC& (* const aFuncPtrs[])(),
         TRequestStatus&  aStatus );
     void FreeOldOperation();
 

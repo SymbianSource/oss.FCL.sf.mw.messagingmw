@@ -57,7 +57,7 @@ public:
 	//The function which instantiates an object of this type 
 	// using the MatchString as the resolver parameters.
 	//(eg NewL for a CBase derived object).
-	static CAlwaysOnlineEComInterface* CAlwaysOnlineEComInterface::NewL(const TDesC8& aMatchString);
+	static CAlwaysOnlineEComInterface* NewL(const TDesC8& aMatchString);
 
 	//Standardised destructor.
 	inline virtual ~CAlwaysOnlineEComInterface();
