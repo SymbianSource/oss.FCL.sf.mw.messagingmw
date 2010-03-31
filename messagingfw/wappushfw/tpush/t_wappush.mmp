@@ -40,7 +40,10 @@ SOURCE			cwappushfailmessagetest.cpp
 SOURCE			t_slcmessage.cpp t_sicmessage.cpp
 SOURCE			t_invalDTDMessage.cpp
 SOURCE			t_DRMmessage.cpp
-SYSTEMRESOURCE	wappushmtm.rss
+
+START RESOURCE wappushmtm.rss	
+	TARGETPATH /system/data
+END
 
 SOURCEPATH		../pushwatcher/src
 SOURCE			CLWatcher.cpp ConnMan.cpp 

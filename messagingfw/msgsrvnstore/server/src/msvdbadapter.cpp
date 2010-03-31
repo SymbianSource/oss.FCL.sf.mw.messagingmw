@@ -1239,6 +1239,7 @@ void CMsvDBAdapter::GetEntryL(TMsvId aId, CMsvCacheEntry*& aEntry, TMsvId& aVisi
 
 	//Get the entry from the statement
 	aEntry = CMsvEntryFreePool::Instance()->EntryL();
+	CleanupStack::PushL(cacheEntry);
 	aEntry->Entry().iId = aId;
 	
 	LoadEntryFromStatementL(getStmt, EGetEntry, aVisibleParentEntryId, *aEntry);
@@ -1283,7 +1284,8 @@ void CMsvDBAdapter::GetEntryL(TMsvId aId, CMsvCacheEntry*& aEntry, TMsvId& aVisi
 		{
 		aEntry->Entry().iRelatedId = MaskTMsvId(driveId, aEntry->Entry().iRelatedId);
 		}
-	
+
+	CleanupStack::Pop(cacheEntry);
 	CleanupStack::PopAndDestroy(2); //getStmt, queryBuf
 	}
 
@@ -1345,6 +1347,7 @@ void CMsvDBAdapter::GetChildrenL(TMsvId aParentId, RPointerArray<CMsvCacheEntry>
 			
 		TMsvId aVisibleParentEntryId;
 		CMsvCacheEntry *cacheEntry = CMsvEntryFreePool::Instance()->EntryL();
+		CleanupStack::PushL(cacheEntry);
 		if(!IsStandardId(aParentId))
 			{
 			aParentId = MaskTMsvId(driveId, aParentId);
@@ -1372,6 +1375,7 @@ void CMsvDBAdapter::GetChildrenL(TMsvId aParentId, RPointerArray<CMsvCacheEntry>
 	
 		//Add the child entry to the array given
 		aChildArray.AppendL(cacheEntry);
+		CleanupStack::Pop(cacheEntry);
 		}
 	
 	CleanupStack::PopAndDestroy(2); //getStmt, queryBuf
@@ -1510,6 +1514,7 @@ void CMsvDBAdapter::GetChildrenL(const TDesC8& aQueryStr, TMsvId aParentId, RPoi
 			}
 		
 		CMsvCacheEntry* cacheEntry = CMsvEntryFreePool::Instance()->EntryL();
+		CleanupStack::PushL(cacheEntry);
 		if(!IsStandardId(aParentId))
 			{
 			aParentId = MaskTMsvId(driveId, aParentId);
@@ -1563,6 +1568,7 @@ void CMsvDBAdapter::GetChildrenL(const TDesC8& aQueryStr, TMsvId aParentId, RPoi
 		
 		//Add the child entry to the array given
 		aChildArray.AppendL(cacheEntry);
+		CleanupStack::Pop(cacheEntry);
 		}
 	CleanupStack::PopAndDestroy(2);		// condGetChildrenStmnt,queryBuf
 	}
@@ -2404,9 +2410,10 @@ void CMsvDBAdapter::GetEntryL(TMsvId aId, CMsvCacheEntry*& aEntry, TMsvId& aVisi
 
 	//Get the entry from the statement
 	aEntry = CMsvEntryFreePool::Instance()->EntryL();
+	CleanupStack::PushL(aEntry);
 	aEntry->Entry().iId = aId;
 	LoadEntryFromStatementL(iStatement[EGetEntry], EGetEntry, aVisibleParentEntryId, *aEntry);
-
+	CleanupStack::Pop(aEntry);
 	//Reset the RSqlStatement
 	User::LeaveIfError(iStatement[EGetEntry].Reset());
 	}
@@ -2432,10 +2439,12 @@ void CMsvDBAdapter::GetChildrenL(TMsvId aParentId, RPointerArray<CMsvCacheEntry>
 		{
 		TMsvId aVisibleParentEntryId;
 		CMsvCacheEntry *cacheEntry = CMsvEntryFreePool::Instance()->EntryL();
+		CleanupStack::PushL(cacheEntry);
 		cacheEntry->Entry().iParentId = aParentId;
 		LoadEntryFromStatementL(iStatement[EGetChildEntries], EGetChildEntries, aVisibleParentEntryId, *cacheEntry);
 		//Add the child entry to the array given
 		aChildArray.AppendL(cacheEntry);
+		CleanupStack::Pop(cacheEntry);
 		}
 
 	//Reset the RSqlStatement
@@ -2511,6 +2520,7 @@ void CMsvDBAdapter::GetChildrenL(const TDesC8& aQueryStr, TMsvId aParentId, RPoi
 	while(KSqlAtRow == condGetChildrenStmnt.Next())
 		{
 		CMsvCacheEntry* cacheEntry = CMsvEntryFreePool::Instance()->EntryL();
+		CleanupStack::PushL(cacheEntry);
 		cacheEntry->Entry().iParentId = aParentId;
 
 		index = 0;
@@ -2538,6 +2548,7 @@ void CMsvDBAdapter::GetChildrenL(const TDesC8& aQueryStr, TMsvId aParentId, RPoi
 		
 		//Add the child entry to the array given
 		aChildArray.AppendL(cacheEntry);
+		CleanupStack::Pop(cacheEntry);
 		}
 	CleanupStack::PopAndDestroy(2);		// condGetChildrenStmnt,queryBuf
 	}

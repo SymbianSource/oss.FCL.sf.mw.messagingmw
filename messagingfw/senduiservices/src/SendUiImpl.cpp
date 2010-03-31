@@ -1393,6 +1393,13 @@ TBool CSendUiImpl::ValidateAttachmentsL(const CMessageData*  aMessageData)
             aMessageData->AttachmentHandleArray(),
             iCoeEnv->FsSession() );
         cleanupItems += 2;
+        
+        if ( attachments->Count() == 0 )
+		     {
+		     //there are no attachments, so no point in checking the file rights at all.
+		     CleanupStack::PopAndDestroy( cleanupItems );
+		     return ETrue;    
+		     }
         }   
     fileRightsEngine->ConfirmDrmFileRightsL( attachments );
     if ( attachments->Count() <= 0 )

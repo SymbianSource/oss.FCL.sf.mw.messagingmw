@@ -14,7 +14,6 @@
 //
     
 #include <commdb.h>
-#include <iapprefs.h>
 #include <wapmessage.h>
 #include "ConnMan.h"
 
