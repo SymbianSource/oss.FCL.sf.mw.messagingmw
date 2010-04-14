@@ -185,12 +185,27 @@ void CAlwaysOnlineManager::DoStartL()
     }
 
 // ----------------------------------------------------------------------------
+// PointerArrayCleanup()
+//
+// An utility function to handle cleanup of RImplInfoPtrArray instances
+// @param aArray Pointer to RImpInfoPtrArray to be deleted. 
+// 		  Guaranteed not to be NULL.
+// ----------------------------------------------------------------------------
+//
+static void PointerArrayCleanup( TAny* aArray )
+	{
+	static_cast< RImplInfoPtrArray* >( aArray )->ResetAndDestroy();
+	}
+
+// ----------------------------------------------------------------------------
 // LoadPluginsL()
 // ----------------------------------------------------------------------------
 //
 void CAlwaysOnlineManager::LoadPluginsL()
     {
-    RImplInfoPtrArray pluginArray;
+	RImplInfoPtrArray pluginArray;
+    TCleanupItem arrayCleanup( PointerArrayCleanup, &pluginArray );
+    CleanupStack::PushL( arrayCleanup );
 
     //List all plugins which implement AlwaysOnlineManagerInterface
     REComSession::ListImplementationsL( KCEComInterfaceUid, pluginArray );
@@ -204,45 +219,42 @@ void CAlwaysOnlineManager::LoadPluginsL()
         {
         TInt index = -1;
         TKeyArrayFix key( 0, ECmpTInt32 );
-        TInt result = KErrNotFound;
         
         for( TInt i = 0; i < pluginArray.Count(); i++ )
             {
             CImplementationInformation* info = pluginArray[ i ];
-            
-            TUid id = info->ImplementationUid();
-            delete info;
-            info = NULL;
-            
-            result = iDisabledPluginUidsArray->Find( id, key, index );
+
+            TUid id = info->ImplementationUid();    
+
+            TInt  result( iDisabledPluginUidsArray->Find( id, key, index ) );
             // if id is found from disabled plugins list, then we don't
             // load it.
             if ( result == 0 )
                 {
-                KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::LoadPluginsL() disabled plugin: 0x%x", id );
+                 KAOMANAGER_LOGGER_WRITE_FORMAT( "CAlwaysOnlineManager::LoadPluginsL() disabled plugin: 0x%x", id );
                 }
             else
                 {
-                CAlwaysOnlineEComInterface* implementation = NULL;
+                CAlwaysOnlineEComInterface* implementation( NULL );
 
                 //be sure that if plugin leaves, manager doesn't. 
                 //This applies in every place!
-                TRAPD( err, implementation = 
-                    CAlwaysOnlineEComInterface::NewL( id ) );
-                
-                if ( err == KErrNone )
-                    {
-                    implementation->SetStatusQueryObject( this );
+                TRAP_IGNORE( implementation = CAlwaysOnlineEComInterface::NewL( id ) );
+                CleanupStack::PushL( implementation );
+                if ( implementation )                    
+				{                    
+				    implementation->SetStatusQueryObject( this );
                     iPluginArray->AppendL( implementation );
-
+                    
                     KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::LoadPluginsL() plugin loaded succesfully: 0x%x", id);
-                    }
+                }
                 else
                     {
                     // Just write to debug log, that all the plugins could not be loaded.
                     // Perhaps there should be some nice way to acknoledge the user or the system!
                     KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::LoadPluginsL() plugin load failed: 0x%x", id);
                     }
+                CleanupStack::Pop( implementation );
                 }
             }//for
 
@@ -256,6 +268,7 @@ void CAlwaysOnlineManager::LoadPluginsL()
         //no plugins. This shouldn't be, there's something wrong with build.
         //if plugins are not in build, server shouldn't be either!        
         }
+	  CleanupStack::PopAndDestroy(); // arrayCleanup
     }
 
 // ----------------------------------------------------------------------------
