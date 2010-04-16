@@ -28,7 +28,7 @@ LIBRARY         euser.lib
 #ifdef WINS
 	DEFFILE     ../../bwins/dummywapstack.def
 #elif defined(GCC32)
-	DEFFILE     ..\..\BMarm\DummyWapStack.def
+	DEFFILE     ../../BMarm/DummyWapStack.def
 #else
 	DEFFILE     ../../EABI/DummyWapStack.def
 #endif  

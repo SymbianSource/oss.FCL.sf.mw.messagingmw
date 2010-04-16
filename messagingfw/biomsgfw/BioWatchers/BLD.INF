@@ -28,10 +28,10 @@ WapWatcher.mmp
 class0sms.mmp
 
 PRJ_TESTMMPFILES
-//\BioMsg\BioWatchers\test\T_WapWatcher.mmp	manual
-//\BioMsg\BioWatchers\test\T_NbsWatcher.mmp	manual
+///BioMsg/BioWatchers/test/T_WapWatcher.mmp	manual
+///BioMsg/BioWatchers/test/T_NbsWatcher.mmp	manual
 
 PRJ_TESTEXPORTS
-// This is used by SMCM\test\t_smssendrecv Test Harness That both sends and recieves
+// This is used by SMCM/test/t_smssendrecv Test Harness That both sends and recieves
 Test/sendrecv.script	/epoc32/wins/c/test/sms/sendrecv.script
 Test/sendrecv.script	/epoc32/winscw/c/test/sms/sendrecv.script

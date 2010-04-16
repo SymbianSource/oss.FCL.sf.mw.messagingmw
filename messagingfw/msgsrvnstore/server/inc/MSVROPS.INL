@@ -70,4 +70,12 @@ inline void CMsvMtmOperation::SetThreadId(TThreadId aThreadId)
  	{
  	iThreadId = aThreadId;
  	}
+inline void CMsvMtmOperation::SetCapability(TBool aCap)
+    {
+    iHasCapability = aCap;
+    }
+inline TBool CMsvMtmOperation::Capability()
+    {
+    return iHasCapability;
+    }
 #endif

@@ -53,7 +53,7 @@
 #if (defined  SYMBIAN_MESSAGESTORE_UNIT_TESTCODE)
 	_LIT(KMsvDbFile, "\\messaging.db");	 
 #else
-	_LIT(KMsvDbFile, "[1000484b]messaging.db");
+	_LIT(KMsvDbFile, "[1000484B]messaging.db");
 #endif	  // #if (defined  SYMBIAN_MESSAGESTORE_UNIT_TESTCODE)
 
 // Remove these to remove server logging
@@ -426,6 +426,7 @@ private:
 	//variables for bulk creation of entries
 	CMsvEntrySelection* iBulkCreationSelection;
 	CMsvEntrySelection* iBulkChangeSelection;
+	TBool iReleasedForRestore;
 	TBuf<2> iSystemDrive;
 
 	// Reference to freepool object.

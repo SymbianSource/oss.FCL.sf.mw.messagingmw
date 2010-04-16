@@ -19,11 +19,11 @@ TARGET          TFilter.exe
 TARGETTYPE      EXE
 CAPABILITY ALL -TCB
 
-USERINCLUDE     . ..\inc
+USERINCLUDE     . ../inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
-SOURCEPATH	    .\. 
+SOURCEPATH	    ./. 
 SOURCE          t_filter.cpp
-SOURCEPATH	   ..\..\PushUtils\Test
+SOURCEPATH	   ../../PushUtils/Test
      
 LIBRARY         euser.lib  pi.lib WapPushUtils.lib
 VENDORID 0x70000001

@@ -89,6 +89,11 @@ public:
 	void RetrunQuery(TInt aIndex, CMsvSearchSortQuery* aCLientQuery);
 	void ResetSearchSortCache();
 	TSearchSortDbWrapper* GetDbWrapper();
+	//For Simultaneously query
+	void AddOutstandingSOSOperation();
+	TInt OutstandingSOSOperations();
+	
+	
 private:
     static CMSvSearchSortCacheManager* CreateManagerL(CMsvServer& aServer); //Private CreateL
     void ConstructL(); //Private Constructor.
@@ -125,7 +130,9 @@ private:
 	CMsvServer &iServer;
 	CMsvSearchSortDeltaCache* iSearchSortDeltaCache;
 	TSearchSortDbWrapper* iSearchDbAdapter;
-
+	//For Simultaneously query
+	mutable TInt iOutstandingSOSOperations;
+	
     friend class CMsvIndexAdapter;
 	friend class CMsvServer;
 	friend class CMsvSearchSortCacheEntry;

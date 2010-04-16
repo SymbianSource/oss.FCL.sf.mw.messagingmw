@@ -21,8 +21,8 @@ targettype      exe
 CAPABILITY All -TCB
 UID      0x10F03C5E 0x10F03C88
 VENDORID 0x70000001
-SOURCEPATH	..\src
-userinclude     ..\inc
+SOURCEPATH	../src
+userinclude     ../inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 source          t_schsend1.cpp
 library         euser.lib 

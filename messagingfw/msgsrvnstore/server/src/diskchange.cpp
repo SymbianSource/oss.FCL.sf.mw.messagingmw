@@ -80,7 +80,7 @@ void CMsvNotifyDiskChange::DoRunL()
 		}
 	else if (iDiskRemoved)
 		{
-		if (iUniqueId != volume.iUniqueID || iWrongId)
+		if (iWrongId)
 			{
 			// The incorrect disk is being used
 			keepGoing = iObserver.DiskChanged(iDrive, volume.iUniqueID);

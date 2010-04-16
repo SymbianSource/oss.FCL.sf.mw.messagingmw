@@ -18,8 +18,8 @@ TARGET			t_watcher.exe
 TARGETTYPE		exe
 
 CAPABILITY All -TCB
-USERINCLUDE		..\..\inc 
-SOURCEPATH		..\src
+USERINCLUDE		../../inc 
+SOURCEPATH		../src
 SOURCE			t_watcher.cpp
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			euser.lib watcher.lib msvtestutils.lib efsrv.lib bafl.lib

@@ -35,7 +35,6 @@ SOURCE          AOCommandParser.cpp
 SOURCE          AOCenRepControl.cpp
 
 
-
 USERINCLUDE     ../inc
 SYSTEMINCLUDE   ../../../../inc
 MW_LAYER_SYSTEMINCLUDE
@@ -46,7 +45,7 @@ LIBRARY         ECom.lib
 LIBRARY         connmon.lib
 LIBRARY         efsrv.lib               // RFs
 LIBRARY         msgs.lib                // Message Server
-LIBRARY         muiu.lib
+LIBRARY         muiuutils.lib             
 LIBRARY         CentralRepository.lib   // Central Repository
 LIBRARY         CenRepNotifHandler.lib  // CenRep Notify Handler
 DEBUGLIBRARY    flogger.lib

@@ -14,14 +14,14 @@
 //
 
 TARGET        t_biomsg.exe
-//TARGETPATH    \system\libs
+//TARGETPATH    /system/libs
 TARGETTYPE    exe
 
 CAPABILITY All -TCB
 
-SOURCEPATH	..\biuttsrc
+SOURCEPATH	../biuttsrc
 SOURCE        t_biomsg.cpp  
-USERINCLUDE   ..\biuttsrc 
+USERINCLUDE   ../biuttsrc 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY       euser.lib msgs.lib estor.lib efsrv.lib imcm.lib biut.lib etext.lib
 

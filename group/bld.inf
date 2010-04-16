@@ -16,6 +16,6 @@
 
 
 #include "../msgfw_plat/group/bld.inf"
-#include "../msgfw_pub/group/bld.inf"
+//#include "../msgfw_pub/group/bld.inf"
 #include "../msgbranched/group/bld.inf"
 #include "../messagingfw/group/bld.inf"

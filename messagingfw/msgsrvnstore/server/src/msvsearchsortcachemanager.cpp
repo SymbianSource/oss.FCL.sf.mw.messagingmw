@@ -58,6 +58,7 @@ CMSvSearchSortCacheManager* CMSvSearchSortCacheManager::iMsvSearchSortCacheManag
   */
  CMSvSearchSortCacheManager::~CMSvSearchSortCacheManager()
  	{
+	iOutstandingSOSOperations = 0;
 	iMsvIdWithSortFieldArray.Close();
 	iToFindResultAsIdArray.Close();
 	iFinalResultAsIdArray.Close();
@@ -144,6 +145,10 @@ void CMSvSearchSortCacheManager::ConstructL()
 	iProgress = KMsvSearchSortOpNone;
 	iCancelFlag = EFalse;
 	iExplicitSortOnDateTime = EFalse;
+
+	//For Simultaneously query
+	iOutstandingSOSOperations = 0;
+	
 	if(CMsvEntryFreePool::Instance()->iMsvMaximumCacheSize != NULL && CMsvEntryFreePool::Instance()->iMsvSearchSortCache)
 		{
 		iMsvMaximumSearchSortCacheSize = ((CMsvEntryFreePool::Instance()->iMsvMaximumCacheSize * CMsvEntryFreePool::Instance()->iMsvSearchSortCache)/100)*1024 ;		
@@ -912,6 +917,10 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const CMsvSearchSortCacheEntry&
 			FinalResultAsIdL(aEntry);
 			iReturnResultType = KFinalResult;
 			iProgress = KMsvSearchSortOpCompleted; 
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
 			}
 		else
 			{
@@ -937,6 +946,10 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const CMsvSearchSortCacheEntry&
 			{
 			FirstResultForInteraratorNewQueryL(aEntry);
 			iReturnResultType = KFinalResult;
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
 			}
 #endif
 		else 
@@ -986,6 +999,10 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const TInt aIndex)
 			OnDemandUpdateCacheEntryL(aIndex);
 			iReturnResultType = KFinalResult;
 			iProgress = KMsvSearchSortOpCompleted; 
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
 			}
 		else
 			{
@@ -993,7 +1010,11 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const TInt aIndex)
 			if(!iSearchSortDeltaCache->iDeltaCacheDirtyFlag)
 				{
 				iReturnResultType = KFinalResult;
-				iProgress = KMsvSearchSortOpCompleted;  
+				iProgress = KMsvSearchSortOpCompleted;
+				if(iOutstandingSOSOperations>0)
+					{
+					iOutstandingSOSOperations--;
+					}
 				}
 			else
 				{
@@ -1026,7 +1047,11 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const TInt aIndex)
 			FirstResultForInteraratorQueryIdL(aIndex);
 			iReturnResultType = KFinalResult;
 			iProgress = KMsvSearchSortOpIterationEnabled;
-			}
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
+ 			}
 		else 
 			{
 			// Not Supported.
@@ -1344,6 +1369,10 @@ void CMSvSearchSortCacheManager::StoreResultL(TInt aIndex, RArray<TMsvId>& aToUp
 	iSearchDbAdapter->GetSortedTMsvIdsfromTableL((*iManagerEntry)[aIndex-1]->iQueryID,iMsvSearchSortCacheManager->iFinalResultAsIdArray, (*iManagerEntry)[aIndex-1]->IsAscendingSort()/*Default = EFalse*/,(*iManagerEntry)[aIndex-1]->iMsgExplicitSortPart);
 	iReturnResultType = KFinalResult;
 	iProgress = KMsvSearchSortOpCompleted; 
+	if(iOutstandingSOSOperations>0)
+		{
+		iOutstandingSOSOperations--;
+		}
 	aToUpdateDb.Reset();
 	}
 
@@ -1365,6 +1394,10 @@ TInt CMSvSearchSortCacheManager::StoreSortResultL(TInt aIndex,RArray<TMsvIdWithS
 		iProgress = KMsvSearchSortOpCompleted; 
 		}
 	iMsvSearchSortCacheManager->iMsvIdWithSortFieldArray.Reset();
+    if(iOutstandingSOSOperations>0)
+        {
+        iOutstandingSOSOperations--;
+        }
 	return iReturnResultType;
 	}
 
@@ -1403,6 +1436,10 @@ void  CMSvSearchSortCacheManager::FirstResultForInteraratorNewQueryL(const CMsvS
  		iSearchDbAdapter->GetIdsInIteratorNewQueryL(aEntry);
 #endif 		
   		iProgress = KMsvSearchSortOpCompleted;
+		if(iOutstandingSOSOperations>0)
+			{
+			iOutstandingSOSOperations--;
+			}
  		}
 	else
 		{
@@ -1412,6 +1449,10 @@ void  CMSvSearchSortCacheManager::FirstResultForInteraratorNewQueryL(const CMsvS
 		iSearchDbAdapter->GetIdsInIteratorNewQueryL(aEntry);
 #endif
 		iProgress = KMsvSearchSortOpCompleted;
+		if(iOutstandingSOSOperations>0)
+			{
+			iOutstandingSOSOperations--;
+			}
 		}
 	}
 
@@ -1433,12 +1474,20 @@ void  CMSvSearchSortCacheManager::FirstResultForInteraratorQueryIdL(const TInt i
  		//iSearchDbAdapter->GetIdsInIteratorQueryIdL((*iManagerEntry)[index]->iQueryID);
  		iSearchDbAdapter->GetIdsInIteratorQueryIdL((*iManagerEntry)[index]->iQueryID, (*iManagerEntry)[index]->IsAscendingSort(), (*iManagerEntry)[index]->iMsgExplicitSortPart);
   		iProgress = KMsvSearchSortOpCompleted;
- 		}
+		if(iOutstandingSOSOperations>0)
+			{
+			iOutstandingSOSOperations--;
+			}
+   		}
 	else
 		{
 		//iSearchDbAdapter->GetIdsInIteratorQueryIdL((*iManagerEntry)[index]->iQueryID);
 		iSearchDbAdapter->GetIdsInIteratorQueryIdL((*iManagerEntry)[index]->iQueryID, (*iManagerEntry)[index]->IsAscendingSort(), (*iManagerEntry)[index]->iMsgExplicitSortPart);
 		iProgress = KMsvSearchSortOpCompleted;
+		if(iOutstandingSOSOperations>0)
+			{
+			iOutstandingSOSOperations--;
+			}
 		}
 	}
 
@@ -1459,6 +1508,13 @@ void  CMSvSearchSortCacheManager::NextResultForInteraratorL(TInt aIndex)
  		//iSearchDbAdapter->GetNextIdL( (*iManagerEntry)[aIndex]->iQueryID , iIteratorId,iIteratorRemainingResultCount);
  		iSearchDbAdapter->GetNextIdL(iIteratorId,iIteratorRemainingResultCount);
  		iProgress = KMsvSearchSortOpCompleted;
+		if(iIteratorRemainingResultCount == 0)
+			{
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
+			}
  		}
 	else
 		{
@@ -1469,6 +1525,13 @@ void  CMSvSearchSortCacheManager::NextResultForInteraratorL(TInt aIndex)
 		iServer.IndexAdapter().GetEntry(iIteratorId,entry);
 		iIteratorEntry  = *entry;
 		iProgress = KMsvSearchSortOpCompleted;
+		if(iIteratorRemainingResultCount == 0)
+			{
+			if(iOutstandingSOSOperations>0)
+				{
+				iOutstandingSOSOperations--;
+				}
+       		}
 		}
 	}
 
@@ -1550,6 +1613,10 @@ TInt  CMSvSearchSortCacheManager::ReturnProgressInfo() const
 TInt CMSvSearchSortCacheManager::CancelSearchSortOperation() const
 	{
 	iMsvSearchSortCacheManager->iCancelFlag = ETrue;	
+	if(iOutstandingSOSOperations>0)
+		{
+		iOutstandingSOSOperations--;
+		}
 	return 0;
 	}
 
@@ -1637,4 +1704,17 @@ TSearchSortDbWrapper* CMSvSearchSortCacheManager::GetDbWrapper()
 	{
 	return iSearchDbAdapter;
 	}
+
+//For Simultaneously query
+void CMSvSearchSortCacheManager::AddOutstandingSOSOperation()
+    {
+    iOutstandingSOSOperations++;
+    }
+
+TInt CMSvSearchSortCacheManager::OutstandingSOSOperations()
+    {
+    return iOutstandingSOSOperations;
+    }
+ 
+
 

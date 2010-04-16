@@ -16,7 +16,7 @@
 //
 
 TARGET        bits.dll
-//TARGETPATH    \system\libs
+//TARGETPATH    /system/libs
 TARGETTYPE    dll
 
 CAPABILITY All -TCB
@@ -38,7 +38,7 @@ SOURCEPATH      ../BITS
 #ifdef WINS 
 DEFFILE		./v2_wins.def
 #else
-DEFFILE		.\v2_eabi.def
+DEFFILE		./v2_eabi.def
 #endif
 
 

@@ -14,14 +14,14 @@
 //
 
 TARGET        t_biolog.exe
-//TARGETPATH    \system\libs
+//TARGETPATH    /system/libs
 TARGETTYPE    exe
 
 CAPABILITY All -TCB
 
-SOURCEPATH	..\bitstsrc
+SOURCEPATH	../bitstsrc
 SOURCE        t_biolog.cpp  
-USERINCLUDE   ..\bitstsrc 
+USERINCLUDE   ../bitstsrc 
 APP_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 LIBRARY       bits.lib euser.lib efsrv.lib  // msgs.lib biut.lib

@@ -30,9 +30,9 @@ LIBRARY         euser.lib bits.lib msvtestutils.lib
 #ifdef WINS 
 DEFFILE		../BIOS/bwins/bios.def
 #elif defined (GCC32)
-DEFFILE		..\bios\marm.def
+DEFFILE		../bios/marm.def
 #else
-DEFFILE		..\bios\eabi\bios.def
+DEFFILE		../bios/eabi/bios.def
 #endif
 
 VENDORID 0x70000001

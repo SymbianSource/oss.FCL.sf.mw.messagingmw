@@ -20,13 +20,13 @@ UID 						0
 VENDORID 					0x70000001
 
 
-USERINCLUDE					..\Framework\inc
-USERINCLUDE					..\TestActions\Sample\inc 
+USERINCLUDE					../Framework/inc
+USERINCLUDE					../TestActions/Sample/inc 
 
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 
 
-SOURCEPATH					..\TestActions\Sample\src 
+SOURCEPATH					../TestActions/Sample/src 
 SOURCE						CMtfTestActionSampleActionA.cpp 
 SOURCE						CMtfTestActionSampleActionB.cpp
 SOURCE						CMtfTestActionSampleActionC.cpp

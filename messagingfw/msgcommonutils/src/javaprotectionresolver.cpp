@@ -27,7 +27,9 @@
 #include <apmstd.h>  // TDataType
 #include <f32file.h> // RFs, RFile, CFileMan
 
-#include "javaprotectionresolver.h"
+#include <javasuperdparser.h>
+
+#include "JavaProtectionResolver.h"
 
 // EXTERNAL DATA STRUCTURES
 
@@ -90,32 +92,27 @@ CJavaProtectionResolver::~CJavaProtectionResolver()
 // -----------------------------------------------------------------------------
 //
 TBool CJavaProtectionResolver::IsSuperDistributionPackageL( RFile& aFile )
-    { 
-    	/**
-    	*  JavaSuperDParser has been removed from 9.2 TB, 
-    	*  So we will always return EFalse and whole code of function is commented out.
-    	*/
-//    TBool retVal( EFalse );
-//
-//    CFileMan* fileMan = CFileMan::NewL( iFs );
-//    iFs.MkDir( KFileProtTempDir );
-//
-//    Java::CJavaSuperDParser* javaParser( NULL );
-//    TRAPD( err, javaParser = Java::CJavaSuperDParser::NewL( iFs, 
-//                                                  aFile, 
-//                                                  KFileProtTempDir ) );
-//    if ( !err )
-//        {
-//        retVal = ETrue;
-//        }
-//    delete javaParser;
-//
-//    /*TInt err =*/ fileMan->Delete( KFileProtTempDir /*, CFileMan::ERecurse*/ );
-//    /*TInt err =*/ fileMan->RmDir( KFileProtTempDir );
-//    delete fileMan;
+    {
+    TBool retVal( EFalse );
 
-//    return retVal; 
-      return EFalse;
+    CFileMan* fileMan = CFileMan::NewL( iFs );
+    iFs.MkDir( KFileProtTempDir );
+
+    Java::CJavaSuperDParser* javaParser( NULL );
+    TRAPD( err, javaParser = Java::CJavaSuperDParser::NewL( iFs, 
+                                                  aFile, 
+                                                  KFileProtTempDir ) );
+    if ( !err )
+        {
+        retVal = ETrue;
+        }
+    delete javaParser;
+
+    /*TInt err =*/ fileMan->Delete( KFileProtTempDir /*, CFileMan::ERecurse*/ );
+    /*TInt err =*/ fileMan->RmDir( KFileProtTempDir );
+    delete fileMan;
+
+    return retVal;
     }
 
 //  End of File  

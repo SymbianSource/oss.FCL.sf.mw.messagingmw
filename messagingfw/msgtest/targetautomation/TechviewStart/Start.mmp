@@ -22,7 +22,7 @@
 targettype      EXEDLL
 
 CAPABILITY All -TCB
-targetpath      \SYSTEM\PROGRAMS
+targetpath      /SYSTEM/PROGRAMS
 
 UID		0x1000008D 0x10009B16
 VENDORID 0x70000001
@@ -41,9 +41,9 @@ library	EUSER.LIB		APPARC.LIB		EIKSRVC.LIB		APGRFX.LIB
 library	EFSRV.LIB		BAFL.LIB		msvtestutils.lib
 
 #ifdef WINS
-DEFFILE				.\wins.def
+DEFFILE				./wins.def
 #else
-DEFFILE				.\marm.def
+DEFFILE				./marm.def
 #endif
 
 SMPSAFE

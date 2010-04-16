@@ -17,13 +17,13 @@ TARGET          TPushMtm.exe
 TARGETTYPE      EXE
 CAPABILITY readdevicedata writedevicedata protserv networkcontrol networkservices localservices readuserdata
 
-USERINCLUDE     .\.  ..\inc  
-USERINCLUDE		..\..\PUSHUTILS\INC  ..\..\pushutils\test
+USERINCLUDE     ./.  ../inc  
+USERINCLUDE		../../PUSHUTILS/INC  ../../pushutils/test
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
-SOURCEPATH	    .\. ..\src
-SOURCEPATH		..\..\pushutils\test
+SOURCEPATH	    ./. ../src
+SOURCEPATH		../../pushutils/test
 SOURCE			t_serviceutils.cpp
-SOURCEPATH	   ..\..\Pushmtm\Test
+SOURCEPATH	   ../../Pushmtm/Test
 SOURCE          t_Pushmtm.cpp  
 
      

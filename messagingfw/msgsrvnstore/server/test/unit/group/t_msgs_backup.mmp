@@ -20,7 +20,7 @@ CAPABILITY All -TCB
 SOURCEPATH		src
 USERINCLUDE		inc
 SOURCE			T_BACKUP.cpp
-USERINCLUDE		..\msgsinc
+USERINCLUDE		../msgsinc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			euser.lib msgs.lib estor.lib efsrv.lib MsvTestUtils.lib testbackupserver.lib sqldb.lib 
 

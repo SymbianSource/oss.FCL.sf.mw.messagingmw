@@ -73,6 +73,8 @@ public:
 	inline void StartCommand(CMsvEntrySelection* aSelection, TInt aCommand, HBufC8* aParameter);
 #if (defined SYMBIAN_USER_PROMPT_SERVICE)	
  	inline void SetThreadId(TThreadId aThreadId);
+ 	inline void SetCapability(TBool aCap);
+ 	inline TBool Capability();
 #endif
 	//
 protected:
@@ -100,6 +102,7 @@ private:
 	HBufC8* iDesParam;
 #if (defined SYMBIAN_USER_PROMPT_SERVICE)	
  	TThreadId iThreadId;
+ 	TBool iHasCapability;
 #endif
 	};
 

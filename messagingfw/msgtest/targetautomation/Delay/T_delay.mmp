@@ -17,9 +17,9 @@ TARGET        	T_DELAY.EXE
 TARGETTYPE    	exe
 
 CAPABILITY All -TCB
-SOURCEPATH		..\delay
+SOURCEPATH		../delay
 SOURCE        	t_delay.cpp
-USERINCLUDE   	\epoc32\include
+USERINCLUDE   	/epoc32/include
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY       	euser.lib bafl.lib
 EPOCSTACKSIZE 	0x4000

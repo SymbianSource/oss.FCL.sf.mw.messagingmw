@@ -22,13 +22,13 @@ UID				0x10009D8D 0x10204280
 CAPABILITY All -TCB
 VENDORID 0x70000001
 
-USERINCLUDE		..\inc
-SOURCEPATH		..\src
+USERINCLUDE		../inc
+SOURCEPATH		../src
 SOURCE			testwatcher.cpp
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY			euser.lib watcher.lib efsrv.lib ecom.lib
 
-SOURCEPATH		..\src
+SOURCEPATH		../src
 
 start resource 10204280.rss
 TARGET		ecomtestwatcher.rsc

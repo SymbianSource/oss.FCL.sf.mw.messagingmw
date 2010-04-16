@@ -19,12 +19,12 @@ TARGET 			t_IacpDB.exe
 TARGETTYPE  		exe
 
 CAPABILITY All -TCB
-SOURCEPATH	..\iacptsrc
+SOURCEPATH	../iacptsrc
 SOURCE 			t_db.cpp
 
-USERINCLUDE		..\iacptsrc
-USERINCLUDE		..\iacpinc
-USERINCLUDE		..\biutinc
+USERINCLUDE		../iacptsrc
+USERINCLUDE		../iacpinc
+USERINCLUDE		../biutinc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY                 euser.lib msgs.lib 
 LIBRARY			biut.lib  bits.lib commdb.lib MsvTestUtils.lib

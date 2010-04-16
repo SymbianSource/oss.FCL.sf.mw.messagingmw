@@ -20,7 +20,7 @@
 */
 
 TARGET        biut.dll
-//TARGETPATH    \system\libs
+//TARGETPATH    /system/libs
 TARGETTYPE    dll
 
 CAPABILITY All -TCB

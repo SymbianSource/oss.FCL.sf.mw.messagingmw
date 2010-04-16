@@ -3112,6 +3112,16 @@ void CMsvServerSession::GetNonOperationMtmDataL(const RMessage2 &aMessage)
  ****************************************/ 
 void CMsvServerSession::SearchSortOnHeaderAndBodytMsgL(const RMessage2& aMessage)
 	{
+	//For Simultaneously query
+	if(CMSvSearchSortCacheManager::Instance()->OutstandingSOSOperations() > 0)
+       		{
+			if(CMSvSearchSortCacheManager::Instance()->iProgress != KMsvSearchSortOpCompleted)
+				{
+				User::Leave(KErrServerBusy); // One is SOS request is under proress.
+				}
+       		}
+	CMSvSearchSortCacheManager::Instance()->AddOutstandingSOSOperation();
+
 	//Header and body.
 	TMsvOp operationId = aMessage.Int0();
 		
@@ -3171,6 +3181,16 @@ void CMsvServerSession::SearchSortOnHeaderAndBodytMsgL(const RMessage2& aMessage
 
 void CMsvServerSession::SearchSortOnIndexEntryL(const RMessage2& aMessage)
 	{
+  	//For Simultaneously query
+   	if(CMSvSearchSortCacheManager::Instance()->OutstandingSOSOperations() > 0)
+       	{
+       	if(CMSvSearchSortCacheManager::Instance()->iProgress != KMsvSearchSortOpCompleted)
+			{
+            User::Leave(KErrServerBusy); // One is SOS request is under proress.
+			}
+       	}
+ 	CMSvSearchSortCacheManager::Instance()->AddOutstandingSOSOperation();
+
 	//Search sort on index entry.
 	// Recover the operation data
 	TMsvOp operationId = aMessage.Int0();
@@ -3480,6 +3500,16 @@ void CMsvServerSession::QueryUnMarkedL(const RMessage2& aMessage)
 
 void CMsvServerSession::GetResultForQueryIDL(const RMessage2& aMessage)
 	{
+    //For Simultaneously query
+    if(CMSvSearchSortCacheManager::Instance()->OutstandingSOSOperations() > 0)
+        {
+		if(CMSvSearchSortCacheManager::Instance()->iProgress != KMsvSearchSortOpCompleted )
+			{
+			User::Leave(KErrServerBusy); // One is SOS request is under proress.
+			}
+         }
+    CMSvSearchSortCacheManager::Instance()->AddOutstandingSOSOperation();
+	
 	TInt operationId = aMessage.Int0();
 	TInt queryID = aMessage.Int1();
 	

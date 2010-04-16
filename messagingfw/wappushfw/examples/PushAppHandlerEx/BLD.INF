@@ -26,13 +26,13 @@ PRJ_PLATFORMS
 PRJ_EXPORTS
 
 PRJ_MMPFILES
-.\PushAppHandlerEx.mmp
+./PushAppHandlerEx.mmp
 
 PRJ_TESTMMPFILES
-\Wap-Browser\wappush\tpush\DummyStack\Dummywapstack.mmp
-.\Test\t_push.mmp
+/Wap-Browser/wappush/tpush/DummyStack/Dummywapstack.mmp
+./Test/t_push.mmp
 
 
 PRJ_TESTEXPORTS
-.\test\pushtestcases.ini \epoc32\wins\c\pushtestcases.ini
+./test/pushtestcases.ini /epoc32/wins/c/pushtestcases.ini
 

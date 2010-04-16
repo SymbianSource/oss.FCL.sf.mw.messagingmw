@@ -21,7 +21,7 @@ UID    0x10003C5E 0x10005DE1
 VENDORID 0x70000001
 SOURCEPATH	.
 SOURCE        T_testutils.cpp
-USERINCLUDE   ..\inc
+USERINCLUDE   ../inc
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
 LIBRARY       euser.lib efsrv.lib logwrap.lib logcli.lib msvtestutils.lib emailtestutils.lib
 
