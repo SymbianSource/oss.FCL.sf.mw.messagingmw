@@ -3567,7 +3567,9 @@ void CMsvServer::StartOperationL(CMsvMtmOperation& aOperation, TInt aSessionId, 
 	// if an operation is already running, queue this one
 	if (opRunning)
 		{
-        aOperation.SetCapability(hasCapability);
+#if (defined SYMBIAN_USER_PROMPT_SERVICE)        
+		aOperation.SetCapability(hasCapability);
+#endif
 		QueueOperationL(aOperation, aSessionId);
 		return;
 		}
@@ -3747,7 +3749,11 @@ void CMsvServer::StartNextOperation(CMsvMtmOperationQueue* aQueue, TInt aQueueIn
 			}
 		}
 	
+#if (defined SYMBIAN_USER_PROMPT_SERVICE)
 	aQueue->At(0)->Start(*aQueue->iMtm, aQueue->At(0)->Capability());
+#else
+	aQueue->At(0)->Start(*aQueue->iMtm, EFalse);
+#endif
 	aQueue->At(0)->SetState(EMsvOperationRunning);
 	}
 

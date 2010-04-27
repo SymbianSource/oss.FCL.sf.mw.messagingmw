@@ -1424,10 +1424,7 @@ void CMsvIndexAdapter::DoChangeEntryL(const TMsvEntry& aNewEntryContents, TSecur
         User::Leave(err);
         }
     UpdateDates(*oldEntry, EFalse);
-    if(aNewEntryContents.Connected())
-        {
-        oldEntry->Entry().SetConnected(EFalse);
-        }
+    
     if(aForcedUpdate || changedPrivateInfo && aOwnerId != KMsvServerId )
         {
         oldEntry->SetEntryOwnerId(aOwnerId);
