@@ -1423,12 +1423,9 @@ void CMsvIndexAdapter::DoChangeEntryL(const TMsvEntry& aNewEntryContents, TSecur
             newVisibleFolderNode->DeleteEntryL(oldEntry->GetId());
         User::Leave(err);
         }
-    UpdateDates(*oldEntry, EFalse);
-    if(aNewEntryContents.Connected())
-        {
-        oldEntry->Entry().SetConnected(EFalse);
-        }
-    if(aForcedUpdate || changedPrivateInfo && aOwnerId != KMsvServerId )
+ 
+	UpdateDates(*oldEntry, EFalse);
+	if(aForcedUpdate || changedPrivateInfo && aOwnerId != KMsvServerId )
         {
         oldEntry->SetEntryOwnerId(aOwnerId);
         }

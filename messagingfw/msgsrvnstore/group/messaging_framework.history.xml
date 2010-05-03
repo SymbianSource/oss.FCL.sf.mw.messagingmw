@@ -4,6 +4,10 @@
     Framework for storage, retrieval, editing, sending and receiving of messages such as email or SMS.
   </purpose>
 
+ <defect number="PDEF145298" title="No message content shown, when opening new mail with POP3 account" revision= "133">
+   	TMsvEntry::SetConnected() was updated wronly.
+  </defect>
+ 
  <defect number="PDEF142159/EHGO-7V4CS2 " title="A note is displayed after formatting Memory card when "Memory in use" " revision= "132">
    	Updated the Notification wrt DiskRemove and Disk Insert.
   </defect>

@@ -24,13 +24,13 @@ TARGET          msgbranched.lib
 TARGETTYPE      lib
 UID             0x0 0x0
 
-START RESOURCE  ../messaging/email/clientmtms/group/imcm.rss
+START RESOURCE  ../messagingbr/emailbr/clientmtms/group/imcm.rss
 LANGUAGE_IDS
 HEADER
 TARGETPATH      resource/messaging
 END
 
-START RESOURCE  ../messaging/framework/server/group/msgs.rss
+START RESOURCE  ../messagingbr/frameworkbr/server/group/msgs.rss
 LANGUAGE_IDS
 HEADER
 TARGETPATH      resource/messaging
@@ -44,8 +44,8 @@ END
 
 SOURCE          dummy.cpp
 
-USERINCLUDE     ../messaging/email/clientmtms/group
-USERINCLUDE     ../messaging/framework/server/group
+USERINCLUDE     ../messagingbr/emailbr/clientmtms/group
+USERINCLUDE     ../messagingbr/frameworkbr/server/group
 USERINCLUDE     ../nbprotocols/smsstack/smsu/group
 
 OS_LAYER_SYSTEMINCLUDE
