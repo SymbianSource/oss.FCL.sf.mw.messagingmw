@@ -22,7 +22,7 @@
 #include <e32base.h>
 #include <msvapi.h>
 
-#include <Ecom/ECom.h>
+#include <ecom/ecom.h>
 
 class MAlwaysOnlineStatusQueryInterface;
 
