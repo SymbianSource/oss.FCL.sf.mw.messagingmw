@@ -25,7 +25,7 @@
 #include    <e32base.h>
 #include    <f32file.h>
 #include    <apmstd.h>
-#include    <msgmimetypes.h>
+#include    <MsgMimeTypes.h>
 
 class CSendingServiceInfo;
 // CONSTANTS

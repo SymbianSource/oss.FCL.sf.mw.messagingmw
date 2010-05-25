@@ -21,7 +21,7 @@
 #define CSENDINGSERVICEINFO_H
 
 // INCLUDES
-#include <e32Base.h>
+#include <e32base.h>
 //#include <SendUi.h>     // TSendingCapabilities
 
 // FORWARD DECLARATIONS

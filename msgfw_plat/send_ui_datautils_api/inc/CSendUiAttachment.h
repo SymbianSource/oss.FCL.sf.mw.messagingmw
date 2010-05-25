@@ -194,6 +194,6 @@ private:
 	};
 
 
-#include "csenduiattachment.inl"	
+#include "CSendUiAttachment.inl"	
 
 #endif

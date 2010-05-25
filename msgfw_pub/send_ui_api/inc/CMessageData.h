@@ -19,7 +19,7 @@
 #ifndef C_MESSAGEDATA_H
 #define C_MESSAGEDATA_H
 
-#include <e32Base.h>
+#include <e32base.h>
 #include <badesca.h>
 #include <f32file.h>
 #include <msvstd.h>

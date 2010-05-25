@@ -20,7 +20,7 @@
 #ifndef C_MESSAGEADDRESS_H
 #define C_MESSAGEADDRESS_H
 
-#include <e32Base.h>
+#include <e32base.h>
 
 class CMessageAddressImpl;
 class RWriteStream;
