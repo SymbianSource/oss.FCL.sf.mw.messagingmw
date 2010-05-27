@@ -1,4 +1,0 @@
-EXPORTS
-; NEW:
-	?EntryPoint@@YAHPAX@Z @ 1 NONAME ; int __cdecl EntryPoint(void *)
-

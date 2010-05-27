@@ -1,9 +1,0 @@
-//SIAP11
-password
-Mname:Lemon2
-Muid:yashar
-Mpwd:dig23ler
-Madr:fruity@yashar.Demon.co.uk
-Mrcv:pop3.lemon.co.uk
-Msnd:post.lemon.co.uk
-Mpro:PO

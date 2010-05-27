@@ -1,2 +1,0 @@
-BodyText=Hello World!
-SentToAddress=123456

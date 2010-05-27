@@ -1,3 +1,0 @@
-SmtpServerAddress = msexchange2k.closedtest.intra
-
-SmtpBearerMobility = 1

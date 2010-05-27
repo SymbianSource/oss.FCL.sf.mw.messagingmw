@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__10CIrWatcherR3RFsR11CWatcherLog @ 1 NONAME ; CIrWatcher::NewL(RFs &, CWatcherLog &)
-

@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CIrWatcher@@SAPAV1@AAVRFs@@AAVCWatcherLog@@@Z @ 1 NONAME ; public: static class CIrWatcher * __cdecl CIrWatcher::NewL(class RFs &,class CWatcherLog &)
-

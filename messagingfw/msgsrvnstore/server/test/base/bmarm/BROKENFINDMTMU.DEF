@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__14CBrokenFindMtmR17CRegisteredMtmDllR11CMsvSession @ 1 NONAME R3UNUSED ; CBrokenFindMtm::NewL(CRegisteredMtmDll &, CMsvSession &)
-

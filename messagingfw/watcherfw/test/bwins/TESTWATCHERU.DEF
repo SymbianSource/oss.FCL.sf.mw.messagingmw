@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CTestWatcher@@SAPAV1@AAVRFs@@AAVCWatcherLog@@@Z @ 1 NONAME ; public: static class CTestWatcher * __cdecl CTestWatcher::NewL(class RFs &,class CWatcherLog &)
-

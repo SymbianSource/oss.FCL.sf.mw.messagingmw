@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__12CTestWatcherR3RFsR11CWatcherLog @ 1 NONAME ; CTestWatcher::NewL(RFs &, CWatcherLog &)
-

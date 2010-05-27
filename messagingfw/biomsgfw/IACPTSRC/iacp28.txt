@@ -1,4 +1,0 @@
-//SIAP11
-password
-Gname:Emili
-GApn:wobble

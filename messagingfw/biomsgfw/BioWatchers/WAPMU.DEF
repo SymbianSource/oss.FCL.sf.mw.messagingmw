@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__11CWapWatcherR3RFsR11CWatcherLog @ 1 NONAME R3UNUSED ; CWapWatcher::NewL(RFs &, CWatcherLog &)
-

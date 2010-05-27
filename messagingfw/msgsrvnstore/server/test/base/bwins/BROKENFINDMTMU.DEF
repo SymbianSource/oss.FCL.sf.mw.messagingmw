@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CBrokenFindMtm@@SAPAV1@AAVCRegisteredMtmDll@@AAVCMsvSession@@@Z @ 1 NONAME ; public: static class CBrokenFindMtm * __cdecl CBrokenFindMtm::NewL(class CRegisteredMtmDll &,class CMsvSession &)
-
