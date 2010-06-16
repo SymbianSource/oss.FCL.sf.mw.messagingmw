@@ -48,7 +48,7 @@ APP_LAYER_SYSTEMINCLUDE
 
 
 
-#if defined(ARMCC)
+#if defined(EABI)
 DEFFILE ../eabi/ 
 #elif defined( WINSCW )
 DEFFILE ../bwinscw/ 
