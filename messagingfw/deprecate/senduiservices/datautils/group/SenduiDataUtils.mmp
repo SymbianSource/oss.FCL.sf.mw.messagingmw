@@ -55,7 +55,7 @@ LIBRARY         sysutil.lib             // DiskSpaceBelowCriticalLevelL
 LIBRARY         PlatformEnv.lib
 #endif
 
-#if defined( ARMCC )
+#if defined( EABI )
 DEFFILE ../eabi/ 
 #elif defined( WINSCW )
 DEFFILE ../bwinscw/ 

@@ -34,7 +34,7 @@ SOURCEPATH      .
 LANGUAGE_IDS
 
 
-#if defined(ARMCC)
+#if defined(EABI)
 deffile ../eabi/eabi.def
 #elif defined( WINSCW )
 deffile ../bwinscw/winscwu.def

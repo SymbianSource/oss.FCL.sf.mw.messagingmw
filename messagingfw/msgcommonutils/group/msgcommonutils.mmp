@@ -93,7 +93,7 @@ LIBRARY         caf.lib
 //LIBRARY         Pbk2Presentation.lib
 
 
-#if defined( ARMCC )
+#if defined( EABI )
 deffile         ./eabi.def
 #else
 deffile         ./wins.def
