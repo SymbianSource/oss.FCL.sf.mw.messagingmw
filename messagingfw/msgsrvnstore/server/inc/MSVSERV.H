@@ -585,7 +585,7 @@ private:
 	void CopyCommandDataL(const RMessage2 &aMessage);
 	HBufC8* RecoverOperationData(TMsvOp aOpId);
 	//
-	void PackEntryAndWriteBufferL(const RMessage2 &aMessage, TInt aParam, const TMsvEntry& aEntry);
+	void PackEntryAndWriteBufferL(const RMessage2 &aMessage, TInt aParam, const TMsvEntry& aEntry, const TMsvId& aServiceId);
 	//
 	void WriteBufferL(const RMessage2 &aMessage, TInt aParam);
 	void WriteL(const RMessage2 &aMessage, TInt aParam, const TDesC8& aDes);

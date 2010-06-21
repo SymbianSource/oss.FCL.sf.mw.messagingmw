@@ -2726,13 +2726,20 @@ TBool CMsvEntry::AreChildren(const CMsvEntrySelection& aSelection) const
 //
 	{
 	TInt count = aSelection.Count();
-	while (count--)
-		{
-		if (!IsAChild(aSelection.At(count)))
-			{
-			return EFalse;
-			}
-		}
+	if(!count)
+	    {
+        return EFalse;
+	    }
+	else
+	    {
+        while (count--)
+            {
+            if (!IsAChild(aSelection.At(count)))
+                {
+                return EFalse;
+                }
+            }
+	    }
 	return ETrue;
 	}
 

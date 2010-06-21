@@ -217,7 +217,6 @@ private:
 	void SendCommandDataL(TMsvOp aOperationId, const CMsvEntrySelection& aSelection, TInt aCommand, const TDesC8& aParameter);
 	void TestSlotAvailableL();
 	void PackOperationDataL(const CMsvEntrySelection& aSelection, TInt aParameter1, TInt aParameter2);
-	void DoGetEntryL(TMsvId aId, TMsvId& aService, TMsvEntry& aEntry);
 
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	void DoGetChildrenAllL(TMsvId aId, CArrayPtrFlat<CMsvClientEntry>& aEntries, const TMsvSelectionOrdering& aOrdering);

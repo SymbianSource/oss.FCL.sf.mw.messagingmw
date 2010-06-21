@@ -696,7 +696,6 @@ void CMsvServerSession::ReadBufferL(const RMessage2& aMessage, TInt aParam, HBuf
 		}
 	}
 
-
 void CMsvServerSession::WriteBufferL(const RMessage2& aMessage, TInt aParam)
 //
 // Copies the packed entry buffer from the client
@@ -980,22 +979,28 @@ void CMsvServerSession::DoChangeRemoteEntryL(const TMsvEntry& aEntry, TMsvOp aOp
 	}
 
 
-void CMsvServerSession::PackEntryAndWriteBufferL(const RMessage2 &aMessage, const TInt aParam, const TMsvEntry& aEntry)
-//
+void CMsvServerSession::PackEntryAndWriteBufferL(const RMessage2 &aMessage, const TInt aParam, const TMsvEntry& aEntry, const TMsvId& aServiceId)
 //
 //
 	{
-	// package the entry
+	// package the entry and service id in same buffer
 	TMsvPackedEntry packedEntry(iBuffer);
-	TInt error = packedEntry.PackEntry(aEntry);
+	TInt error = packedEntry.PackEntryAndService(aEntry, aServiceId);
 	while(error!=KErrNone)
 		{
 		// increase the size of the buffer and try again
 		iBuffer->Des().SetLength(0); // to avoid copying contents
 		iBuffer = iBuffer->ReAllocL(iBuffer->Des().MaxSize() + KMsvSessionBufferLength);
-		error = packedEntry.PackEntry(aEntry);
+		error = packedEntry.PackEntryAndService(aEntry, aServiceId);
 		}
-	WriteBufferL(aMessage, aParam);
+	// max destination length is passed from client
+	TInt maxDesLen = aMessage.Int2();
+    if (maxDesLen < iBuffer->Des().Length())
+		{
+        User::Leave(KErrOverflow);
+		}
+
+    aMessage.WriteL(aParam, iBuffer->Des());
 	}
 
 void CMsvServerSession::GetEntryL(const RMessage2 &aMessage)
@@ -1015,18 +1020,17 @@ void CMsvServerSession::GetEntryL(const RMessage2 &aMessage)
 		iMsvServer.PoliceReadEntryL(aMessage, ownerId, __PLATSEC_DIAGNOSTIC_STRING("Checked by CMsvServerSession::GetEntryL"));
 
 		// get the owning service and write that back
-		TPckgBuf<TMsvId> service;
-		if (id==KMsvRootIndexEntryId)
-			service()=KMsvRootIndexEntryId;
+		TMsvId service;
+		if (id == KMsvRootIndexEntryId)
+			service = KMsvRootIndexEntryId;
 		else
 			{
-			iMsvServer.IndexAdapter().OwningService(id, service()); // error ignore as the entry exists
+			iMsvServer.IndexAdapter().OwningService(id, service); // error ignore as the entry exists
 			}
-
-		WriteL(aMessage, 2, service);
 		// write the entry back
-		PackEntryAndWriteBufferL(aMessage, 1, *entryPtr);
+		PackEntryAndWriteBufferL(aMessage, 1, *entryPtr, service);
 		}
+
 	aMessage.Complete(error);
 	}
 
