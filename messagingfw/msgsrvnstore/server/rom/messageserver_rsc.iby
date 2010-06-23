@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* Copyright (c) 2004 Nokia Corporation and/or its subsidiary(-ies).
 * All rights reserved.
 * This component and the accompanying materials are made available
 * under the terms of "Eclipse Public License v1.0"
@@ -11,15 +11,15 @@
 *
 * Contributors:
 *
-* Description:  msgcommonutils.iby*
+* Description:   Defines Series60 localized files
+*
 */
 
-#ifndef __MSGCOMMONUTILS_IBY__
-#define __MSGCOMMONUTILS_IBY__
 
-//
-// msgcommonutils
-//
-file=ABI_DIR\BUILD_DIR\msgcommonutils.dll     SHARED_LIB_DIR\msgcommonutils.dll
 
-#endif   // __MSGCOMMONUTILS_IBY__
+#ifndef __MESSAGESERVER_RSC_IBY__
+#define __MESSAGESERVER_RSC_IBY__
+
+//Resource file(s) for Message server
+data=DATAZ_\MTM_RESOURCE_DIR\msgs.rsc                           MTM_RESOURCE_DIR\msgs.rsc
+#endif

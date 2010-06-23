@@ -28,7 +28,7 @@ PRJ_EXPORTS
 ../rom/AlwaysOnline.iby                CORE_MW_LAYER_IBY_EXPORT_PATH(AlwaysOnline.iby)
 
 // Stub installer file which enables eclipsing of always online manager
-../sis/aomanagerstub.sis /epoc32/data/z/system/install/aomanagerstub.SIS
+../sis/aomanagerstub.SIS /epoc32/data/z/system/install/aomanagerstub.SIS
 
 PRJ_MMPFILES
 ../AlwaysOnlineManager/group/AlwaysOnlineManagerServer.mmp

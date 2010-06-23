@@ -22,7 +22,7 @@
 
 #include <e32base.h>
 #include <msvapi.h>
-#include <alwaysonlinemanagercommon.h>
+#include <AlwaysOnlineManagerCommon.h>
 
 
 const TInt KDefaultMessageSlots = 4;
