@@ -14,7 +14,8 @@
 //
 
 #include "msgs.rls"
-#include "../inc/MSVSTD.HRH"
+#include <msvstd.hrh>
+#include <msgs.loc>
 
 // Flags - defined in TMsvEntry
 
@@ -59,32 +60,42 @@ RESOURCE SERVERSTARTUPINDEX r_server_index_startup
 						parent=KMsvRootIndexEntryIdValue;
 						type=KUidMsvServiceEntryValue;
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
-						details=STRING_r_server_index_startup1; },
+						details="Local"; },
 		SERVERENTRY {	id=KMsvGlobalInBoxIndexEntryIdValue;	
 						parent=KMsvLocalServiceIndexEntryIdValue; 
 						type=KUidMsvFolderEntryValue; 
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
-						details=STRING_r_server_index_startup2; },
+						details=qtn_mce_inbox; },
 		SERVERENTRY {	id=KMsvGlobalOutBoxIndexEntryIdValue;	
 						parent=KMsvLocalServiceIndexEntryIdValue; 
 						type=KUidMsvFolderEntryValue; 
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
-						details=STRING_r_server_index_startup3; },
+						details=qtn_mce_outbox; },
 		SERVERENTRY {	id=KMsvDraftEntryIdValue; 
 						parent=KMsvLocalServiceIndexEntryIdValue; 
 						type=KUidMsvFolderEntryValue; 
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
-						details=STRING_r_server_index_startup4; },
+						details=qtn_mce_drafts; },
 		SERVERENTRY {	id=KMsvSentEntryIdValue; 
 						parent=KMsvLocalServiceIndexEntryIdValue; 
 						type=KUidMsvFolderEntryValue; 
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
-						details=STRING_r_server_index_startup5; },
+						details=qtn_mce_sent_items; },
+		SERVERENTRY {	id=0x1008; 
+						parent=KMsvLocalServiceIndexEntryIdValue; 
+						type=KUidMsvFolderEntryValue; 
+						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
+						details=qtn_mce_documents; },
+		SERVERENTRY {	id=0x1009;	
+						parent=0x1008; 
+						type=KUidMsvFolderEntryValue; 
+						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder; 
+						details=qtn_mce_doc_temp_folder; },
 		SERVERENTRY {	id=KMsvDeletedEntryFolderEntryIdValue; 
 						parent=KMsvLocalServiceIndexEntryIdValue; 
 						type=KUidMsvFolderEntryValue; 
 						flags=KMsvEntryReadOnlyFlag|KMsvEntryStandardFolder|KMsvEntryInvisibleFlag; 
-						details=STRING_r_server_index_startup6; }
+						details="Deleted"; }
 		};
 	}
 

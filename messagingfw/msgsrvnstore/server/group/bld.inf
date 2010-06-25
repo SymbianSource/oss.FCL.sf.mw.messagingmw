@@ -14,6 +14,7 @@
 // bld.inf
 //
 
+#include <platform_paths.hrh>
 PRJ_PLATFORMS
 DEFAULT
 
@@ -115,6 +116,12 @@ msgcache.ini z:/private/1000484b/msgcache.ini
 msgPriorityDriveList.ini z:/private/1000484b/msgprioritydrivelist.ini
 #endif		// #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 
+//IBY exports
+../rom/messageserver_rsc.iby  LANGUAGE_OS_LAYER_IBY_EXPORT_PATH(messageserver_rsc.iby)
+../rom/messageserver.hby  CORE_OS_LAYER_IBY_EXPORT_PATH(messageserver.hby)
+
+
+../loc/msgs.loc OS_LAYER_LOC_EXPORT_PATH(msgs.loc)
 PRJ_MMPFILES
 MSGS.mmp
 MSGS_AutoShutdown.mmp
