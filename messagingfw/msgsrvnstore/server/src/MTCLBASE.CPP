@@ -687,10 +687,12 @@ Cancels the current attachment operation.
 */	
 EXPORT_C void CBaseMtm::CancelAttachmentOperation()
 	{
-	__ASSERT_ALWAYS(iAttachmentWaiter != NULL, PanicServer(EMsvOperationNotFound));
-	iAttachmentWaiter->Cancel();
-	delete iAttachmentWaiter;
-	iAttachmentWaiter = NULL;
+	if(iAttachmentWaiter)
+		{
+		iAttachmentWaiter->Cancel();
+		delete iAttachmentWaiter;
+		iAttachmentWaiter = NULL;
+		}
 	}
 
 
