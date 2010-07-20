@@ -381,11 +381,17 @@ void TMsvServerStoreManager::OpenTempStoreFileL(TMsvId aEntryId, RFile& aFile)
 	GetStoreFileName(aEntryId,tempFilePathAndName);
 
 	tempFilePathAndName.Append(KMsvUtilsNewExtension);
-	TInt error = iFs->MkDirAll(tempFilePathAndName);
-	if(error == KErrNone || error == KErrAlreadyExists)
-		error = aFile.Replace(*iFs,tempFilePathAndName,EFileShareExclusive|EFileWrite);
-
+	
+	TInt error= aFile.Replace(*iFs,tempFilePathAndName,EFileShareExclusive|EFileWrite);
+	if (error==KErrPathNotFound)
+		{
+        //only create directory if not found
+        error=iFs->MkDirAll(tempFilePathAndName);
+        if (error==KErrNone)
+            error=aFile.Replace(*iFs,tempFilePathAndName,EFileShareExclusive|EFileWrite);
+		}
 	User::LeaveIfError(error);
+	
 	}
 
 void TMsvServerStoreManager::ReplaceFileStoreL(TMsvId aEntryId)

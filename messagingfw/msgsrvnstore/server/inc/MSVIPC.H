@@ -93,6 +93,8 @@ public:
 	IMPORT_C TMsvPackedEntry(HBufC8*& aBuffer);
 	IMPORT_C TInt PackEntry(const TMsvEntry& aEntry);
 	IMPORT_C void UnpackEntry(TMsvEntry& aEntry);
+    TInt PackEntryAndService(const TMsvEntry& aEntry, const TMsvId& aServiceId);
+    void UnpackEntryAndService(TMsvEntry& aEntry, TMsvId& aServiceId);
 private:
 	HBufC8*& iBuffer;
 	};

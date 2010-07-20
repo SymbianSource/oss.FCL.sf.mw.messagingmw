@@ -620,16 +620,13 @@ void CMsvCachedStore::SaveL()
 	RFileWriteStream out(tempStoreFile);
 	out.PushL();
 	WriteToFileStreamL(out);
-	CleanupStack::PopAndDestroy(&out); // close RFileWriteStream out
-	iStoreManager.ReplaceFileStoreL(iEntryId);
 
-	// Need the size
-	RFile storeFile;
-	User::LeaveIfError(iStoreManager.OpenFileStoreForRead(iEntryId, storeFile));
-	CleanupClosePushL(storeFile);
-	User::LeaveIfError(storeFile.Size(iSize));
-	CleanupStack::PopAndDestroy(&storeFile);
+	//get the size of the stream, in previous call the Stream is already commited to the file, the next step simply replace the file with this temp new file so size should be the same
+	//the SizeL in this case will not involve any file i/o calls.
+	iSize=out.Sink()->SizeL();
 	
+    CleanupStack::PopAndDestroy(&out); // close RFileWriteStream out
+    iStoreManager.ReplaceFileStoreL(iEntryId);
 
 	}
 

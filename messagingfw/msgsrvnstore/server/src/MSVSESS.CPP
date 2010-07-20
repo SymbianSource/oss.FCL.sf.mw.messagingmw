@@ -578,6 +578,9 @@ void CMsvServerSession::DoServiceL(const RMessage2& aMessage)
 			CancelConversionRequestL(aMessage);
 			break;
 #endif	  // #if (defined SYMBIAN_MESSAGESTORE_HEADER_BODY_USING_SQLDB)
+		case EMsvChangeEntries:
+		     ChangeEntriesL(aMessage);
+		     break;
 		default:
 			PanicClient(aMessage, EMsvBadRequest);
 			break;
@@ -695,7 +698,6 @@ void CMsvServerSession::ReadBufferL(const RMessage2& aMessage, TInt aParam, HBuf
 		User::Leave(KErrArgument);
 		}
 	}
-
 
 void CMsvServerSession::WriteBufferL(const RMessage2& aMessage, TInt aParam)
 //
@@ -945,6 +947,113 @@ void CMsvServerSession::ChangeEntryL(const RMessage2 &aMessage)
 	CleanupStack::PopAndDestroy(); // opData
 	}
 
+//
+// Changes the selection of id.
+//
+
+void CMsvServerSession::ChangeEntriesL(const RMessage2 &aMessage)
+    {
+     // Recover the operation data
+     TMsvOp operationId = aMessage.Int0();
+     HBufC8* opData = RecoverOperationData(operationId);
+     // Check for NULL data entry to be changed, must have been given incorrect id for argument.
+     if(opData == NULL)
+         {
+         aMessage.Complete(KErrArgument);
+         return;
+         }
+     CleanupStack::PushL(opData);
+
+     // unpack the data
+     TMsvPackedOperation packedOperation(opData);
+     
+     CMsvEntrySelection* selection = new (ELeave) CMsvEntrySelection;
+     CleanupStack::PushL(selection);
+     TInt target,temp;
+     packedOperation.UnpackL(*selection, target, temp);
+
+     if (selection->Count() == 0)
+         {
+         PanicClient(aMessage, EMsvNoEntriesInChangeSelection);
+         aMessage.Complete(KErrNotFound);
+         return;
+         }
+     // Find the first entry in the selection which exists
+     TInt count=selection->Count();
+     while (count--)
+         {
+         TBool entryExsists = EFalse;
+         entryExsists = iMsvServer.IndexAdapter().EntryExists(selection->At(count));
+         if (entryExsists)
+             break;
+         }
+ 
+       // Check if the entry is local or the entry is a service
+      TBool local=ETrue;
+      TMsvEntry* entry=NULL;
+      User::LeaveIfError(iMsvServer.IndexAdapter().GetEntry(selection->At(0), entry));
+     
+      // Police request - client must be able to modify the entry.
+      iMsvServer.PoliceModifyEntryL(aMessage, *entry, local, __PLATSEC_DIAGNOSTIC_STRING("Checked by CMsvServerSession::ChangeEntryL"));
+             
+      // For purpose of changing a service entry, it is considered local as an MTM
+      // is not required to do the work.
+      if( entry->iType == KUidMsvServiceEntry )
+          local = ETrue;
+
+      // start the change for local or remote entries
+      if (local)
+          {
+          // Extract the owner ID from the message.
+          TSecureId ownerId = aMessage.Int1();
+
+          DoChangeLocalEntriesL(selection, operationId, aMessage, ownerId, target);
+          }
+      else
+          DoChangeRemoteEntriesL(selection, operationId, aMessage,target);
+
+      CleanupStack::PopAndDestroy(); // opData
+   }
+
+void CMsvServerSession::DoChangeLocalEntriesL(CMsvEntrySelection*& aSelection, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId, TInt mark)
+    {
+    CMsvLocalChangeEntriesOperation* operation = new(ELeave) CMsvLocalChangeEntriesOperation(aMessage, aOpId, aSelection, iMsvServer,mark);
+    CleanupStack::Pop(); // selection
+    CleanupStack::PushL(operation);
+   
+    TBool forcedUpdate = (aOwnerId != aMessage.SecureId());
+    operation->StartL(aOwnerId, forcedUpdate);
+
+    iOperations.AppendL(operation);
+    CleanupStack::Pop(); // operation
+
+    
+    }
+
+void CMsvServerSession::DoChangeRemoteEntriesL(CMsvEntrySelection*& aSelection, TMsvOp aOpId, const RMessage2 &aMessage,TInt mark)
+//
+// Change a selection of entry under a remote service
+//
+    {
+    // make sure that the operation can be added to the list
+     iOperations.SetReserveL(iOperations.Count()+1);
+
+     TMsvEntry* entry=NULL;
+     User::LeaveIfError(iMsvServer.IndexAdapter().GetEntry(aSelection->At(0), entry));
+ 
+     // create the operation
+     CMsvMtmOperation* operation = CMsvMtmOperation::NewL(aMessage, aOpId, entry->iMtm, entry->iServiceId, iSessionId, iMsvServer);
+     CleanupStack::Pop(); // aSelection
+     CleanupStack::PushL(operation);
+     operation->ChangeEntriesL(aSelection,mark);
+     
+     iMsvServer.StartOperationL(*operation, iSessionId, aMessage, ETrue);
+     iOperations.AppendL(operation); // will not fail - see start of function
+     CleanupStack::Pop(); // operation
+   
+    }
+
+
 void CMsvServerSession::DoChangeLocalEntryL(const TMsvEntry& aEntry, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId)
 //
 // Create a local entry in the index
@@ -980,22 +1089,28 @@ void CMsvServerSession::DoChangeRemoteEntryL(const TMsvEntry& aEntry, TMsvOp aOp
 	}
 
 
-void CMsvServerSession::PackEntryAndWriteBufferL(const RMessage2 &aMessage, const TInt aParam, const TMsvEntry& aEntry)
-//
+void CMsvServerSession::PackEntryAndWriteBufferL(const RMessage2 &aMessage, const TInt aParam, const TMsvEntry& aEntry, const TMsvId& aServiceId)
 //
 //
 	{
-	// package the entry
+	// package the entry and service id in same buffer
 	TMsvPackedEntry packedEntry(iBuffer);
-	TInt error = packedEntry.PackEntry(aEntry);
+	TInt error = packedEntry.PackEntryAndService(aEntry, aServiceId);
 	while(error!=KErrNone)
 		{
 		// increase the size of the buffer and try again
 		iBuffer->Des().SetLength(0); // to avoid copying contents
 		iBuffer = iBuffer->ReAllocL(iBuffer->Des().MaxSize() + KMsvSessionBufferLength);
-		error = packedEntry.PackEntry(aEntry);
+		error = packedEntry.PackEntryAndService(aEntry, aServiceId);
 		}
-	WriteBufferL(aMessage, aParam);
+	// max destination length is passed from client
+	TInt maxDesLen = aMessage.Int2();
+    if (maxDesLen < iBuffer->Des().Length())
+		{
+        User::Leave(KErrOverflow);
+		}
+
+    aMessage.WriteL(aParam, iBuffer->Des());
 	}
 
 void CMsvServerSession::GetEntryL(const RMessage2 &aMessage)
@@ -1015,18 +1130,17 @@ void CMsvServerSession::GetEntryL(const RMessage2 &aMessage)
 		iMsvServer.PoliceReadEntryL(aMessage, ownerId, __PLATSEC_DIAGNOSTIC_STRING("Checked by CMsvServerSession::GetEntryL"));
 
 		// get the owning service and write that back
-		TPckgBuf<TMsvId> service;
-		if (id==KMsvRootIndexEntryId)
-			service()=KMsvRootIndexEntryId;
+		TMsvId service;
+		if (id == KMsvRootIndexEntryId)
+			service = KMsvRootIndexEntryId;
 		else
 			{
-			iMsvServer.IndexAdapter().OwningService(id, service()); // error ignore as the entry exists
+			iMsvServer.IndexAdapter().OwningService(id, service); // error ignore as the entry exists
 			}
-
-		WriteL(aMessage, 2, service);
 		// write the entry back
-		PackEntryAndWriteBufferL(aMessage, 1, *entryPtr);
+		PackEntryAndWriteBufferL(aMessage, 1, *entryPtr, service);
 		}
+
 	aMessage.Complete(error);
 	}
 

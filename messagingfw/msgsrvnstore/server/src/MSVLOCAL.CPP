@@ -686,6 +686,125 @@ void CMsvLocalChangeOperation::Completed()
 	SetState(EMsvOperationCompleted);
 	iMessage.Complete(KErrNone);
 	}
+//**********************************
+// CMsvLocalChangeEntriesOperation
+//**********************************
+
+
+CMsvLocalChangeEntriesOperation::CMsvLocalChangeEntriesOperation(const RMessage2& aMessage, TMsvOp aId, CMsvEntrySelection* aSelection, CMsvServer& aMsvServer, TInt aMark)
+: CMsvLocalOperation(aMessage, aId, aMsvServer), iSelection(aSelection), iMark(aMark)
+    {
+    __DECLARE_NAME(_S("CMsvLocalChangeEntriesOperation"));
+    // set up the progress
+    iProgress().iType = TMsvLocalOperationProgress::ELocalChanged;
+    iProgress().iTotalNumberOfEntries = iSelection->Count();;
+    iProgress().iNumberRemaining = iProgress().iTotalNumberOfEntries;
+    CActiveScheduler::Add(this);
+    }
+
+CMsvLocalChangeEntriesOperation::~CMsvLocalChangeEntriesOperation()
+//
+//
+//
+    {
+    Cancel();
+    delete iSelection;
+    delete iDelete;
+    delete iWorkSelection1;
+    delete iWorkSelection2;
+    }
+
+void CMsvLocalChangeEntriesOperation::DoCancel()
+//
+//
+//
+    {
+    __ASSERT_DEBUG(iDelete!=NULL, PanicServer(EMsvChangeEntryBadState));
+    iDelete->Cancel(); 
+    iProgress().iError = KErrCancel;
+    Completed();
+    }
+
+void CMsvLocalChangeEntriesOperation::RunL()
+//
+//
+//
+    {
+    if (iStatus.Int()==KErrNone)
+        {
+        iProgress().iNumberCompleted++;
+        }
+    else
+        {
+        iProgress().iNumberFailed++;
+        iProgress().iError = iStatus.Int();
+        }
+    
+    Completed();
+    }
+
+
+void CMsvLocalChangeEntriesOperation::StartL(TSecureId aOwnerId, TBool aForcedUpdate)
+//
+//
+//
+    {
+    TMsvEntry* entry1;
+ 
+    TInt count = iSelection->Count();
+    while (count--)
+        {
+        iMsvServer.IndexAdapter().GetEntry(iSelection->At(count),entry1);
+        iId = entry1->Id();
+        iParent = entry1->Parent();
+        // check if this is actually a deletion
+        if (entry1->Deleted() && entry1->PcSyncCount()==0)
+            {
+             iDelete = CMsvDelete::NewL(iMsvServer);
+             iWorkSelection1 = new(ELeave)CMsvEntrySelection;
+             iWorkSelection2 = new(ELeave)CMsvEntrySelection;
+
+            iDelete->StartL(entry1->Id(), *iWorkSelection1, *iWorkSelection2, iStatus, ETrue);
+            SetActive();
+            return;
+            }
+        }
+  
+    TInt error  = KErrNone;
+    TMsvEntry* entry;
+    count = iSelection->Count();
+    while (count--)
+        {
+        error = iMsvServer.IndexAdapter().GetEntry(iSelection->At(count),entry);
+        if (error==KErrNone)
+            {
+            error = iMsvServer.IndexAdapter().LockEntry(iSelection->At(count));
+            error = iMsvServer.ChangeEntry(*entry, aOwnerId, aForcedUpdate);
+            error = iMsvServer.IndexAdapter().ReleaseEntry(iSelection->At(count)); // error ignored
+            }
+         }
+
+    if (error==KErrNone)
+        iProgress().iNumberCompleted++;
+    else
+        {
+        iProgress().iNumberFailed++;
+        iProgress().iError = error;
+        }
+    Completed();
+    }
+
+void CMsvLocalChangeEntriesOperation::Completed()
+//
+//
+//
+    {
+    
+    if (iProgress().iError==KErrNone)
+        iMsvServer.NotifyChanged(iDelete==NULL ? EMsvEntriesChanged : EMsvEntriesDeleted, iId, iParent);
+    SetState(EMsvOperationCompleted);
+    iMessage.Complete(KErrNone);
+     }
 
 
 //**********************************

@@ -60,6 +60,11 @@ inline void CMsvMtmOperation::ChangeL(const TMsvEntry& aNewEntry)
 	StoreParametersL(EMtmOpChange, aNewEntry);
 	}
 
+inline void CMsvMtmOperation::ChangeEntriesL(CMsvEntrySelection* aSelection, TInt aMark)
+    {
+    StoreParameters(EMtmOpChangeEntries, aSelection ,aMark, NULL);
+    }
+
 inline void CMsvMtmOperation::StartCommand(CMsvEntrySelection* aSelection, TInt aCommand, HBufC8* aParameter)
 	{
 	StoreParameters(EMtmOpCommand ,aSelection ,aCommand, aParameter);

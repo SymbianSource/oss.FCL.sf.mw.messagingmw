@@ -457,6 +457,25 @@ EXPORT_C void RMsvServerSession::ChangeEntryL(const TMsvEntry& aEntry, TMsvOp aO
 	User::LeaveIfError(SendReceive(EMsvChangeEntry, TIpcArgs(aOperationId, aOwnerId)));
 	}
 
+/**
+Update the specified Changes to selection of TMsvId (asynchronously).
+
+@param aSelection The IDs of the entry to Change. 
+@param aMark The read/Unread value.  
+@param aOperationId Operation identifier
+@param aOwnerId The ID of the owning process
+@param aRequestStatus Asynchronous request status
+
+*/
+
+void RMsvServerSession::ChangeEntriesL(const CMsvEntrySelection& aSelection, TBool aMark ,TMsvOp aOperationId, TSecureId aOwnerId, TRequestStatus& aRequestStatus)
+    {
+     TestSlotAvailableL();
+     TInt markvalue = (TInt)aMark;
+     SendOperationDataL(aOperationId, aSelection, markvalue);
+     aRequestStatus=KRequestPending;
+     SendReceive(EMsvChangeEntries, TIpcArgs(aOperationId, aOwnerId), aRequestStatus);
+    }
 
 /**
 Gets the index entry with the specified unique id.
@@ -472,30 +491,36 @@ described for no capabilities does not apply.
 */
 EXPORT_C TInt RMsvServerSession::GetEntry(TMsvId aId, TMsvId& aService, TMsvEntry& aEntry)
 	{
-	TRAPD(error, DoGetEntryL(aId, aService, aEntry));
-	return error;
-	}
-
-void RMsvServerSession::DoGetEntryL(TMsvId aId, TMsvId& aService, TMsvEntry& aEntry)
-	{
-	// pass the buffer to receive the data through
-	TPtr8 ptr=iBuffer->Des();
-	// get the service the entry i sunder
-	TPckg<TMsvId> service(aService);
+    // pass the buffer and its max length to receive the data through
+    TPtr8 ptr=iBuffer->Des();
+    TInt maxLength = iBuffer->Des().MaxLength();
+    
 	// signal the server
-	TInt error = SendReceive(EMsvGetEntry,TIpcArgs(aId,&ptr,&service));
-	while(error == KErrOverflow)
-		{
-		// increase the size of the buffer and try again
-		iBuffer->Des().SetLength(0);
-		iBuffer = iBuffer->ReAllocL(iBuffer->Des().MaxSize() + KMsvSessionBufferLength);
-		// pass the buffer to receive the data through
-		TPtr8 ptr=iBuffer->Des();
-		error = SendReceive(EMsvGetEntry,TIpcArgs(aId,&ptr,&service));
-		}
-	User::LeaveIfError(error);
-	TMsvPackedEntry packedEntry(iBuffer);
-	packedEntry.UnpackEntry(aEntry);
+    TInt error = SendReceive(EMsvGetEntry,TIpcArgs(aId, &ptr, maxLength));
+    while(error == KErrOverflow)
+        {
+        // increase the size of the buffer and try again
+        iBuffer->Des().SetLength(0);
+        // TRAP here and return if leaving with error
+        TRAP(error, iBuffer = iBuffer->ReAllocL(iBuffer->Des().MaxSize() + KMsvSessionBufferLength));
+        if( error != KErrNone)
+			{
+            break;
+			}
+        // pass the buffer to receive the data through
+        TPtr8 ptr=iBuffer->Des();
+        maxLength = iBuffer->Des().MaxLength();
+        error = SendReceive(EMsvGetEntry,TIpcArgs(aId,&ptr,maxLength));
+        }
+
+    if( error == KErrNone)
+        {
+        TMsvPackedEntry packedEntry(iBuffer);
+        // Unpack the entry and servie id from same buffer
+        packedEntry.UnpackEntryAndService(aEntry, aService);
+        }
+
+    return error;
 	}
 
 /**

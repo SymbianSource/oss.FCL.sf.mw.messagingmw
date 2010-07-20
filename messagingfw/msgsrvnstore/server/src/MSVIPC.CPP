@@ -155,6 +155,49 @@ EXPORT_C void TMsvPackedEntry::UnpackEntry(TMsvEntry& aEntry)
 	DoUnpackEntry(pS, aEntry);
 	}
 
+TInt TMsvPackedEntry::PackEntryAndService(const TMsvEntry& aEntry, const TMsvId& aServiceId)
+    {
+    // find the start and end of the buffer
+    const TUint8* pS = iBuffer->Ptr();
+    const TUint8* pE = PtrAdd(pS, iBuffer->Des().MaxSize());
+
+    TInt error = DoPackEntry(pS, pE, aEntry);
+    if (error==KErrNone)
+        {
+        TInt sizeDes = Align4(sizeof(TMsvId));
+        if ((pS + sizeDes)>pE)
+            {
+            return KErrOverflow;
+            }            
+        // copy the entry and descriptors into the memory area
+        Mem::Copy((void*)pS, &aServiceId, sizeof(TMsvId));
+        pS += sizeDes;
+
+        // update the length of the buffer
+        iBuffer->Des().SetLength(pS-iBuffer->Ptr());
+        }
+
+    return error;    
+    }
+
+void TMsvPackedEntry::UnpackEntryAndService(TMsvEntry& aEntry, TMsvId& aServiceId)
+    {
+#if defined(_DEBUG)
+    // check that the buffer contain a valid package
+    const TMsvEntry* dEntry = (TMsvEntry*) iBuffer->Ptr();
+    const TUint8* dPos = PtrAdd(iBuffer->Ptr(), Align4(sizeof(TMsvEntry)) + Align4(dEntry->iDescription.Size()) + Align4(dEntry->iDetails.Size()) + Align4(sizeof(TMsvId)) );
+    __ASSERT_DEBUG(dPos <= PtrAdd(iBuffer->Ptr(), iBuffer->Des().MaxLength()), PanicServer(EMsvEntryOverrunBuffer));
+#endif
+    
+    TUint8* pS = CONST_CAST(TUint8*, iBuffer->Ptr());
+    DoUnpackEntry(pS, aEntry);
+
+    // get the service id from the current position in the buffer
+    const TMsvId* pServiceId = (TMsvId*)pS;
+    aServiceId = *pServiceId;
+    pS = Align4(pS + sizeof(TMsvId));
+    }
+
 //**********************************
 // TMsvPackedEntryArray
 //**********************************

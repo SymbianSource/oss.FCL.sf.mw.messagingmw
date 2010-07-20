@@ -383,7 +383,8 @@ public:
 #endif
 
 	TInt GetNonOperationMtmData(TNonOperationMtmDataType& aMtmDataType, TPtrC8& aResultBuffer);
-
+	
+	IMPORT_C virtual TInt ChangeEntriesL( const CMsvEntrySelection& aSelection,TInt aMark, TRequestStatus& aStatus );
 protected:
 	IMPORT_C CBaseServerMtm(CRegisteredMtmDll& aRegisteredMtmDll, CMsvServerEntry* aServerEntry);
 	/** Handles the completion of any asynchronous requests that it makes. It is called 
