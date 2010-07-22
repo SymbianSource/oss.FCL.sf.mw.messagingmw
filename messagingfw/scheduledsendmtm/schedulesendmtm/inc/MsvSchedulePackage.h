@@ -16,6 +16,9 @@
 #ifndef MSV_SCHEDULE_PACKAGE_H_
 #define MSV_SCHEDULE_PACKAGE_H_
 
+#include <s32std.h>
+#include <msvstd.h>
+
 //
 //
 //	TMsvSchedulePackage Declaration

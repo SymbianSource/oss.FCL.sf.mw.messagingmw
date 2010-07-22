@@ -13,7 +13,7 @@
 // Description:
 //
 
-#include "../autorun/group/BLD.INF"
-#include "../copylogs/group/BLD.INF"
+#include "../autorun/group/bld.inf"
+#include "../copylogs/group/bld.inf"
 #include "../utils/group/bld.inf"
-#include "../spoofserver/group/Bld.inf"
+#include "../spoofserver/group/bld.inf"
