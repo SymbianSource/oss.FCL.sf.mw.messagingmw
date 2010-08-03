@@ -1,6 +1,6 @@
 // MSVPREFERREDDRIVELIST.CPP
 
-// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -278,7 +278,7 @@ void CMsvPreferredDriveList::Print()
 	for(TInt index = 0; index < count; ++index)
 		{		
 		RBuf8 text;
-		text.Create(100);
+		text.CreateL(100);
 		text.Append(KLtBracket);
 		text.AppendNum(index);
 		text.Append(KRtBracket);

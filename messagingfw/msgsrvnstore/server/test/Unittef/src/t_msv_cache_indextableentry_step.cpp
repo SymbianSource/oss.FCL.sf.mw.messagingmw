@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -417,7 +417,7 @@ void CTestIndexTableEntry::TestAddEntrySet()
 	MY_ASSERT_EQUALS(iIndexTableEntry->Size(), aCount);
 	for(index = aCount; index < bulkCount; ++index) //manually release remaining entries
 		{
-		CMsvEntryFreePool::Instance()->ReleaseEntry(entries[index]);
+		CMsvEntryFreePool::Instance()->ReleaseEntryL(entries[index]);
 		}
 	
 	//---aCount > aEntries.Count()
@@ -478,8 +478,8 @@ void CTestIndexTableEntry::TestAddEntrySet()
 		MY_ASSERT_TRUE(iIndexTableEntry->EntryExists(entries[index]->GetId()));
 		}
 	MY_ASSERT_EQUALS(iIndexTableEntry->Size(), aCount);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(entries[0]);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(entries[4]);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(entries[0]);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(entries[4]);
 		
 	//---out of bounds index
 	iIndexTableEntry->ReleaseBlock(ETrue);
@@ -511,7 +511,7 @@ void CTestIndexTableEntry::TestAddEntrySet()
 	MY_ASSERT_EQUALS(iIndexTableEntry->Size(), 0);
 	for(index = 0; index < bulkCount; ++index)
 		{
-		CMsvEntryFreePool::Instance()->ReleaseEntry(entries[index]);
+		CMsvEntryFreePool::Instance()->ReleaseEntryL(entries[index]);
 		}
 		
 
@@ -908,7 +908,7 @@ void CTestIndexTableEntry::TestGetChildren()
 	oEntries.Reset();
 	TRAP_IGNORE(iIndexTableEntry->GetChildrenL(parent->GetId(), oEntries));
 	MY_ASSERT_EQUALS(oEntries.Count(), 11); //entryA + 10 others
-	CMsvEntryFreePool::Instance()->ReleaseEntry(nonimmediateParent);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(nonimmediateParent);
 	
 	
 	// t4. only grandchildren are present in the block
@@ -949,8 +949,8 @@ void CTestIndexTableEntry::TestGetChildren()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(oEntries.Count(), 0);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(nonimmediateParent);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parent);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(nonimmediateParent);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parent);
 	oEntries.Close();
 	tmsvEntries.Close();
 	entries.Close();	
@@ -1044,9 +1044,9 @@ void CTestIndexTableEntry::TestDeleteEntry()
  	TRAP(err, iIndexTableEntry->DeleteEntryL(entryA->GetId(), parentId));
  	MY_ASSERT_EQUALS(err, KErrNotFound);
  	
- 	CMsvEntryFreePool::Instance()->ReleaseEntry(parent);
- 	CMsvEntryFreePool::Instance()->ReleaseEntry(entryA);
- 	CMsvEntryFreePool::Instance()->ReleaseEntry(entryB);
+ 	CMsvEntryFreePool::Instance()->ReleaseEntryL(parent);
+ 	CMsvEntryFreePool::Instance()->ReleaseEntryL(entryA);
+ 	CMsvEntryFreePool::Instance()->ReleaseEntryL(entryB);
  	
  	
  	// t6. bulk additions and deletions
@@ -1084,7 +1084,7 @@ void CTestIndexTableEntry::TestDeleteEntry()
 		}
 	MY_ASSERT_TRUE(iIndexTableEntry->BlockPtr() == NULL);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parent);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parent);
 	tmsvEntries.Close();
 	entries.Close();
 	}
@@ -1142,7 +1142,7 @@ void CTestIndexTableEntry::TestSortBlock()
 	err = oEntries[0]->GetId() - oEntries[1]->GetId(); //successive entries
 	MY_ASSERT_TRUE(err < 0);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parent);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parent);
 	oEntries.Close();
 	}
 
