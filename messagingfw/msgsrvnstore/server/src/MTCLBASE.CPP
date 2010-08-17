@@ -1,4 +1,4 @@
-// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 1998-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -84,7 +84,10 @@ that they require. */
 	delete iParaFormatLayer;
 	iRegisteredMtmDll.ReleaseLibrary();
 	delete iAttachmentWaiter;
-	delete iExtensionData;
+	if(iExtensionData)
+  		{
+		delete iExtensionData;    
+  		}	
 	}
 
 

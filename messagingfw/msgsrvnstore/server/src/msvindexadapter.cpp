@@ -432,7 +432,7 @@ void CMsvIndexAdapter::ConstructOpenL(const TFileName& aDbFileName)
 	iServer.Log(_L("Cache initialized succesfully."));
 #endif
 
-	TMsvId tmpNextId = NULL;
+	TMsvId tmpNextId = 0;
 	iDbAdapter->GetMaxTMsvIdL(tmpNextId);
 	iNextCreateId = (tmpNextId >= KFirstFreeEntryId)? (tmpNextId+1) : KFirstFreeEntryId;
 	
