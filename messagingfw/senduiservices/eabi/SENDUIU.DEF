@@ -121,4 +121,5 @@ EXPORTS
 	_ZN16CSendUiSingleton4NewLEv @ 120 NONAME
 	_ZN12CMessageData14SetOpaqueDataLEPK6TDesC84TUid @ 121 NONAME
 	_ZNK12CMessageData10OpaqueDataEv @ 122 NONAME
+	_ZN7CSendUi26AddSendMenuItemToMenuPaneLERiR12CEikMenuPaneii20TSendingCapabilities @ 123 NONAME
 

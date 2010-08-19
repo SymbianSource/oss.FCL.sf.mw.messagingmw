@@ -56,8 +56,7 @@
 #include "propertyobserver.h"
 #include "senduilauncher.h"
 #include "SendUiInternalConsts.h"
-#include "SendUiFileRightsEngine.h"
-#include "CSendUiAttachment.h"
+
 
 const TInt KArrayGranularity = 2;
 const TInt KSendUiServiceOrderArrayGranularity = 6;
@@ -208,14 +207,7 @@ TUid CSendUiImpl::ShowTypedQueryL(
     CArrayFix<TUid>*            aServicesToDim,
     const TDesC&                aTitleText )
     {
-        if(aMessageData)
-        {
-        TBool continueSending = ValidateAttachmentsL(aMessageData);
-        if(!continueSending)
-            {
-               return  KNullUid;
-            }
-        }
+	//validation of attachments is costly operation and hence better be done after showing services popup.
     // Implemented for CR # 401-1806 >>    
     // This section to enable/disable features (supported by feature manager) at run time, is to be revised,
     // once an observer class is available from feature manager side to intimate about feature state
@@ -1374,43 +1366,63 @@ TBool CSendUiImpl::IsEmailAppendableL(TMsvEntry atentry)
     return appendEmail;
     }
 // -----------------------------------------------------------------------------
-// ValidateAttachmentsL
-// Validates if all the attachments are DRM protected 
+// AddTypedMenuItemToMenuPaneL
+//
+// No menu item is added, if services are not found. This can happen if 
+// asyncronous sending service update is not yet finished.
+// To inform caller about the API result, aResult param is added.
+// so that caller application will know that its request is not succesfully 
+// completed due to above reason.
 // -----------------------------------------------------------------------------
 //
-TBool CSendUiImpl::ValidateAttachmentsL(const CMessageData*  aMessageData)
+void CSendUiImpl::AddTypedMenuItemToMenuPaneL(
+    TBool&                      aResult,
+    CSendUi::TSendUiMenuType    aMenuType,
+    CEikMenuPane&               aMenuPane,
+    TInt                        aIndex,
+    TInt                        aCommandId,
+    TSendingCapabilities        aRequiredCapabilities)
     {
-    CArrayPtrFlat<CSendUiAttachment>* attachments = NULL;
-    TInt cleanupItems(0);
-    TBool okToSend = EFalse;
-    CSendUiFileRightsEngine* fileRightsEngine = CSendUiFileRightsEngine::NewLC( iCoeEnv->FsSession() );
-    cleanupItems++;
-    // Get attachments
-        attachments = CSendUiAttachment::InitAttachmentArrayLCC( 
-            aMessageData->AttachmentArray(), 
-            aMessageData->AttachmentHandleArray(),
-            iCoeEnv->FsSession() );
-        cleanupItems += 2;
-        
-        if ( attachments->Count() == 0 )
-		     {
-		     //there are no attachments, so no point in checking the file rights at all.
-		     CleanupStack::PopAndDestroy( cleanupItems );
-		     return ETrue;    
-		     }  
-    fileRightsEngine->ConfirmDrmFileRightsL( attachments );
-    if ( attachments->Count() <= 0 )
-        {
-        fileRightsEngine->ShowDrmAndMmsInfoL();
-        }
-    else
-        {
-		// there are one or more files that can be sent, so dont shown error note now.
-        okToSend = ETrue;
-        }
-    CleanupStack::PopAndDestroy( cleanupItems );
+    TInt i(0);
+    TBuf<KTitleBufLength> menuItemName;
+    aResult=EFalse;
     
-    return okToSend;
+     // Read the resources
+    aMenuType == CSendUi::ESendMenu ? 
+        i = R_SENDUI_MENUITEM_SEND : 
+        i = R_SENDUI_MENUITEM_WRITE; // CSendUi::EWriteMenu
+        
+    iCoeEnv->ReadResourceL( menuItemName, i );
+  
+    for ( i = 0; i < iSendingServices.Count(); i++ )
+    {
+    TUid serviceUid = iSendingServices[i]->ServiceId();
+    if ( QueryCapabilities( i, aRequiredCapabilities ) )
+        {
+        CEikMenuPaneItem::SData data;
+        data.iCascadeId = NULL;
+        data.iText = menuItemName;
+        data.iCommandId = aCommandId;
+        data.iFlags = 0;
+
+        if ( aIndex == aMenuPane.NumberOfItemsInPane() )
+            {
+            aMenuPane.AddMenuItemL( data );
+            }
+        else
+            {
+            aMenuPane.InsertMenuItemL( data, aIndex );
+            }
+            
+        aResult = ETrue;
+        break;
+        }
+    }
+    // Hide menu item if sending is already in progress.
+    if ( aResult )
+        {
+        aMenuPane.SetItemDimmed( aCommandId, iIsSending);
+        }    
     }
 // end of file
 

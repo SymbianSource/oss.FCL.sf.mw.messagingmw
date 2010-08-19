@@ -26,18 +26,18 @@ REM The Message Server
 #define MSGHEAPMAX  0x400000
 #endif
 
-file=ABI_DIR\BUILD_DIR\MSexe.exe	System\Programs\MSexe.exe	heapmax=MSGHEAPMAX
-file=ABI_DIR\BUILD_DIR\MSGS.dll		System\Libs\MSGS.dll
+file=ABI_DIR\BUILD_DIR\msexe.exe	System\Programs\MSexe.exe	heapmax=MSGHEAPMAX
+file=ABI_DIR\BUILD_DIR\msgs.dll		System\Libs\MSGS.dll
 
-data=EPOCROOT##epoc32\data\Z\private\1000484b\backup_registration.xml		private\1000484b\backup_registration.xml
+data=EPOCROOT##epoc32\data\z\private\1000484b\backup_registration.xml		private\1000484b\backup_registration.xml
 
 #include "messageserver.hby"
 
-data=EPOCROOT##epoc32\data\Z\private\1000484b\msgcache.ini 					private\1000484b\msgcache.ini
+data=EPOCROOT##epoc32\data\z\private\1000484b\msgcache.ini 					private\1000484b\msgcache.ini
 
 #ifdef SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT
-data=EPOCROOT##epoc32\data\Z\private\1000484b\msgPriorityDriveList.ini 		private\1000484b\msgprioritydrivelist.ini
-data=EPOCROOT##epoc32\data\Z\private\10202BE9\10286a26.txt					private\10202BE9\10286a26.txt
+data=EPOCROOT##epoc32\data\z\private\1000484b\msgprioritydriveList.ini 		private\1000484b\msgprioritydrivelist.ini
+data=EPOCROOT##epoc32\data\z\private\10202BE9\10286a26.txt					private\10202BE9\10286a26.txt
 #endif
 
 #endif

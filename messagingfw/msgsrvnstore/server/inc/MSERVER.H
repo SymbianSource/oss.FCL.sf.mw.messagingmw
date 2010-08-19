@@ -148,7 +148,7 @@ enum TMsvServerRqst
 	EMsvIdWithSortFiled=89,
 	EMsvGetSearchSortProgress=90,
 	EMsvCancelSearchSortOp=91,
-	EMsvUpdateAndSort=92
+	EMsvUpdateAndSort=92,
 	// Code added for PREQ 557.
 	// Macros for preferred drive list APIs.
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
@@ -162,7 +162,7 @@ enum TMsvServerRqst
     EMsvGetChildIdsALL=101
 #if (defined SYMBIAN_MESSAGESTORE_UNIT_TESTCODE)
 	,EMsvResetRepository=102,
-	EMsvPrintCache=103
+	EMsvPrintCache=103,
 #endif
 #endif		// #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 
@@ -180,8 +180,9 @@ enum TMsvServerRqst
 	EMsvConvertMessageStore=113,
 	EMsvCancelConversionRequest=114,
 	EMsvGetConvertibleDriveList=115,
-	EMsvGetConversionStatus=116
+	EMsvGetConversionStatus=116,
 #endif
+	EMsvChangeEntries = 117
 	};
 
 

@@ -72,6 +72,12 @@ class CSendUi : public CBase
 
         /**
         * Adds "Send" menu item to menupane.
+        * No menu item is added, if services are not found. 
+        * This can happen if asyncronous sending service update is not 
+        * yet finished. This API will not provide any result of
+        * requested operation. New API AddSendMenuItemToMenuPaneL 
+        * with aResult param is added. Caller application can use 
+        * this new API to know the API operation result.
         *
         * @since Series 60 3.0
         * @param aMenuPane Menupane where the "Send" menu item should be added.
@@ -362,6 +368,35 @@ class CSendUi : public CBase
         *           service doesn't exist or service is ECOM based.
         */
         IMPORT_C TUid TechnologyType( TUid aServiceUid ) const;
+        
+        /**
+         * Adds "Send" menu item to menupane  and know the opeation
+         * result.
+         * No menu item is added, if services are not found. 
+         * This can happen if asyncronous sending service update is not 
+         * yet finished. Caller application can use this  API to know the
+         * API operation result.
+         * 
+         * @since Series 60 9.2
+         * @param aResult API opeartion result. ETrue, if item is added successfully
+         *               EFalse , if failed to add item.    
+         * @param aMenuPane Menupane where the "Send" menu item should be added.
+         * @param aIndex The place of the "Send" menu item in menupane.
+         * @param aCommandId Command id for the "Send" menu item.
+         * @param aRequiredCapabilities Capabilities required by services to be
+         *        shown in "Send" list query. If no capabilities are required
+         *        (KCapabilitiesForAllServices), all available services are
+         *        shown in "Send" list query.     
+         *         
+         * @return None.
+         */
+        IMPORT_C void AddSendMenuItemToMenuPaneL(
+                TBool& aResult,
+                CEikMenuPane& aMenuPane,
+                TInt aIndex,
+                TInt aCommandId,
+                TSendingCapabilities aRequiredCapabilities = KCapabilitiesForAllServices
+                );
 
     private:
 

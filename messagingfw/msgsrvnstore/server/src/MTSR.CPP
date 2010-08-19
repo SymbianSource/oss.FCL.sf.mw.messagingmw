@@ -175,6 +175,16 @@ EXPORT_C TInt CBaseServerMtm::Extension_(TUint aExtensionId, TAny *&a0, TAny *a1
 		}
 	return ret;
 	}
+// Empty declaration
+EXPORT_C TInt CBaseServerMtm::ChangeEntriesL( const CMsvEntrySelection& /*aSelection*/,TInt /*aMark*/, TRequestStatus& aStatus )
+    {
+    //Empty declaration. Respective MTM implementation should be call .
+    TRequestStatus aEmptyStatus;
+    aEmptyStatus = aStatus ;
+    
+    return KErrNotSupported; // Specific to MTM. Base return Not supported.  
+    }
+
 
 EXPORT_C CServerMtmDllRegistry* CServerMtmDllRegistry::NewL(RFs& aFs,TTimeIntervalMicroSeconds32 aTimeoutMicroSeconds32)
 	{

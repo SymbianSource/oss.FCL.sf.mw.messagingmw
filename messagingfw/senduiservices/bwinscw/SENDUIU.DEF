@@ -82,4 +82,5 @@ EXPORTS
 	?NewL@CSendUiSingleton@@SAPAV1@XZ @ 81 NONAME ; class CSendUiSingleton * CSendUiSingleton::NewL(void)
 	?OpaqueData@CMessageData@@QBE?BVTPtrC8@@XZ @ 82 NONAME ; class TPtrC8 const CMessageData::OpaqueData(void) const
 	?SetOpaqueDataL@CMessageData@@QAEXPBVTDesC8@@VTUid@@@Z @ 83 NONAME ; void CMessageData::SetOpaqueDataL(class TDesC8 const *, class TUid)
+	?AddSendMenuItemToMenuPaneL@CSendUi@@QAEXAAHAAVCEikMenuPane@@HHVTSendingCapabilities@@@Z @ 84 NONAME ; void CSendUi::AddSendMenuItemToMenuPaneL(int &, class CEikMenuPane &, int, int, class TSendingCapabilities)
 

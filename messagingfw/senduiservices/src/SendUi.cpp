@@ -303,6 +303,28 @@ EXPORT_C TUid CSendUi::TechnologyType( TUid aServiceUid ) const
     return iSendUiImpl->TechnologyType( aServiceUid );
     }
 
+// -----------------------------------------------------------------------------
+// CSendUi::AddSendMenuItemToMenuPaneL
+//
+// (other items were commented in a header).
+// -----------------------------------------------------------------------------
+//
+EXPORT_C void CSendUi::AddSendMenuItemToMenuPaneL(
+    TBool&                       aResult,
+    CEikMenuPane&               aMenuPane,
+    TInt                        aIndex,
+    TInt                        aCommandId,
+    TSendingCapabilities        aRequiredCapabilities)
+    {
+    iSendUiImpl->AddTypedMenuItemToMenuPaneL(
+        aResult,
+        ESendMenu,
+        aMenuPane,
+        aIndex,
+        aCommandId,
+        aRequiredCapabilities
+        );
+    }
 
 // ========================== OTHER EXPORTED FUNCTIONS =========================
 

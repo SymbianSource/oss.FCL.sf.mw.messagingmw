@@ -1022,4 +1022,8 @@ EXPORTS
 	_ZN26TMsvPackedDriveIdOperationC2ERP6HBufC8 @ 1021 NONAME ABSENT
 	_ZNK9CMsvEntry26ChildrenOfAvailableDrivesLEv @ 1022 NONAME ABSENT
 	_ZN28CMsvSearchsortOpOnHeaderBody4NewLER11CMsvSessioni @ 1023 NONAME
+	_ZN14CBaseServerMtm14ChangeEntriesLERK18CMsvEntrySelectioniR14TRequestStatus @ 1024 NONAME
+	_ZN9CMsvEntry7ChangeLERK18CMsvEntrySelectioniR14TRequestStatus @ 1025 NONAME
+	_ZTI31CMsvLocalChangeEntriesOperation @ 1026 NONAME
+	_ZTV31CMsvLocalChangeEntriesOperation @ 1027 NONAME
 

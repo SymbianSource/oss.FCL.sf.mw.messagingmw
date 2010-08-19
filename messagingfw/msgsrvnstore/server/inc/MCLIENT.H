@@ -99,6 +99,8 @@ public:
 	// Asynchronous messages
 	IMPORT_C void CreateEntryL(const TMsvEntry& aEntry, TMsvOp aOperationId, TSecureId aOwnerId, TRequestStatus& aRequestStatus);
 	IMPORT_C void ChangeEntryL(const TMsvEntry& aEntry, TMsvOp aOperationId, TSecureId aOwnerId, TRequestStatus& aRequestStatus);
+	void ChangeEntriesL(const CMsvEntrySelection& aSelection,TBool aMark, TMsvOp aOperationId, TSecureId aOwnerId, TRequestStatus& aRequestStatus);
+	
 	IMPORT_C void DeleteEntriesL(const CMsvEntrySelection& aSelection, TMsvOp aOperationId, TRequestStatus& aRequestStatus);
 	IMPORT_C void MoveEntriesL(const CMsvEntrySelection& aSelection, TMsvId aTarget, TMsvOp aOperationId, TRequestStatus& aRequestStatus);
 	IMPORT_C void CopyEntriesL(const CMsvEntrySelection& aSelection, TMsvId aTarget, TMsvOp aOperationId, TRequestStatus& aRequestStatus);

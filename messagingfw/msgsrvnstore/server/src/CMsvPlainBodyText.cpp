@@ -1120,7 +1120,7 @@ Revert/Delete the file if it is not committed.
 void CMsvPlainBodyText::RevertL()
 	{
 	iFile.Close();
-	if(!iIsCommitted)
+	if(!iIsCommitted && iMsvFileStatus == EMsvFileWriting)
 		{
 		iMsvStoreManager.DeletePlainTextFileL(iMessageId);
 		}

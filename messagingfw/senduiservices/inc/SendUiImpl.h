@@ -70,7 +70,13 @@ public:
 
     /**
     * Adds menu item of given type to menupane.
-    *
+    * No menu item is added, if services are not found. 
+    * This can happen if asyncronous sending service update is not 
+    * yet finished. This API will not provide any result of
+    * requested operation. New API AddTypedMenuItemToMenuPaneL 
+    * with aResult param is added. Caller application can use this 
+    * new API to know the API operation result.
+    * 
     * @since Series 60 3.0
     * @param aMenuType Type of the menu, e.g. "ESendMenu" or "EWriteMenu"
     * @param aMenuPane Menupane where the menu item should be added.
@@ -338,16 +344,33 @@ public:
      TBool IsEmailAppendableL(TMsvEntry tentry);
 	 
      /**
-      * Validates if all the attachments are DRM protected 
-      *
-      * @since S60 v5.0
-      * @param TBool
-      * @return ETrue, if it atleast one of the attachments can be sent 
-      *         EFalse, if no attachment can be sent
-      */ 
-     
-     TBool ValidateAttachmentsL(const CMessageData*  aMessageData);
-     
+      * Adds menu item of given type to menupane and know the opeation
+      * result.
+      * No menu item is added, if services are not found. 
+      * This can happen if asyncronous sending service update is not 
+      * yet finished. Caller application can use this  API to know the
+      * API operation result.
+      * 
+      * @since Series 60 9.2      
+      * @param aResult API opeartion result. ETrue, if item is added successfully
+      *        EFalse , if failed to add item.   * 
+      * @param aMenuType Type of the menu, e.g. "ESendMenu" or "EWriteMenu"
+      * @param aMenuPane Menupane where the menu item should be added.
+      * @param aIndex The place of the menu item in menupane.
+      * @param aCommandId Command id for the menu item.
+      * @param aRequiredCapabilities Capabilities required by services to be
+      *        shown in "Send" list query. If no capabilities are required
+      *        (KCapabilitiesForAllServices), all available services are
+      *        shown in "Send" list query.    
+      * @return None.
+      */
+     void AddTypedMenuItemToMenuPaneL(
+             TBool&                      aResult,
+             CSendUi::TSendUiMenuType    aMenuType,
+             CEikMenuPane&               aMenuPane,
+             TInt                        aIndex,
+             TInt                        aCommandId,
+             TSendingCapabilities        aRequiredCapabilities = KCapabilitiesForAllServices );
      
 private:
 
