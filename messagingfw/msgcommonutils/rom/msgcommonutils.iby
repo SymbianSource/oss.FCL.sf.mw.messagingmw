@@ -21,6 +21,5 @@
 // msgcommonutils
 //
 file=ABI_DIR\BUILD_DIR\msgcommonutils.dll     SHARED_LIB_DIR\msgcommonutils.dll
-data=DATAZ_\RESOURCE_FILES_DIR\msgcommonutils.rsc		RESOURCE_FILES_DIR\msgcommonutils.rsc 
 
 #endif   // __MSGCOMMONUTILS_IBY__

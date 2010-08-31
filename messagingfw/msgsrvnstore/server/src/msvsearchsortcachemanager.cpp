@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -1020,12 +1020,12 @@ TInt CMSvSearchSortCacheManager::DoProcessQueryL(const TInt aIndex)
 				{
 				for(TInt ii =0; ii<iSearchSortDeltaCache->iNewEntry.Count(); ii++ )
 					{
-					iDeltaCacheIdArray.Append(iSearchSortDeltaCache->iNewEntry[ii]);
+					iDeltaCacheIdArray.AppendL(iSearchSortDeltaCache->iNewEntry[ii]);
 					}
 			
 				for(TInt ii =0; ii<iSearchSortDeltaCache->iUpdateEntry.Count(); ii++ )
 					{
-					iDeltaCacheIdArray.Append(iSearchSortDeltaCache->iUpdateEntry[ii]);
+					iDeltaCacheIdArray.AppendL(iSearchSortDeltaCache->iUpdateEntry[ii]);
 					}
 				iReturnResultType = KPartialResult;
 				iProgress = KMsvSearchSortOpInProgress;  

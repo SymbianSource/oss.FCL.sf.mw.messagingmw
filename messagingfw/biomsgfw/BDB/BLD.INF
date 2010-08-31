@@ -30,4 +30,4 @@ PRJ_TESTMMPFILES
 ../BDBTSRC/T_BdbHF.MMP	manual
 ../BDBTSRC/t_bio_observer.mmp
 
-#include "../BDBTSRC/testbif/BLD.INF"
+#include "../BDBTSRC/testbif/bld.inf"

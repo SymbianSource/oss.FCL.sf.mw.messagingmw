@@ -25,7 +25,7 @@
 #include <apmstd.h>  // TDataType
 #include <f32file.h> // RFs, RFile, CFileMan
 
-#include "JavaProtectionResolver.h"
+#include "javaprotectionresolver.h"
 
 // EXTERNAL DATA STRUCTURES
 

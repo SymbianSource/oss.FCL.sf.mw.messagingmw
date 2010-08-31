@@ -25,7 +25,7 @@
 #include <AlwaysOnlineManagerClient.h>
 #include <msvapi.h>
 #include <rconnmon.h>
-#include <app/MuiuMsvSingleOpWatcher.h>
+#include <MuiuMsvSingleOpWatcher.h>
 #include <centralrepository.h>
 #include <cenrepnotifyhandler.h>
 

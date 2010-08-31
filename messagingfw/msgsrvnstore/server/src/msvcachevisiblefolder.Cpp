@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -379,7 +379,7 @@ void CMsvCacheVisibleFolder::AddEntryListL(RPointerArray<CMsvCacheEntry>& aEntri
 								}
 							else
 								{
-								CMsvEntryFreePool::Instance()->ReleaseEntry((*blockPtr)[count]);
+								CMsvEntryFreePool::Instance()->ReleaseEntryL((*blockPtr)[count]);
 								}
 							}
 						blockPtr->Reset();
@@ -584,7 +584,7 @@ TBool CMsvCacheVisibleFolder::GetChildrenL(TMsvId aId, CMsvDBAdapter* aDbAdapter
 			{
 			//1.2.1 yes, only few blocks are dirty, so fetch and fill the dirty blocks
 			RBuf8 buf;
-			buf.Create(2000);
+			buf.CreateL(2000);
 			CleanupClosePushL(buf);
 			TBool isDBOperationReqd = EFalse;
 			for(TInt index=0; index < iIndexTable.Count(); ++index)
@@ -694,7 +694,7 @@ TBool CMsvCacheVisibleFolder::GetChildrenL(TMsvId aId, CMsvDBAdapter* aDbAdapter
 		else
 			{
 			RBuf8 buf;
-			buf.Create(2000);
+			buf.CreateL(2000);
 			CleanupClosePushL(buf);
 			CMsvCacheEntry* childEntry;
 			TBool isDBOperationReqd = EFalse;
@@ -1193,7 +1193,7 @@ void CMsvCacheVisibleFolder::Print(RFileLogger& aLogger)
 	for(TInt index=0; index < blockCount; index++)
 		{
 		RBuf8 text;
-		text.Create(100);
+		text.CreateL(100);
 		text.Append(KBlock);
 		text.AppendNum(index+1);
 		aLogger.Write(text);

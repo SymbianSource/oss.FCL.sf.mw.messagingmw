@@ -19,7 +19,7 @@
 #include <e32base.h>
 #include <e32std.h>
 #include <ecom/implementationproxy.h>
-#include <push/pushdispatcher.h>
+#include "pushdispatcher.h"
 #include <push/pushlog.h>
 #include <push/cpushhandlerbase.h>
 #include <push/pluginkiller.h>

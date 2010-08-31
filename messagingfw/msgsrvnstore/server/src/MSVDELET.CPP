@@ -310,6 +310,11 @@ void CMsvDelete::DeleteFilesL()
 	CDir* dir=NULL;
 	TBool partiallyDeleted=EFalse;
 	TInt error = iServer.GetFileDirectoryListing(id, filename, dir);
+	if(dir)
+        {
+	    CleanupStack::PushL(dir);
+        }
+	
 	if (error==KErrNone)
 		{
 		User::LeaveIfError(iServer.FileSession().SetSessionPath(filename));
@@ -386,7 +391,10 @@ void CMsvDelete::DeleteFilesL()
 	// deletion was successful
 	iDeletedEntries->AppendL(id); // will not leave, space has been reserved
 	iMovedEntries->AppendL(id);   // will not leave, space has been reserved
-	delete dir;
+	if(dir)
+        {
+	    CleanupStack::PopAndDestroy(dir);
+        }
 	return;
 
 failed:
@@ -424,7 +432,11 @@ failed:
 	// we have failed, move onto next state
 	iState = iPCSynced ? EIndexIndividually : EIndex;
 	iError=error;
-	delete dir;
+	if(dir)
+        {
+	    CleanupStack::PopAndDestroy(dir);
+        }
+	    
 	}
 
 

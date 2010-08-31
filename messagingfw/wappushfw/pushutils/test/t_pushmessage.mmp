@@ -19,10 +19,8 @@ CAPABILITY ALL -TCB
 
 USERINCLUDE     ./. ../inc  	../../pushwatcher/inc
 USERINCLUDE	    ../../pushwatcher/test
-
 MW_LAYER_SYSTEMINCLUDE_SYMBIAN
-
-
+SYSTEMINCLUDE	/epoc32/include/push
 
 SOURCEPATH		./. ../src
 SOURCE          t_pushmessage.cpp  

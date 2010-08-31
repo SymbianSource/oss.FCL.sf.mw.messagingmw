@@ -1013,7 +1013,7 @@ void CMsvServerSession::ChangeEntriesL(const RMessage2 &aMessage)
           DoChangeRemoteEntriesL(selection, operationId, aMessage,target);
 
       CleanupStack::PopAndDestroy(); // opData
-    }
+   }
 
 void CMsvServerSession::DoChangeLocalEntriesL(CMsvEntrySelection*& aSelection, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId, TInt mark)
     {
@@ -1035,7 +1035,7 @@ void CMsvServerSession::DoChangeRemoteEntriesL(CMsvEntrySelection*& aSelection, 
 // Change a selection of entry under a remote service
 //
     {
-     // make sure that the operation can be added to the list
+    // make sure that the operation can be added to the list
      iOperations.SetReserveL(iOperations.Count()+1);
 
      TMsvEntry* entry=NULL;
@@ -1050,7 +1050,8 @@ void CMsvServerSession::DoChangeRemoteEntriesL(CMsvEntrySelection*& aSelection, 
      iMsvServer.StartOperationL(*operation, iSessionId, aMessage, ETrue);
      iOperations.AppendL(operation); // will not fail - see start of function
      CleanupStack::Pop(); // operation
-	}
+   
+    }
 
 
 void CMsvServerSession::DoChangeLocalEntryL(const TMsvEntry& aEntry, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId)

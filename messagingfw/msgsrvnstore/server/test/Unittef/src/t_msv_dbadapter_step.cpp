@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -786,7 +786,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	visibleFolder = NULL;
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId, cacheEntry, visibleFolder));
@@ -836,7 +836,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	TRAP(err, iMsvDbAdaptor->UpdateEntryL(cacheEntry->Entry(), visibleFolder)); //parent not changed
 	MY_ASSERT_EQUALS(err, KErrNone);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	visibleFolder = NULL;
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId, cacheEntry, visibleFolder));
@@ -864,7 +864,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	MY_ASSERT_EQUALS(entry->iMtmData2, (long) 120);
 	MY_ASSERT_EQUALS(entry->iMtmData3, (long) 120);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	// 3. Test update on an entry in an attached database.
@@ -921,7 +921,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	visibleFolder = NULL;
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
@@ -962,7 +962,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	TRAP(err, iMsvDbAdaptor->UpdateEntryL(cacheEntry->Entry(), visibleFolder)); //parent not changed
 	MY_ASSERT_EQUALS(err, KErrNone);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	visibleFolder = NULL;
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
@@ -982,7 +982,7 @@ void CTestDbAdapter::TestUpdateEntry()
 	MY_ASSERT_EQUALS(entry->iMtmData2, (long) 120);
 	MY_ASSERT_EQUALS(entry->iMtmData3, (long) 120);
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 #endif	
 	}
 
@@ -1067,32 +1067,32 @@ void CTestDbAdapter::TestGetEntry()
 
 	delete data;
 	data = NULL;
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	//TRAP(err, iMsvDbAdaptor->GetEntryL(KMsvLocalServiceIndexEntryId, entry, visibleFolder));
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KMsvLocalServiceIndexEntryId, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvServiceEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KMsvGlobalInBoxIndexEntryId, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvFolderEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+1, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+2, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvAttachmentEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	TInt driveId = (1<<28);
@@ -1103,37 +1103,37 @@ void CTestDbAdapter::TestGetEntry()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+100, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+102, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+103, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+201, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+202, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+203, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNotFound);
@@ -1178,19 +1178,19 @@ void CTestDbAdapter::TestGetEntry()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId+50, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId+102, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	//A negative test on a non-existent entry.
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId+103, cacheEntry, visibleFolder));
@@ -1202,13 +1202,13 @@ void CTestDbAdapter::TestGetEntry()
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvGlobalInBoxIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KFirstFreeEntryId+200, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(visibleFolder, KMsvRootIndexEntryId);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().iType, KUidMsvMessageEntry);
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 #endif	
 	}
 
@@ -1218,7 +1218,7 @@ void CTestDbAdapter::ResetAndDestroy(RPointerArray<CMsvCacheEntry>& childArray)
 	{
 	for(int index=0; index<childArray.Count(); index++)
 		{
-		CMsvEntryFreePool::Instance()->ReleaseEntry(childArray[index]);
+		CMsvEntryFreePool::Instance()->ReleaseEntryL(childArray[index]);
 		}
 	childArray.Reset();
 	}
@@ -1685,19 +1685,19 @@ void CTestDbAdapter::TestUpdateOwnerStatus()
 	CMsvCacheEntry* parentEntry = NULL;
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL(KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL(KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), ETrue));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP(err, iMsvDbAdaptor->GetEntryL(KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_TRUE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	
 	//3. Test resetting of the flag
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL(KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL(KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), EFalse));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL(KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_FALSE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	
 #if (defined SYMBIAN_MSGS_ENHANCED_REMOVABLE_MEDIA_SUPPORT)
 	// 4. Create and attach a second database. Create entries in it and test.
@@ -1725,32 +1725,32 @@ void CTestDbAdapter::TestUpdateOwnerStatus()
 	parentEntry = NULL;
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), ETrue));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_TRUE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	//Flag already set, attempt to set again.
 	parentEntry = NULL;
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), ETrue));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_TRUE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	//Resetting of the flag.
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), EFalse));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_FALSE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	//Flag already reset, attempt to reset again.
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	TRAP_IGNORE(iMsvDbAdaptor->UpdateOwnerStatusL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry->Entry(), EFalse));
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 	TRAP_IGNORE(iMsvDbAdaptor->GetEntryL((driveId<<28)|KMsvGlobalInBoxIndexEntryId, parentEntry, visibleFolderId));
 	MY_ASSERT_FALSE(parentEntry->Entry().Owner());
-	CMsvEntryFreePool::Instance()->ReleaseEntry(parentEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(parentEntry);
 #endif	
 	}
 
@@ -2366,7 +2366,7 @@ void CTestDbAdapter::TestTransaction()
 	// (j) Close the database without performing rollback/commit.
 	delete iMsvDbAdaptor;
 	iMsvDbAdaptor = NULL;
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	// (k) Create the DBAdapter again.
 	TRAP_IGNORE(iMsvDbAdaptor = CMsvDBAdapter::NewL());
 	TInt sysDrive = (TInt)RFs::GetSystemDrive();
@@ -2378,7 +2378,7 @@ void CTestDbAdapter::TestTransaction()
 	TRAP(err, iMsvDbAdaptor->GetEntryL((driveId<<28)|KFirstFreeEntryId, cacheEntry, visibleFolder));
 	MY_ASSERT_EQUALS(err, KErrNone);
 	MY_ASSERT_EQUALS(cacheEntry->Entry().Parent(), KMsvRootIndexEntryId); //old parent
-	CMsvEntryFreePool::Instance()->ReleaseEntry(cacheEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntryL(cacheEntry);
 	
 	
 	// 2. Create an entry and rollback.

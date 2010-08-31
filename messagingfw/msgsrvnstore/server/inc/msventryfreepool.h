@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -53,7 +53,7 @@ NONSHARABLE_CLASS (CMsvEntryFreePool): public CBase
 public:
 	static CMsvEntryFreePool* Instance();	
 	CMsvCacheEntry* EntryL();
-	void ReleaseEntry(CMsvCacheEntry* aMsvCacheEntry, TBool aBypassTransaction = EFalse);
+	void ReleaseEntryL(CMsvCacheEntry* aMsvCacheEntry, TBool aBypassTransaction = EFalse);
 	void ReleaseEntrySet(RPointerArray<CMsvCacheEntry>& aMsvCacheEntryArray);
 	void DoReleaseEntrySetL(RPointerArray<CMsvCacheEntry>& aMsvCacheEntryArray);
 	void SetEssentialParam(TDblQue<CMsvCacheVisibleFolder>* aEntryCache, CMsvIndexAdapter* aAdapterObj);

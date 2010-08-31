@@ -384,12 +384,12 @@ void TMsvServerStoreManager::OpenTempStoreFileL(TMsvId aEntryId, RFile& aFile)
 	
 	TInt error= aFile.Replace(*iFs,tempFilePathAndName,EFileShareExclusive|EFileWrite);
 	if (error==KErrPathNotFound)
-	{
+		{
         //only create directory if not found
         error=iFs->MkDirAll(tempFilePathAndName);
         if (error==KErrNone)
             error=aFile.Replace(*iFs,tempFilePathAndName,EFileShareExclusive|EFileWrite);
-	}
+		}
 	User::LeaveIfError(error);
 	
 	}

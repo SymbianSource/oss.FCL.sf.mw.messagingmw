@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -387,7 +387,7 @@ CMsvCacheEntry* CMsvEntryFreePool::EntryL()
  * The function resets and appends the passed 
  * entry to freepool so that it can be reused.
  */
-void CMsvEntryFreePool::ReleaseEntry(CMsvCacheEntry* aMsvCacheEntry, TBool aBypassTransaction /* DEFAULT=EFalse*/)
+void CMsvEntryFreePool::ReleaseEntryL(CMsvCacheEntry* aMsvCacheEntry, TBool aBypassTransaction /* DEFAULT=EFalse*/)
 	{
 	if( NULL == aMsvCacheEntry )
 		{
@@ -396,7 +396,7 @@ void CMsvEntryFreePool::ReleaseEntry(CMsvCacheEntry* aMsvCacheEntry, TBool aBypa
 	
 	if(isTransactionOpen && (EFalse == aBypassTransaction))
 		{
-		iMsvTmpEntries.Append(aMsvCacheEntry);
+		iMsvTmpEntries.AppendL(aMsvCacheEntry);
 		}
 	else
 		{
@@ -404,7 +404,7 @@ void CMsvEntryFreePool::ReleaseEntry(CMsvCacheEntry* aMsvCacheEntry, TBool aBypa
 		aMsvCacheEntry->ResetEntry();
 	
 		// 2. Append entry to the freepool.
-		iMsvEntries->Append(aMsvCacheEntry);
+		iMsvEntries->AppendL(aMsvCacheEntry);
 		}
 	}
 

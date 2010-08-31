@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -109,7 +109,7 @@ CMsvIndexAdapter::~CMsvIndexAdapter()
         delete folderNode;
         }
     
-    iFreePoolInstance->ReleaseEntry(iRootEntry);
+    iFreePoolInstance->ReleaseEntryL(iRootEntry);
     iRootEntry = NULL;
 
     // 3. Delete internal data structure.
@@ -432,7 +432,7 @@ void CMsvIndexAdapter::ConstructOpenL(const TFileName& aDbFileName)
 	iServer.Log(_L("Cache initialized succesfully."));
 #endif
 
-	TMsvId tmpNextId = NULL;
+	TMsvId tmpNextId = 0;
 	iDbAdapter->GetMaxTMsvIdL(tmpNextId);
 	iNextCreateId = (tmpNextId >= KFirstFreeEntryId)? (tmpNextId+1) : KFirstFreeEntryId;
 	
@@ -976,7 +976,7 @@ void CMsvIndexAdapter::DoDeleteSelectionL(const CMsvEntrySelection& aSelection)
 	TMsvId parentId = entry->Entry().Parent();
 	if(releaseEntry)
 		{
-		iFreePoolInstance->ReleaseEntry(entry, ETrue);
+		iFreePoolInstance->ReleaseEntryL(entry, ETrue);
 		}
 	CMsvEntrySelection* children = new(ELeave)CMsvEntrySelection;
 	CleanupStack::PushL(children);
@@ -1051,7 +1051,7 @@ void CMsvIndexAdapter::DoDeleteSelectionL(const CMsvEntrySelection& aSelection)
 	// Release the entry, since it is not added to cache.
 	if(releaseEntry)
 		{
-		iFreePoolInstance->ReleaseEntry(entry, ETrue);
+		iFreePoolInstance->ReleaseEntryL(entry, ETrue);
 		}
 	User::LeaveIfError(err);
 	CleanupStack::PopAndDestroy(); //children
@@ -1423,9 +1423,9 @@ void CMsvIndexAdapter::DoChangeEntryL(const TMsvEntry& aNewEntryContents, TSecur
             newVisibleFolderNode->DeleteEntryL(oldEntry->GetId());
         User::Leave(err);
         }
-    UpdateDates(*oldEntry, EFalse);
-    
-    if(aForcedUpdate || changedPrivateInfo && aOwnerId != KMsvServerId )
+ 
+	UpdateDates(*oldEntry, EFalse);
+	if(aForcedUpdate || changedPrivateInfo && aOwnerId != KMsvServerId )
         {
         oldEntry->SetEntryOwnerId(aOwnerId);
         }
@@ -1487,7 +1487,7 @@ void CMsvIndexAdapter::DoChangeEntryL(const TMsvEntry& aNewEntryContents, TSecur
                                                  newParentEntry,
                                                  descendentList,
                                                  resetOldParentOwnerFlag);
-        iNonCommittedChangedEntryList.Append(entryDetails);
+        iNonCommittedChangedEntryList.AppendL(entryDetails);
         if(descendentList)
             CleanupStack::Pop(descendentList);
         }
@@ -1672,7 +1672,7 @@ TInt CMsvIndexAdapter::GetEntryNoCache(TMsvId aId, TMsvEntry* aEntry)
 		if(aIsDanglingEntry)
 			{
 			// Release CMsvCacheEntry to freepool.
-			iFreePoolInstance->ReleaseEntry(serverEntry, ETrue);
+			iFreePoolInstance->ReleaseEntryL(serverEntry, ETrue);
 			}		
 		return KErrNone;	
 		}
@@ -3670,7 +3670,7 @@ void CMsvIndexAdapter::DoForceDeleteEntryL(TMsvId aId)
 	// we need to release the entry explicitly.
 	if(releaseEntry)
 		{
-		iFreePoolInstance->ReleaseEntry(entry, ETrue);
+		iFreePoolInstance->ReleaseEntryL(entry, ETrue);
 		User::LeaveIfError(err);
 		}
 	else
@@ -3703,7 +3703,7 @@ void CMsvIndexAdapter::DoForceDeleteEntryL(TMsvId aId)
 		);
 	if(releaseEntry)
 		{
-		iFreePoolInstance->ReleaseEntry(entry, ETrue);
+		iFreePoolInstance->ReleaseEntryL(entry, ETrue);
 		}
 	User::LeaveIfError(err);
 	CleanupStack::PopAndDestroy(); //children
@@ -3757,7 +3757,7 @@ void CMsvIndexAdapter::DoDeleteSelectionUsingTransactionL(const CMsvEntrySelecti
     TMsvId parentId = entry->Entry().Parent();
     if(releaseEntry)
         {
-        iFreePoolInstance->ReleaseEntry(entry, ETrue);
+        iFreePoolInstance->ReleaseEntryL(entry, ETrue);
         }
 
     // Find the parent in the cache - we may need to update its owner status flag both in cache and DB.
@@ -3768,7 +3768,7 @@ void CMsvIndexAdapter::DoDeleteSelectionUsingTransactionL(const CMsvEntrySelecti
         updateTheParent = EFalse;
         if(releaseEntry)
             {
-            iFreePoolInstance->ReleaseEntry(entry, ETrue);
+            iFreePoolInstance->ReleaseEntryL(entry, ETrue);
             }
         }
     else

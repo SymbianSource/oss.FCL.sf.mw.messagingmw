@@ -185,7 +185,6 @@ EXPORT_C TInt CBaseServerMtm::ChangeEntriesL( const CMsvEntrySelection& /*aSelec
     return KErrNotSupported; // Specific to MTM. Base return Not supported.  
     }
 
-
 EXPORT_C CServerMtmDllRegistry* CServerMtmDllRegistry::NewL(RFs& aFs,TTimeIntervalMicroSeconds32 aTimeoutMicroSeconds32)
 	{
 	return new(ELeave) CServerMtmDllRegistry(aFs,aTimeoutMicroSeconds32); 
