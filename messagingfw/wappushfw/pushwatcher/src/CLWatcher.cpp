@@ -18,7 +18,7 @@
 #include <wapmsgerr.h>
 #include "CLWatcher.h"
 #include <push/pushmessage.h>
-#include "pushdispatcher.h"
+#include "PushDispatcher.h"
 #include <push/cpushhandlerbase.h>
 #include <ecom/ecom.h>
 

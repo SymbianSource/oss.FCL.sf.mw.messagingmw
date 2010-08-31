@@ -19,7 +19,7 @@
 
 #include <biouids.h>
 #include <f32file.h>
-#include "regpsdll.h"   // Parser Registry - used to load the parser
+#include "REGPSDLL.H"   // Parser Registry - used to load the parser
 #include <biodb.h>
 #include "BIOOP.H"
 #include <msvstd.h>

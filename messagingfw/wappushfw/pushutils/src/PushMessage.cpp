@@ -15,7 +15,7 @@
     
 // System Include
 #include <push/pushmessage.h>
-#include "wapdecoder.h"
+#include "WapDecoder.h"
 
 // User Include
 #include "chttpresponse.h"

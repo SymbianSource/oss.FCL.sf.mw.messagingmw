@@ -15,7 +15,7 @@
 //
 
 #include "MSVSTORE.H"     // CMsvStore
-#include "cmsvbodytext.h"
+#include "CMsvBodyText.h"
 #include <charconv.h>     // CCnvCharacterSetConverter
 #include <txtrich.h>      // CRichText
 #include <s32mem.h>

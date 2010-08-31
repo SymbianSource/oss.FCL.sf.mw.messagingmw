@@ -17,7 +17,7 @@
 
 // System includes
 //
-#include "pushdispatcher.h"
+#include "PushDispatcher.h"
 #include <push/pluginkiller.h>
 #include <push/cpushhandlerbase.h>
 #include <push/ccontenthandlerbase.h>

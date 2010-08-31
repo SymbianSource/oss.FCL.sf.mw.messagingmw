@@ -15,7 +15,7 @@
 //
 
 #include <cmsvplainbodytext.h>
-#include "cmsvbodytext.h"
+#include "CMsvBodyText.h"
 #include <mmsvstoremanager.h>
 #include "MSVPANIC.H"
 #include <txtrich.h>

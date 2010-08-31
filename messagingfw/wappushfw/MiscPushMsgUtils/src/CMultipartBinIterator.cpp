@@ -13,7 +13,7 @@
 // Description:
 //
     
-#include "cmultipartbiniterator.h"
+#include "CMultipartBinIterator.h"
 
 
 EXPORT_C  CMultipartBinIterator* CMultipartBinIterator::NewL(CPushMessage& aPushMessage)

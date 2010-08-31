@@ -17,7 +17,7 @@
 #include <coemain.h>	// CCoeEnv
 #include <bautils.h>	// BaflUtils
 #include <fbs.h>
-#include "msvutils.h"
+#include "MSVUTILS.H"
  
 // Specific includes
 #include "MTUDCBAS.H"

@@ -21,7 +21,7 @@
 #include <e32base.h>
 #include "cmultipartiteratorbase.h"
 #include <push/ccontenthandlerbase.h>
-#include "cmultipartbiniterator.h"
+#include "CMultipartBinIterator.h"
 #include <push/pushmessage.h>
 
 // Local includes

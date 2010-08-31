@@ -15,7 +15,7 @@
 // 
 //
 
-#include "bsp.h"
+#include "BSP.H"
 #include "regpsdll.h"	// CRegisteredParserDll
 #include "msventry.h"	// CMsvServerEntry
 #include <msvuids.h>	// KUidMsvMessageEntry, KUidMsvServiceEntry

@@ -21,7 +21,7 @@
 
 // System includes
 #include "cmultiparttextiterator.h"
-#include "pushdispatcher.h"
+#include "PushDispatcher.h"
 
 // Constants
 _LIT(KReserved, "Reserved");

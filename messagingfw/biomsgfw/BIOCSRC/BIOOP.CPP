@@ -42,8 +42,8 @@
 #include <txtfmlyr.h>
 
 #include "BIOSCMDS.H"
-#include "regpsdll.h"   // Parser Registry - used to load the parser
-#include "bsp.h"		// CBaseScriptParser, CBaseScriptParser2
+#include "REGPSDLL.H"   // Parser Registry - used to load the parser
+#include "BSP.H"		// CBaseScriptParser, CBaseScriptParser2
 #include "BIOOP.H"
 #ifdef SYMBIAN_ENABLE_SPLIT_HEADERS
 #include <biomessageuids.h>

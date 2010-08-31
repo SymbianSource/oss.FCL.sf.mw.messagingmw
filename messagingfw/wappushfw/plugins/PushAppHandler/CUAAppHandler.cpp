@@ -22,7 +22,7 @@
 #include <push/pushlog.h>
 #include <push/pushmessage.h>
 #include <push/pluginkiller.h>
-#include "pushdispatcher.h"
+#include "PushDispatcher.h"
 #include <push/ccontenthandlerbase.h>
 
 // Constants

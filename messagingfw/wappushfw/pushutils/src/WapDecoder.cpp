@@ -13,7 +13,7 @@
 // Description:
 //
 
-#include "wapdecoder.h"
+#include "WapDecoder.h"
 
 const TInt KMaxLongIntSize = 0x1E;	// Long-integer can have maximum 30 OCTETS (WSP Spec)
 

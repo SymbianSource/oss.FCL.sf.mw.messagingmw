@@ -24,7 +24,7 @@
 #include <msvreg.h>
 #include <msvuids.h>
 #include <msvruids.h>
-#include "msvutils.h"
+#include "MSVUTILS.H"
 
 // Specific includes
 #include "MTMUIBAS.H"

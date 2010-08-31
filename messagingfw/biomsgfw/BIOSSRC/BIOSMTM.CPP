@@ -22,8 +22,8 @@
 #include <biodb.h>	// bio database
 
 #include <biouids.h>	// contains panic codes
-#include "regpsdll.h"   // Parser Registry - used to load the parser
-#include "bsp.h"			// CBaseParser
+#include "REGPSDLL.H"   // Parser Registry - used to load the parser
+#include "BSP.H"			// CBaseParser
 
 // CRichText etc. includes
 #include <txtrich.h>

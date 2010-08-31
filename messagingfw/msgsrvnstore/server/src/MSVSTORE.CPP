@@ -21,7 +21,7 @@
 #include "MSVSTORE.H"
 #include "MSVPANIC.H"
 #include "CMsvCachedStore.h"
-#include "cmsvbodytext.h"
+#include "CMsvBodyText.h"
 #include <cmsvplainbodytext.h>
 #include "CMsvAttachmentManager.h"
 #include <cmsvattachment.h>
