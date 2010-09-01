@@ -13,7 +13,7 @@
 // Description:
 //
 
-#include "../testutils/group/bld.inf"
+#include "../testutils/group/BLD.INF"
 #include "../tools/group/bld.inf"
 #include "../integration/group/bld.inf"
 #include "../testsuites/group/bld.inf"

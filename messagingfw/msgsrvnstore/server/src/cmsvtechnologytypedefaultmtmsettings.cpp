@@ -230,8 +230,7 @@ void CMsvTechnologyTypeDefaultMtmSettings::CheckIfMtmIsPartOfTechnologyTypeGroup
 	CleanupStack::PushL( regMtmDllArray );
 
 	RMsvServerSession session;
-	User::LeaveIfError(session.Connect(iFs));
-	
+	session.Connect(iFs);
 	session.FillRegisteredMtmDllArray(aMtmTypeUid, *regMtmDllArray, KMsvDefaultTimeoutMicroSeconds32);
 	session.Close();
 	

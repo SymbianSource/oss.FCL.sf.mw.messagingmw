@@ -50,7 +50,7 @@ DEBUGLIBRARY flogger.lib
 LIBRARY flogger.lib
 #endif
 
-DEFFILE		V2_watcher.DEF
+DEFFILE		V2_WATCHER.DEF
 
 VENDORID 0x70000001
 

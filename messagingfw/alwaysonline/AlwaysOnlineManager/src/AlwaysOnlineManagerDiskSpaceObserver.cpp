@@ -20,7 +20,7 @@
 
 // INCLUDE FILES
 #include <e32base.h>
-#include <MuiuServiceUtilities.h>          // Muiu Utilities
+#include <app/MuiuMsvUiServiceUtilities.h>          // Muiu Utilities
 #include <systemwarninglevels.hrh>
 
 #include "AlwaysOnlineManagerDiskSpaceObserver.h"

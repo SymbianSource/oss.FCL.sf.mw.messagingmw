@@ -4,10 +4,10 @@
     Framework for storage, retrieval, editing, sending and receiving of messages such as email or SMS.
   </purpose>
 
- <defect number="PDEF145298" title="No message content shown, when opening new mail with POP3 account" revision= "133">
-   	TMsvEntry::SetConnected() was updated wronly.
+<defect number="SALM-82YBE9/DEF144617" title="The pointer cacheEntry alloacted on heap must be pushed onto CleanupStack before a leave function is invoked" " revision= "133">
+   	Updated msvdbadapter.cpp to push and pop of CMsvCacheEntry in GetChildren() API .
   </defect>
- 
+
  <defect number="PDEF142159/EHGO-7V4CS2 " title="A note is displayed after formatting Memory card when "Memory in use" " revision= "132">
    	Updated the Notification wrt DiskRemove and Disk Insert.
   </defect>

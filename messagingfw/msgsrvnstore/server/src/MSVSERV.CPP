@@ -2094,7 +2094,7 @@ void CMsvServer::DoChangeDriveL(TInt aDrive, TRequestStatus* aStatus)
 void CMsvServer::BuildDefaultIniFileL(TMsvConfig& aConfig)
 	{
 	RFs fileSession;
-	User::LeaveIfError(fileSession.Connect());
+	fileSession.Connect();
 
 	TInt error;
 	TVolumeInfo volume;
@@ -2195,7 +2195,7 @@ void CMsvServer::CurrentConfigL(RFs& aFs, TMsvConfig& aConfig)
 
 				//create a new ini file
 				RFs fileSession;
-				User::LeaveIfError(fileSession.Connect());
+				fileSession.Connect();
 
 				TInt error;
 				TVolumeInfo volume;

@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -108,7 +108,7 @@ void CMsvSearchSortDeltaCache::EntryInDeltaCache(TMsvId aID,TMsgType aType)
 	{
 	if(aType == ENewMsg ) //New Msg Entry
 		{
-		iMsvSearchSortDeltaCache->iNewEntry.AppendL(aID);
+		iMsvSearchSortDeltaCache->iNewEntry.Append(aID);
 		iMsvSearchSortDeltaCache->iDeltaCacheDirtyFlag = ETrue;
 		}
 	// This conditional statement is required to check if any msg updation is going  on while doing search or not.
@@ -121,14 +121,14 @@ void CMsvSearchSortDeltaCache::EntryInDeltaCache(TMsvId aID,TMsgType aType)
 			if( foundPos < 0 &&
 				iUpdateEntry.Find(aID) == KErrNotFound )
 				{
-				iMsvSearchSortDeltaCache->iUpdateEntry.AppendL(aID);
+				iMsvSearchSortDeltaCache->iUpdateEntry.Append(aID);
 				iMsvSearchSortDeltaCache->iDeltaCacheDirtyFlag = ETrue;
 				}
 							
 			}
 	else if(aType == EDeletedMsg) //Deleted msg Entry.
 		{
-		iMsvSearchSortDeltaCache->iDeleteEntry.AppendL(aID);
+		iMsvSearchSortDeltaCache->iDeleteEntry.Append(aID);
 		iMsvSearchSortDeltaCache->iDeltaCacheDirtyFlag = ETrue;
 		}
 	}

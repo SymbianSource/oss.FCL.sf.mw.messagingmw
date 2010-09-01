@@ -18,8 +18,8 @@
 #include <s32file.h>
 
 #include <push/pushmessage.h>
-#include "cmultipartbiniterator.h"
-#include "cmultiparttextiterator.h"
+#include <push/cmultipartbiniterator.h>
+#include <push/cmultiparttextiterator.h>
 
 #include <push/pushlog.h>
 #include "testlog.h"

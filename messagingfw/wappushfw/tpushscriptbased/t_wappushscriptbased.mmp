@@ -37,7 +37,11 @@ SOURCEPATH	    ./.
 SOURCE			t_baseMessage.cpp wappushmsggen.cpp
 SOURCE			t_wappush.cpp
 SOURCE			t_sislmessage.cpp t_simessage.cpp t_slmessage.cpp
-SYSTEMRESOURCE	wappushmtm.rss
+
+START RESOURCE wappushmtm.rss	
+	TARGETPATH /system/data
+END
+
 
 SOURCEPATH		../pushwatcher/src
 SOURCE			CLWatcher.cpp ConnMan.cpp 

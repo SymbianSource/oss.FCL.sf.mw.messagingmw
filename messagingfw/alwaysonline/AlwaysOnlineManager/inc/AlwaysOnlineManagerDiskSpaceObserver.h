@@ -27,7 +27,7 @@
 
 // FORWARD DECLARATIONS
 class CAlwaysOnlineManager;
-class CMsvSession;
+
 // CLASS DECLARATION
 
 /**

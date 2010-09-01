@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -1251,7 +1251,7 @@ void CMsvDBAdapter::GetEntryL(TMsvId aId, CMsvCacheEntry*& aEntry, TMsvId& aVisi
 	   KUidMsvFolderEntryValue == aEntry->Entry().iType.iUid
 	  )
 		{
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(aEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(aEntry);
 		User::Leave(KErrNotFound);
 		}
 	
@@ -1377,6 +1377,7 @@ void CMsvDBAdapter::GetChildrenL(TMsvId aParentId, RPointerArray<CMsvCacheEntry>
 		aChildArray.AppendL(cacheEntry);
 		CleanupStack::Pop(cacheEntry);
 		}
+	
 	CleanupStack::PopAndDestroy(2); //getStmt, queryBuf
 	}
 
@@ -4308,7 +4309,7 @@ void CMsvDBAdapter::GetAllMessageIdsL(TMsvId aServiceId, RArray<TMsvId>& aIdArra
 	
 	while(KSqlAtRow == Idquerystatement.Next())
 		{
-		aIdArray.AppendL(ColumnInt(Idquerystatement, Idindex));
+		aIdArray.Append(ColumnInt(Idquerystatement, Idindex));
 		}
 		
 	CleanupStack::PopAndDestroy(2);  //buf,Idquerystatement
@@ -4358,12 +4359,12 @@ void CMsvDBAdapter::GetAllMimeIdsL(TMsvId aId, RArray<TMsvId>& aIdArray)
 			type == KUidMsvEmailRtfEntryValue
 			)
 			{
-			aIdArray.AppendL(childId);
+			aIdArray.Append(childId);
 			}
 		// Recursion for alternate folders
 		else if(type == KUidMsvFolderEntryValue)
 			{
-			aIdArray.AppendL(childId);
+			aIdArray.Append(childId);
 			// also get the childs for these messages
 			GetAllMimeIdsL(childId, aIdArray);
 			}

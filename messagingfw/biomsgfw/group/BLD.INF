@@ -25,23 +25,23 @@ PRJ_PLATFORMS
 DEFAULT
 
 // The following are build for WINC
-#include "../BIFU/bld.inf"
+#include "../BIFU/BLD.INF"
 
 // These lot are not
 #if !defined(WINC)
 
-#include "../BIUT/bld.inf"
-#include "../BDB/bld.inf"
-#include "../BIOC/bld.inf"
-#include "../BIOS/bld.inf"
-#include "../BITS/bld.inf"
+#include "../BIUT/BLD.INF"
+#include "../BDB/BLD.INF"
+#include "../BIOC/BLD.INF"
+#include "../BIOS/BLD.INF"
+#include "../BITS/BLD.INF"
 #include "../cbcp/bld.inf"
 #include "../iacp/bld.inf"
 #include "../enp/bld.inf"
 #include "../wapp/bld.inf"
 #include "../gfp/bld.inf"
-#include "../BioWatchers/bld.inf"
-#include "../Rom/bld.inf"
+#include "../BioWatchers/BLD.INF"
+#include "../Rom/BLD.INF"
 
 PRJ_EXPORTS
 bioerr.ra                              SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(errors/generic/bioerr.ra)

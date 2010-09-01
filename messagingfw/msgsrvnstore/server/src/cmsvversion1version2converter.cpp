@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -903,7 +903,7 @@ void CMsvVersion1Version2Converter::StartEMailMessageConversionL(TInt32 aMtm)
 			RArray<TMsvId> mimeIdArray;
 			CleanupClosePushL(mimeIdArray);
 			
-			mimeIdArray.AppendL(iDArray[i]);
+			mimeIdArray.Append(iDArray[i]);
 			iDBAdapter.GetAllMimeIdsL(iDArray[i],mimeIdArray);
 						
 			if(mimeIdArray.Count())
@@ -1801,7 +1801,7 @@ TInt CMsvVersion1Version2Converter::ReadEmailMimeHeaderL(TDesC& aMessagePath)
 		RReadStream infoMimeHeader(buf);
 		
 		RBuf8 mimeStr;
-		mimeStr.CreateL(KMaxBufferLength);
+		mimeStr.Create(KMaxBufferLength);
 		CleanupClosePushL(mimeStr);
 				
 		TInt version = infoMimeHeader.ReadUint16L();

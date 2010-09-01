@@ -43,7 +43,6 @@ void DoLaunchWatchersL()
 	// Launch the start-up manager that will launch the watchers in the 
  	// correct start-up state
 	CWatcherSSAStartupMgr* startupMgr = CWatcherSSAStartupMgr::NewL();
-	CleanupStack::PushL(startupMgr);
 
 	// The System Starter is waiting for us (start_method = EWaitForStart)
 	// so we rendez-vous so it can start the next process in the SSC
@@ -54,7 +53,7 @@ void DoLaunchWatchersL()
 	CActiveScheduler::Start();
 	
 	// Tidy up
-	CleanupStack::PopAndDestroy(2, scheduler);
+	CleanupStack::PopAndDestroy(scheduler);
 	}
 
 static TInt DoLaunchThread(TAny*)

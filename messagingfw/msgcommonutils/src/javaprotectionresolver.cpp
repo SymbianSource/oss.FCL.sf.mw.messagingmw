@@ -27,9 +27,7 @@
 #include <apmstd.h>  // TDataType
 #include <f32file.h> // RFs, RFile, CFileMan
 
-#include <javasuperdparser.h>
-
-#include "JavaProtectionResolver.h"
+#include "javaprotectionresolver.h"
 
 // EXTERNAL DATA STRUCTURES
 
@@ -40,14 +38,6 @@
 // MACROS
 
 // LOCAL CONSTANTS AND MACROS
-
-#if defined (__WINS__)
-//_LIT( KFileProtTempDir, "c:\\system\\temp\\fileprot_temp\\");
-_LIT( KFileProtTempDir, "\x43:\\system\\temp\\fileprot_temp\\");
-#else
-//_LIT( KFileProtTempDir, "d:\\system\\temp\\fileprot_temp\\");
-_LIT( KFileProtTempDir, "\x44:\\system\\temp\\fileprot_temp\\");
-#endif
 
 // MODULE DATA STRUCTURES
 
@@ -92,27 +82,32 @@ CJavaProtectionResolver::~CJavaProtectionResolver()
 // -----------------------------------------------------------------------------
 //
 TBool CJavaProtectionResolver::IsSuperDistributionPackageL( RFile& aFile )
-    {
-    TBool retVal( EFalse );
+    { 
+    	/**
+    	*  JavaSuperDParser has been removed from 9.2 TB, 
+    	*  So we will always return EFalse and whole code of function is commented out.
+    	*/
+//    TBool retVal( EFalse );
+//
+//    CFileMan* fileMan = CFileMan::NewL( iFs );
+//    iFs.MkDir( KFileProtTempDir );
+//
+//    Java::CJavaSuperDParser* javaParser( NULL );
+//    TRAPD( err, javaParser = Java::CJavaSuperDParser::NewL( iFs, 
+//                                                  aFile, 
+//                                                  KFileProtTempDir ) );
+//    if ( !err )
+//        {
+//        retVal = ETrue;
+//        }
+//    delete javaParser;
+//
+//    /*TInt err =*/ fileMan->Delete( KFileProtTempDir /*, CFileMan::ERecurse*/ );
+//    /*TInt err =*/ fileMan->RmDir( KFileProtTempDir );
+//    delete fileMan;
 
-    CFileMan* fileMan = CFileMan::NewL( iFs );
-    iFs.MkDir( KFileProtTempDir );
-
-    Java::CJavaSuperDParser* javaParser( NULL );
-    TRAPD( err, javaParser = Java::CJavaSuperDParser::NewL( iFs, 
-                                                  aFile, 
-                                                  KFileProtTempDir ) );
-    if ( !err )
-        {
-        retVal = ETrue;
-        }
-    delete javaParser;
-
-    /*TInt err =*/ fileMan->Delete( KFileProtTempDir /*, CFileMan::ERecurse*/ );
-    /*TInt err =*/ fileMan->RmDir( KFileProtTempDir );
-    delete fileMan;
-
-    return retVal;
+//    return retVal; 
+      return EFalse;
     }
 
 //  End of File  

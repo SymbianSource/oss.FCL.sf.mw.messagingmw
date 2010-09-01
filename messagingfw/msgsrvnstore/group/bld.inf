@@ -15,7 +15,7 @@
 
 #include "../mtmbase/group/bld.inf"
 #include "../server/group/bld.inf"
-#include "../serverexe/group/bld.inf"
+#include "../serverexe/group/BLD.INF"
 
 PRJ_EXPORTS
 msgerr.ra  SYMBIAN_MW_LAYER_PLATFORM_EXPORT_PATH(errors/generic/msgerr.ra)

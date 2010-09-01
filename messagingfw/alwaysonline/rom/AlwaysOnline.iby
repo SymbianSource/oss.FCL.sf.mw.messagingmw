@@ -24,7 +24,7 @@ file=ABI_DIR\BUILD_DIR\ALWAYSONLINEMANAGERCLIENT.dll        SHARED_LIB_DIR\ALWAY
 file=ABI_DIR\BUILD_DIR\ALWAYSONLINESTARTER.exe              PROGRAMS_DIR\ALWAYSONLINESTARTER.exe
 
 // Stub installer file
-data=DATAZ_\system\install\aomanagerstub.SIS   system\install\aomanagerstub.SIS
+data=DATAZ_\system\install\aomanager_stub.sis   system\install\aomanager_stub.sis
 
 #endif
 

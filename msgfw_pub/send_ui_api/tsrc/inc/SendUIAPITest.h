@@ -26,10 +26,10 @@
 #include <StifTestModule.h>
 #include <TestclassAssert.h>
 #include <cmessagedata.h>
-#include <eikmobs.h>
-#include <coecntrl.h>
+#include <EIKMOBS.H>
+#include <COECNTRL.H>
 #include <AknUtils.h> 
-#include <sendui.h>
+#include <SendUi.h>
 // CONSTANTS
 //const ?type ?constant_var = ?constant;
 

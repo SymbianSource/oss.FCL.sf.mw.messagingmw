@@ -87,7 +87,7 @@ void CMsvIniData::ConstructL(const TDesC& aName)
 	
 	// Open file
 	TAutoClose<RFile> file;
-	TInt size = 0;
+	TInt size;
 	User::LeaveIfError(file.iObj.Open(fs.iObj,*iName,EFileStreamText|EFileShareReadersOrWriters));
 	file.PushL();
 

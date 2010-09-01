@@ -436,8 +436,8 @@ RFile CMsvAttachmentManager::GetAttachmentFileL(TInt aIndex)
 	else // attachment->iType == ELinkedFile
 		{
 		RFs fs;
-		User::LeaveIfError(fs.Connect());
-		User::LeaveIfError(fs.ShareProtected());  		
+		fs.Connect();
+		fs.ShareProtected();
 		User::LeaveIfError(attachmentFile.Open(fs, attachment->FilePath(), EFileRead | EFileShareReadersOnly));
 		}
 	
@@ -470,8 +470,8 @@ RFile CMsvAttachmentManager::GetAttachmentFileForWriteL(TInt aIndex)
 	else // attachment->iType == ELinkedFile
 		{
 		RFs fs;
-		User::LeaveIfError(fs.Connect());
-		User::LeaveIfError(fs.ShareProtected());
+		fs.Connect();
+		fs.ShareProtected();
 		User::LeaveIfError(attachmentFile.Open(fs, attachment->FilePath(), EFileWrite));
 		}
 	

@@ -1,0 +1,44 @@
+/*
+* Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*    BLD.INF file for msgbranched. 
+*
+*/
+
+
+
+#include <platform_paths.hrh>
+
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_EXPORTS
+//IBY exports
+../rom/messageserver_rsc.iby  LANGUAGE_OS_LAYER_IBY_EXPORT_PATH(messageserver_rsc.iby)
+../rom/gtemailmtmResources.iby  LANGUAGE_OS_LAYER_IBY_EXPORT_PATH(gtemailmtmResources.iby)
+../rom/gtemailmtm.hby  CORE_OS_LAYER_IBY_EXPORT_PATH(gtemailmtm.hby)
+../rom/messageserver.hby  CORE_OS_LAYER_IBY_EXPORT_PATH(messageserver.hby)
+
+
+// export localised loc file
+../messaging/email/clientmtms/loc/imcm.loc  OS_LAYER_LOC_EXPORT_PATH(imcm.loc)
+../messaging/email/clientmtms/loc/imcm_default_charset.loc  OS_LAYER_LOC_EXPORT_PATH(imcm_default_charset.loc)
+../messaging/framework/server/loc/msgs.loc  OS_LAYER_LOC_EXPORT_PATH(msgs.loc)
+
+PRJ_MMPFILES
+./msgbranched.mmp
+
+/* End of File */
+

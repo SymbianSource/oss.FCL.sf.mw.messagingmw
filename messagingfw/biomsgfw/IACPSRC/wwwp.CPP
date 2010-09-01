@@ -287,7 +287,7 @@ void CWWWHotlistParser::StoreL(CMsvEntry& aEntry)
 #endif // SYMBIAN_BOOKMARK_DATABASE
 
 		// File writing has completed, set the size in the attachment
-		TInt fileSize = 0;
+		TInt fileSize;
 		User::LeaveIfError(file.Size(fileSize));
 		attachment->SetSize(fileSize);
 		

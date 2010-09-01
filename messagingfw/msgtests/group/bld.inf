@@ -31,8 +31,8 @@ DEFAULT
 // These lot are not
 #if !defined(WINC)
 #include "../../msgconf/group/bld.inf"
-#include "../../biomsgfw/group/bld.inf"
-#include "../../biomsgfw/T_BIOMSG/Group/bld.inf"
+#include "../../biomsgfw/group/BLD.INF"
+#include "../../biomsgfw/T_BIOMSG/Group/BLD.INF"
 #include "../../msgsrvnstore/group/bld.inf"
 #include "../../watcherfw/group/bld.inf"
 #include "../../scheduledsendmtm/group/bld.inf"

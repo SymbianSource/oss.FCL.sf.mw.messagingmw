@@ -1,4 +1,4 @@
-// Copyright (c) 2004-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -120,7 +120,7 @@ void CSendAsSender::SendMessageL(const RMessage2 aMessage, TBool aHasCapability)
  	_LIT16(KComma, ",");
  		
  	RBuf16 buffer;
- 	buffer.CreateL(size+ rcptCount);
+ 	buffer.Create(size+ rcptCount);
  	CleanupClosePushL(buffer);
  	if(rcptCount > 0)
  		{

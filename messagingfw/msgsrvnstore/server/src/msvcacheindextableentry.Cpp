@@ -1,4 +1,4 @@
-// Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -192,11 +192,11 @@ void CMsvCacheIndexTableEntry::AddEntryL(CMsvCacheEntry*& aEntry, TBool aReplace
 				{
 				if(!aReplace)
 					{
-					CMsvEntryFreePool::Instance()->ReleaseEntryL(aEntry);
+					CMsvEntryFreePool::Instance()->ReleaseEntry(aEntry);
 					aEntry = (*iBlockPtr)[blockIndex];
 					return;
 					}
-				CMsvEntryFreePool::Instance()->ReleaseEntryL((*iBlockPtr)[blockIndex]);
+				CMsvEntryFreePool::Instance()->ReleaseEntry((*iBlockPtr)[blockIndex]);
 				iBlockPtr->Remove(blockIndex);
 				iBlockPtr->Insert(aEntry, blockIndex);
 				return;
@@ -296,9 +296,9 @@ void CMsvCacheIndexTableEntry::AddEntrySetL(RPointerArray<CMsvCacheEntry>& aEntr
 				{
 				if(aEntries[listCount+aInitIndex]->GetId() == (*iBlockPtr)[blockIndex]->GetId())
 					{
-					CMsvEntryFreePool::Instance()->ReleaseEntryL(aEntries[listCount+aInitIndex]);
+					CMsvEntryFreePool::Instance()->ReleaseEntry(aEntries[listCount+aInitIndex]);
 					aEntries.Remove(listCount+aInitIndex);
-					aEntries.InsertL((*iBlockPtr)[blockIndex], listCount+aInitIndex);
+					aEntries.Insert((*iBlockPtr)[blockIndex], listCount+aInitIndex);
 					entryFound = ETrue;
 					break;
 					}
@@ -433,7 +433,7 @@ void CMsvCacheIndexTableEntry::DeleteEntryL(TMsvId aId, TMsvId& aParentIdOfEntry
 			if(aForceDelete || (*iBlockPtr)[index]->IsEntryLocked())
 				{
 				aParentIdOfEntry = (*iBlockPtr)[index]->Entry().Parent();
-				CMsvEntryFreePool::Instance()->ReleaseEntryL((*iBlockPtr)[index]);
+				CMsvEntryFreePool::Instance()->ReleaseEntry((*iBlockPtr)[index]);
 				iBlockPtr->Remove(index);
 				// 2.1.1. If the entry deleted was the last entry in the block,
 				//        delete the block.
@@ -728,7 +728,7 @@ void CMsvCacheIndexTableEntry::Print(RFileLogger& aLogger)
 	for(TInt index=0; index<blockSize; ++index)
 		{
 		RBuf text;
-		text.CreateL(150);
+		text.Create(150);
 		text.Append(KId);
 		text.AppendNum((*iBlockPtr)[index]->Entry().Id());
 		text.Append(KParentId);

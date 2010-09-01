@@ -19,7 +19,6 @@
 /**
  @file
 */
-#include <platform_paths.hrh>
 
 
 
@@ -104,7 +103,6 @@ SOURCEPATH     .
 
 START RESOURCE	MSGS.rss
 TARGETPATH resource/messaging
-TARGET MSGS.rsc
 HEADER
 LANG	SC
 END
@@ -172,7 +170,6 @@ LIBRARY flogger.lib
 	#endif
 #endif
 
-OS_LAYER_SYSTEMINCLUDE
 
 
 

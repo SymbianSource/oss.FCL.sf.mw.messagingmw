@@ -1,6 +1,6 @@
 // testagentmanager.h
 
-// Copyright (c) 2003-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -18,8 +18,8 @@
 #ifndef __TESTAGENTMANAGER_H__
 #define __TESTAGENTMANAGER_H__
 
-#include <caf/cafplatform.h>
-#include <caf/agentinterface.h>
+#include <caf/caf.h>
+#include <caf\agentinterface.h>
 
 using namespace ContentAccess;
 

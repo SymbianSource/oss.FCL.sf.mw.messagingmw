@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
 // All rights reserved.
 // This component and the accompanying materials are made available
 // under the terms of "Eclipse Public License v1.0"
@@ -342,7 +342,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
 		MY_ASSERT_EQUALS(KUidMsvMessageEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(newId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
@@ -357,7 +357,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
 		MY_ASSERT_EQUALS(KUidMsvMessageEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(newId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
@@ -393,7 +393,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)(index+200), cEntry->Entry().MtmData2());
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(newId+index, cEntry);
 		MY_ASSERT_EQUALS((long)(index+200), cEntry->Entry().MtmData2());
@@ -413,7 +413,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData2());
 		MY_ASSERT_EQUALS(KUidMsvFolderEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(newId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData2());
@@ -468,7 +468,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS((long)(newId+1500), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)(newId+1500), visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(newId+index, cEntry));
 		MY_ASSERT_EQUALS(KUidMsvFolderEntry, cEntry->Entry().iType);
@@ -491,7 +491,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS(newId+1500, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS(newId+1500, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_FALSE(TestFolder->GetEntry(newId+index, cEntry));
 		MY_ASSERT_TRUE(NewTestFolder->GetEntry(newId+index, cEntry));
@@ -543,7 +543,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvFolderEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS((long)(KMsvLocalServiceIndexEntryId), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvLocalServiceIndexEntryId, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(newId+index, cEntry));
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
@@ -570,7 +570,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS(newId+1500, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS(newId+1500, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(newId+index, cEntry));
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
@@ -662,7 +662,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)(newId+2200), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvLocalServiceIndexEntryId, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		if(index < 2006)
 			{
@@ -705,7 +705,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS(newId+2200, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvLocalServiceIndexEntryId, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_FALSE(TestFolder->GetEntry(newId+index, cEntry));
 		MY_ASSERT_TRUE(NewTestFolder->GetEntry(newId+index, cEntry));
@@ -759,11 +759,11 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		{
 		TRAP_IGNORE(dbPtr->GetEntryL(newId+index+5200, cEntry, visibleParentId));
 		ASSERT_EQUALS(visibleParentId, newId+5000);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		}
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+5100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, newId+5000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	//12. Scenario: Local Service has 2 children, newId+6000 and newId+6100.
 	//				newId+6000 is visible and the other is not visible.
@@ -807,15 +807,15 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	dbPtr = iIndexAdapter->GetDbAdapter();
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+6100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, newId+6000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+6200, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, newId+6000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	//TRAP_IGNORE(dbPtr->GetEntryL(newId+6300, cEntry, visibleParentId));
 	//MY_ASSERT_EQUALS(visibleParentId, newId+6200);
-	//CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	//CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	//13. Moving a visible folder with children to under a non-visible folder which has
 	//	  a visible parent.
@@ -846,15 +846,15 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	//	   appropriately set.
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+7100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KMsvRootIndexEntryId);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+7200, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, newId+7100);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(newId+7300, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, newId+7200);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	}
 	
 	
@@ -3302,10 +3302,10 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 
 	RArray<CMsvIndexAdapter::TNonCommittedChangedEntries>& entryList = iIndexAdapter->GetNonComittedChangedEntry();
 	MY_ASSERT_EQUALS(1, entryList.Count());
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(entryList[0].iBkpEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(entryList[0].iBkpEntry);
 	entryList.Reset();
 	
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(testentry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(testentry);
 	
 	//4. change Entry 
 	//a. Open Transaction
@@ -3370,7 +3370,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	TRAP_IGNORE(iIndexAdapter->OpenclosedL(openFilename));
 	
 	MY_ASSERT_EQUALS(1, entryList.Count());
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(entryList[0].iBkpEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(entryList[0].iBkpEntry);
 	entryList.Reset();
 	
 	iIndexAdapter->GetEntry(KFirstFreeEntryId+200, entry2);
@@ -3431,7 +3431,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	MY_ASSERT_TRUE(entry2->Visible());
 	MY_ASSERT_EQUALS(entry2->Id(), KFirstFreeEntryId+700);
 
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(testentry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(testentry);
 	
 	/* TEST Code added after changes in DOChangeEntry for rollback */
 	// 6. Modifying 10 entries using no-commit.
@@ -3462,7 +3462,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
 		MY_ASSERT_EQUALS(KUidMsvMessageEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(KFirstFreeEntryId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
@@ -3477,7 +3477,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
 		MY_ASSERT_EQUALS(KUidMsvMessageEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(KFirstFreeEntryId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData1());
@@ -3513,7 +3513,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)(index+200), cEntry->Entry().MtmData2());
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(KFirstFreeEntryId+index, cEntry);
 		MY_ASSERT_EQUALS((long)(index+200), cEntry->Entry().MtmData2());
@@ -3533,7 +3533,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData2());
 		MY_ASSERT_EQUALS(KUidMsvFolderEntry, cEntry->Entry().iType);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		
 		iIndexAdapter->FindEntryInCache(KFirstFreeEntryId+index, cEntry);
 		MY_ASSERT_EQUALS((long)index, cEntry->Entry().MtmData2());
@@ -3589,7 +3589,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS((long)(KFirstFreeEntryId+1500), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)(KFirstFreeEntryId+1500), visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
 		MY_ASSERT_FALSE(KUidMsvAttachmentEntry==cEntry->Entry().iType);
@@ -3616,7 +3616,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS(KFirstFreeEntryId+1500, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS(KFirstFreeEntryId+1500, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_FALSE(TestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
 		MY_ASSERT_TRUE(NewTestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
@@ -3669,7 +3669,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvFolderEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS((long)(KMsvGlobalInBoxIndexEntryId), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvGlobalInBoxIndexEntryId, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
 		MY_ASSERT_FALSE(KUidMsvFolderEntry==cEntry->Entry().iType);
@@ -3701,7 +3701,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
 		MY_ASSERT_EQUALS(KFirstFreeEntryId+1500, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS(KFirstFreeEntryId+1500, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_TRUE(TestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
 		MY_ASSERT_EQUALS(KUidMsvAttachmentEntry, cEntry->Entry().iType);
@@ -3794,7 +3794,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS((long)(KFirstFreeEntryId+2200), cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvRootIndexEntryIdValue, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		if(index < 2006)
 			{
@@ -3839,7 +3839,7 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index, cEntry, visibleParentId));
 		MY_ASSERT_EQUALS(KFirstFreeEntryId+2200, cEntry->Entry().Parent());
 		MY_ASSERT_EQUALS((long)KMsvRootIndexEntryIdValue, visibleParentId);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		// Check entry in cache.
 		MY_ASSERT_FALSE(TestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
 		MY_ASSERT_TRUE(NewTestFolder->GetEntry(KFirstFreeEntryId+index, cEntry));
@@ -3893,11 +3893,11 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 		{
 		TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+index+5200, cEntry, visibleParentId));
 		ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+5000);
-		CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+		CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 		}
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+5100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+5000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	//12. Scenario: Root has 2 children, KFirstFreeEntryId+6000 and KFirstFreeEntryId+6100.
 	//				KFirstFreeEntryId+6000 is visible and the other is not visible.
@@ -3941,11 +3941,11 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	dbPtr = iIndexAdapter->GetDbAdapter();
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+6100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+6000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+6200, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+6000);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	//13. Moving a visible folder with children to under a non-visible folder which has
 	//	  a visible parent.
@@ -3976,15 +3976,15 @@ void CTestIndexAdapter::TestChangeEntryNoCommit()
 	//	   appropriately set.
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+7100, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KMsvRootIndexEntryId);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+7200, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+7100);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);
 	
 	TRAP_IGNORE(dbPtr->GetEntryL(KFirstFreeEntryId+7300, cEntry, visibleParentId));
 	MY_ASSERT_EQUALS(visibleParentId, KFirstFreeEntryId+7200);
-	CMsvEntryFreePool::Instance()->ReleaseEntryL(cEntry);	
+	CMsvEntryFreePool::Instance()->ReleaseEntry(cEntry);	
 	}
 	
 
