@@ -39,12 +39,12 @@ DEFAULT
 #include "../plugins/group/bld.inf"
 #include "../plugins/WapUriLookup/group/bld.inf"
 #include "../SISLContentHandlers/group/bld.inf"
-#include "../pushwatcher/group/BLD.INF"
-#include "../pushmtm/group/BLD.INF"
-#include "../tpush/BLD.INF"
-#include "../rom/BLD.INF"
+#include "../pushwatcher/group/bld.inf"
+#include "../pushmtm/group/bld.inf"
+#include "../tpush/bld.inf"
+#include "../rom/bld.inf"
 #include "../ROContentHandler/group/bld.inf"
 #include "../ROAPTContentHandler/group/bld.inf"
-#include "../tpushscriptbased/BLD.INF"
+#include "../tpushscriptbased/bld.inf"
 
 PRJ_MMPFILES

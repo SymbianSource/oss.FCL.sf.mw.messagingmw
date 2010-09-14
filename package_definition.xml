@@ -44,46 +44,46 @@
    <component id="muiuutils" name="Messaging Center UI Utilities" class="api" filter="s60" introduced="^4">
       <unit bldFile="messagingfw/muiuutils/group"/>
    </component>
-   <component id="scheduledsendmtm" name="Scheduled Send MTM" introduced="6.0" purpose="optional" class="plugin">
+   <component id="scheduledsendmtm" name="Scheduled Send MTM" introduced="6.0" purpose="optional" class="plugin" filter="s60>
     <unit bldFile="messagingfw/scheduledsendmtm/group" mrp="messagingfw/scheduledsendmtm/group/messaging_schedulesend.mrp"/>
    </component>
-   <component id="msgsrvnstore" name="Message Server and Store" purpose="optional">
+   <component id="msgsrvnstore" name="Message Server and Store" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/msgsrvnstore/group" mrp="messagingfw/msgsrvnstore/group/messaging_framework.mrp"/>
    </component>
-   <component id="biomsgfw" name="BIO Messaging Framework" introduced="6.0" purpose="optional">
+   <component id="biomsgfw" name="BIO Messaging Framework" introduced="6.0" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/biomsgfw/group" mrp="messagingfw/biomsgfw/group/messaging_biomsg.mrp"/>
    </component>
-   <component id="msgconf" name="Messaging Config" introduced="^2" purpose="optional" class="config">
+   <component id="msgconf" name="Messaging Config" introduced="^2" purpose="optional" class="config" filter="s60>
     <unit bldFile="messagingfw/msgconf/group" mrp="messagingfw/msgconf/group/messaging_config.mrp"/>
    </component>
-   <component id="watcherfw" name="Watcher Framework" purpose="optional">
+   <component id="watcherfw" name="Watcher Framework" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/watcherfw/group" mrp="messagingfw/watcherfw/group/messaging_watcher.mrp"/>
    </component>
-   <component id="msgtest" name="Messaging Test" purpose="development">
+   <component id="msgtest" name="Messaging Test" purpose="development" filter="s60,test>
     <unit bldFile="messagingfw/msgtest/group" mrp="messagingfw/msgtest/group/messaging_test.mrp"/>
    </component>
-   <component id="msgtests" name="Messaging Tests" purpose="development" filter="test">
+   <component id="msgtests" name="Messaging Tests" purpose="development" filter="s60,test">
     <unit mrp="messagingfw/msgtests/group/messaging.mrp" bldFile="messagingfw/msgtests/group"/>
    </component>
-   <component id="msgtestfw" name="Messaging Test Framework" deprecated="^3" purpose="development" filter="test">
+   <component id="msgtestfw" name="Messaging Test Framework" deprecated="^3" purpose="development" filter="s60,test">
     <unit mrp="messagingfw/msgtestfw/group/messaging_testframework.mrp" bldFile="messagingfw/msgtestfw/group"/>
    </component>
-   <component id="msgtestproduct" name="Messaging Test Product" purpose="development" filter="test">
+   <component id="msgtestproduct" name="Messaging Test Product" purpose="development" filter="s60,test">
     <unit mrp="messagingfw/msgtestproduct/group/messaging_testproduct.mrp" bldFile="messagingfw/msgtestproduct/group"/>
    </component>
-   <component id="sendas" name="Send As" purpose="optional">
+   <component id="sendas" name="Send As" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/sendas/group" mrp="messagingfw/sendas/group/messaging_sendas2.mrp"/>
    </component>
-   <component id="msgurlhandler" name="Message URL Handler" introduced="7.0" purpose="optional">
+   <component id="msgurlhandler" name="Message URL Handler" introduced="7.0" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/msgurlhandler/group" mrp="messagingfw/msgurlhandler/group/messaging_urlhandler.mrp"/>
    </component>
-   <component id="wappushfw" name="WAP Push Framework" introduced="6.1" purpose="optional">
+   <component id="wappushfw" name="WAP Push Framework" introduced="6.1" purpose="optional" filter="s60>
     <unit bldFile="messagingfw/wappushfw/group" mrp="messagingfw/wappushfw/group/wap-browser_wappush.mrp"/>
    </component>
-   <component id="suplsmshandler" name="SUPL SMS Handler" introduced="^2" purpose="development" class="plugin">
+   <component id="suplsmshandler" name="SUPL SMS Handler" introduced="^2" purpose="development" class="plugin" filter="s60>
     <unit bldFile="messagingfw/suplsmshandler/group" mrp="messagingfw/suplsmshandler/group/lbs_suplsmstrigger.mrp"/>
    </component>
-   <component id="suplwappushhandler" name="SUPL WAP Push Handler" introduced="^2" purpose="optional" class="plugin">
+   <component id="suplwappushhandler" name="SUPL WAP Push Handler" introduced="^2" purpose="optional" class="plugin" filter="s60>
     <unit bldFile="messagingfw/suplwappushhandler/group" mrp="messagingfw/suplwappushhandler/group/lbs_suplwappush.mrp"/>
    </component>
   </collection>

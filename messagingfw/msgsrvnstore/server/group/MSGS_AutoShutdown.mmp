@@ -106,7 +106,7 @@ START RESOURCE	MSGS.rss
 TARGETPATH resource/messaging
 TARGET MSGS.rsc
 HEADER
-LANG	SC
+LANGUAGE_IDS
 END
 
 #include "../../../msgtests/group/msgopt.mph"
