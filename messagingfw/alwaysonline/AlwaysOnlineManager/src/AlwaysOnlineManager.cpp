@@ -789,7 +789,7 @@ void CAlwaysOnlineManager::HandleOpCompletionL( const TDesC8& aProgress )
         {
         KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::HandleOpCompletionL() : plugin: 0x%x", id);
         KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::HandleOpCompletionL() : command: %d", command);
-        KAOMANAGER_LOGGER_WRITE_FORMAT8("CAlwaysOnlineManager::HandleOpCompletionL() : result: %S", &result);
+        KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::HandleOpCompletionL() : result: %S", &result);
         
         switch ( static_cast<TManagerServerCommands>( command ) )
             {
@@ -954,32 +954,29 @@ void CAlwaysOnlineManager::HandleStopPluginL( const TDes8& aParameter )
 // CAlwaysOnlineManager::StopPluginL
 // ----------------------------------------------------------------------------
 //
-void CAlwaysOnlineManager::StopPluginL(
-    const TUid& aPlugin )
+void CAlwaysOnlineManager::StopPluginL( const TUid& aPluginImplementationUid )
     {
     KAOMANAGER_LOGGER_FN1("CAlwaysOnlineManager::StopPluginL");
     
     // Find the plugin and send stop command.
-    if ( iPluginArray->Count() )
+    for ( TInt i = 0; i < iPluginArray->Count(); i++ )
         {
-        // Get correct plugin from 
-        for ( TInt i = 0; i < iPluginArray->Count(); i++ )
-            {
-            TUid id = ( iPluginArray->At( i ) )->InstanceUid();
+        TUid id = ( iPluginArray->At( i ) )->InstanceUid();
 
-            // Is it this plugin?                
-            if ( id == aPlugin )
-                {
-                KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::StopPluginL() Calling stop to plugin: 0x%x", aPlugin);
-                TBuf8<1> dummyParam;
-                InvokeCommandHandlerL( 
-                    static_cast<TManagerServerCommands>( EAOManagerPluginStop ), 
-                    dummyParam, 
-                    i );    
-                }
+        // Stop plugin if it has matching implemention UID.
+        // Will stop all plugin instances with matching implementation.
+        if ( REComSession::GetImplementationUidL(id) == aPluginImplementationUid )
+            {
+            KAOMANAGER_LOGGER_WRITE_FORMAT(
+                "CAlwaysOnlineManager::StopPluginL() Calling stop to plugin: 0x%x", 
+                id );
+            TBuf8<1> dummyParam;
+            InvokeCommandHandlerL( 
+                static_cast<TManagerServerCommands>( EAOManagerPluginStop ), 
+                dummyParam, 
+                i );    
             }
         }
-        
     KAOMANAGER_LOGGER_FN2("CAlwaysOnlineManager::StopPluginL");
     }
 
@@ -987,35 +984,33 @@ void CAlwaysOnlineManager::StopPluginL(
 // CAlwaysOnlineManager::DisablePlugin
 // ----------------------------------------------------------------------------
 //
-void CAlwaysOnlineManager::DisablePlugin( const TUid& aPlugin )
+void CAlwaysOnlineManager::DisablePlugin( const TUid& aPluginInstanceUid )
     {
     KAOMANAGER_LOGGER_FN1("CAlwaysOnlineManager::DisablePlugin");
     
     // Delete the plugin and mark it disabled.
-    if ( iPluginArray->Count() )
+    for ( TInt i = 0; i < iPluginArray->Count(); i++ )
         {
-        // Get correct plugin from 
-        for ( TInt i = 0; i < iPluginArray->Count(); i++ )
+        TUid id = ( iPluginArray->At( i ) )->InstanceUid();
+        
+        // Delete plugin if it has matching instance UID.
+        if ( id == aPluginInstanceUid )
             {
-            TUid id = ( iPluginArray->At( i ) )->InstanceUid();
-            
-            // Is it this plugin?
-            if ( id == aPlugin )
-                {
-                KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::DisablePlugin() Deleting plugin from array: 0x%x", aPlugin);
-                // Delete object
-                delete iPluginArray->At( i );
-                // Delete element
-                iPluginArray->Delete( i );
-                }
+            KAOMANAGER_LOGGER_WRITE_FORMAT(
+                "CAlwaysOnlineManager::DisablePlugin() Deleting plugin from array: 0x%x", 
+                aPluginInstanceUid);
+            // Delete object
+            delete iPluginArray->At( i );
+            // Delete element
+            iPluginArray->Delete( i );
             }
-            // Set this plugin as disabled.
-            iCenRepControl->SetPluginStatus( aPlugin, ETrue );
-            
-            // Refresh the list of disabled plugins UIDs.
-            iCenRepControl->UpdateDisabledPluginsUids( 
-                *iDisabledPluginUidsArray );
         }
+    // Set this plugin as disabled.
+    iCenRepControl->SetPluginStatus( aPluginInstanceUid, ETrue );
+    
+    // Refresh the list of disabled plugins UIDs.
+    iCenRepControl->UpdateDisabledPluginsUids( *iDisabledPluginUidsArray );
+    
     
     KAOMANAGER_LOGGER_FN2("CAlwaysOnlineManager::DisablePlugin");
     }
