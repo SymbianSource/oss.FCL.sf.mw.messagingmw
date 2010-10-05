@@ -20,11 +20,26 @@
   </collection>
   <collection id="messagingfw" name="Messaging Framework" level="fw">
    <!-- should break this collection up into smaller related collections -->
+   <component id="send_ui_api" name="Send UI API" class="api" filter="s60" deprecated="^4">
+    <meta rel="Api" href="messagingfw/deprecate/send_ui_api/send_ui_api.metaxml"/>
+    <unit bldFile="messagingfw/deprecate/send_ui_api/group"/>
+   </component>
+   <component id="send_ui_plugin_api" name="Send UI Plug-in API" class="api" filter="s60" deprecated="^4">
+    <meta rel="Api" href="messagingfw/deprecate/send_ui_plugin_api/send_ui_plugin_api.metaxml"/>
+    <unit bldFile="messagingfw/deprecate/send_ui_plugin_api/group"/>
+   </component>
+   <component id="send_ui_datautils_api" name="Send UI Data Utils API" class="api" filter="s60" deprecated="^4">
+    <meta rel="Api" href="messagingfw/deprecate/send_ui_datautils_api/send_ui_datautils_api.metaxml"/>
+    <unit bldFile="messagingfw/deprecate/send_ui_datautils_api/group"/>
+   </component>
    <component id="alwaysonline" filter="s60" name="Always Online Server" introduced="^2">
     <unit bldFile="messagingfw/alwaysonline/group"/>
    </component>
    <component id="msgcommonutils" filter="s60" name="Messaging Common Utils" introduced="^2">
     <unit bldFile="messagingfw/msgcommonutils/group"/>
+   </component>
+   <component id="senduiservices" filter="s60" name="Send UI Services" introduced="^2" deprecated="^4">
+    <unit bldFile="messagingfw/deprecate/senduiservices/group"/>
    </component>
    <component id="muiuutils" name="Messaging Center UI Utilities" class="api" filter="s60" introduced="^4">
       <unit bldFile="messagingfw/muiuutils/group"/>

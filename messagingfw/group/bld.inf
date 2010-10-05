@@ -19,4 +19,5 @@
 #include "../msgcommonutils/group/bld.inf"
 //#include "../senduiservices/group/bld.inf"
 #include "../muiuutils/group/bld.inf"
+#include "../deprecate/group/bld.inf"
 
