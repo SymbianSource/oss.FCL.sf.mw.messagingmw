@@ -197,43 +197,7 @@ private:
 	TMsvId iId;
 	TMsvId iParent;
 	};
-///
-//**********************************
-// CMsvLocalChangeOperation
-//**********************************
-//
-// Operation used to control server side local change od selection of ids.
-//
 
-class CMsvLocalChangeEntriesOperation : public CMsvLocalOperation
-/**
-@internalComponent
-@released
-*/
-    {
-public:
-    CMsvLocalChangeEntriesOperation(const RMessage2& aMessage, TMsvOp aId, CMsvEntrySelection* aSelection, CMsvServer& aMsvServer, TInt aMark);
-    ~CMsvLocalChangeEntriesOperation();
-    //
-    void StartL(TSecureId aOwnerId, TBool aForcedUpdate);
-    //
-private:
-    void DoCancel();
-    void RunL();
-    void Completed();
-    //
-private:
-    CMsvEntrySelection* iSelection;
-    CMsvEntrySelection* iWorkSelection1;
-    CMsvEntrySelection* iWorkSelection2;
-    CMsvDelete* iDelete;
-    TMsvId iId;
-    TMsvId iParent;
-    TInt iMark;
-    };
-
-
-///
 //**********************************
 // CMsvLocalCreateOperation
 //**********************************

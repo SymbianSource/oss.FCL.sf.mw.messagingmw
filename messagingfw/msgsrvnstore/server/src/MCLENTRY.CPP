@@ -920,68 +920,6 @@ EXPORT_C void CMsvEntry::ChangeL(const TMsvEntry& aEntry, TSecureId aOwnerId)
 	iEntryPtr = &iEntries->At(0)->Entry();
 	}
 
-/** 
-Update a selection of children to read or Unread asynchronously of the context. 
-The returned CMsvOperation object .
-
-@param	aSelection 
-The selectio of entry values for the context
-
-@param	aMark 
-True : Update selection to UnRead .
-False: Update selection to Read . 
-
-@param aStatus The request status to be completed when the operation has finished .
-
-@leave KErrAccessDenied The entry is locked by another client 
-
-@return
-An operation object controlling the change command
-*/
-EXPORT_C CMsvOperation* CMsvEntry::ChangeL(const CMsvEntrySelection& aSelection,TBool aMark, TRequestStatus& aStatus)
-     {
-#ifndef _NO_SESSION_LOGGING_
-    Log(_L("Asynchronous ChangeL with selection of %d entries"), aSelection.Count()); 
-#endif
-
-    __ASSERT_DEBUG(aSelection.Count(), PanicServer(EMsvEmptySelection));
-
-#if defined(_DEBUG)    
-     
-      TInt aCount = aSelection.Count();
-      while (aCount--)
-          {
-          TMsvEntry aEntry;
-          TMsvId aService;
-          if (iMsvSession.Session().GetEntry(aSelection.At(aCount), aService, aEntry)==KErrNone)
-              {
-              __ASSERT_DEBUG(iState==EValid || iState==EInvalidDeletedContext, PanicServer(EMsvEntryAlreadyChangingContext));
-              __ASSERT_DEBUG(MsvUtils::ValidEntry(aEntry), PanicServer(EMsvChangingToInvalidEntry));
-             
-              // can only change the current context
-              if (!MsvUtils::ValidEntry(aEntry))
-                  User::Leave(KErrArgument);
-              }
-           }
-#endif
-      // cannot change standard folders
-      if (iEntryPtr->StandardFolder())
-          User::Leave(KErrAccessDenied);
-  
-      //// create the operation
-      CMsvEntryOperation* operation = CMsvEntryOperation::NewL(iMsvSession, aStatus);
-      CleanupStack::PushL(operation);
-      User::LeaveIfError(iMsvSession.Session().OperationMtmL(aSelection.At(0), operation->iMtm, operation->iService)); 
-   
-      // start the change operation
-	  iMsvSession.Session().ChangeEntriesL(aSelection, aMark, operation->Id(), RProcess().SecureId(), operation->iStatus);
-     
-      operation->Start();
-      iState = EInvalidChangingContext;
-      CleanupStack::Pop(1); // operation 
-      return operation; 
-      }
-
 
 EXPORT_C CMsvOperation* CMsvEntry::DeleteL(TMsvId aId, TRequestStatus& aStatus)
 //

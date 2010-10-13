@@ -49,8 +49,7 @@ private:
 						EMtmOpDeleteAll,
 						EMtmOpCreate,
 						EMtmOpChange,
-						EMtmOpCommand,
-						EMtmOpChangeEntries};
+						EMtmOpCommand};
 public:
 	static CMsvMtmOperation* NewL(const RMessage2& aMessage, TMsvOp aId, TUid aMtmUid, TMsvId aServiceId, TInt aSessionId, MMsvOperationObserver& aOpObserver);
 	~CMsvMtmOperation();
@@ -71,7 +70,6 @@ public:
 	inline void DeleteAll(CMsvEntrySelection* aSelection);
 	inline void CreateL(const TMsvEntry& aNewEntry);
 	inline void ChangeL(const TMsvEntry& aNewEntry);
-	inline void ChangeEntriesL(CMsvEntrySelection* aSelection, TInt aMark);
 	inline void StartCommand(CMsvEntrySelection* aSelection, TInt aCommand, HBufC8* aParameter);
 #if (defined SYMBIAN_USER_PROMPT_SERVICE)	
  	inline void SetThreadId(TThreadId aThreadId);

@@ -457,25 +457,6 @@ EXPORT_C void RMsvServerSession::ChangeEntryL(const TMsvEntry& aEntry, TMsvOp aO
 	User::LeaveIfError(SendReceive(EMsvChangeEntry, TIpcArgs(aOperationId, aOwnerId)));
 	}
 
-/**
-Update the specified Changes to selection of TMsvId (asynchronously).
-
-@param aSelection The IDs of the entry to Change. 
-@param aMark The read/Unread value.  
-@param aOperationId Operation identifier
-@param aOwnerId The ID of the owning process
-@param aRequestStatus Asynchronous request status
-
-*/
-
-void RMsvServerSession::ChangeEntriesL(const CMsvEntrySelection& aSelection, TBool aMark ,TMsvOp aOperationId, TSecureId aOwnerId, TRequestStatus& aRequestStatus)
-    {
-     TestSlotAvailableL();
-     TInt markvalue = (TInt)aMark;
-     SendOperationDataL(aOperationId, aSelection, markvalue);
-     aRequestStatus=KRequestPending;
-     SendReceive(EMsvChangeEntries, TIpcArgs(aOperationId, aOwnerId), aRequestStatus);
-    }
 
 /**
 Gets the index entry with the specified unique id.

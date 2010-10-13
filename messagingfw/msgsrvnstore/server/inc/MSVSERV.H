@@ -108,8 +108,7 @@ enum TMsvClientPanic
 	EMsvProgressBufferExceeds256=12,
 	EMsvNoEntriesInMoveSelection=13,
 	EMsvNoEntriesInCopySelection=14,
-	EMsvNoEntriesInChangeAttributesSelection=15,
-	EMsvNoEntriesInChangeSelection=16
+	EMsvNoEntriesInChangeAttributesSelection=15
 	};
 
 const TInt KMsvMessageDriveStreamVersionNumber = 3;
@@ -559,11 +558,8 @@ private:
 	void OperationMtmL(const RMessage2 &aMessage);
 	//
 	void ChangeEntryL(const RMessage2 &aMessage);
-	void ChangeEntriesL(const RMessage2 &aMessage);
 	void DoChangeLocalEntryL(const TMsvEntry& aEntry, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId);
 	void DoChangeRemoteEntryL(const TMsvEntry& aEntry, TMsvOp aOpId, const RMessage2 &aMessage);
-	void DoChangeLocalEntriesL(CMsvEntrySelection*& aSelection, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId, TInt aMark);
-	void DoChangeRemoteEntriesL(CMsvEntrySelection*& aSelection, TMsvOp aOpId, const RMessage2 &aMessage,TInt aMark);
 	//
 	void CreateEntryL(const RMessage2 &aMessage);
 	void DoCreateLocalEntryL(const TMsvEntry& aEntry, TMsvOp aOpId, const RMessage2 &aMessage, TSecureId aOwnerId);

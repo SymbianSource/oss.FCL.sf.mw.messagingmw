@@ -32,6 +32,21 @@
 #define	EMtudCommandTransferReceive		0x2000
 #define EMtudCommandSendAs				0x4000
 
+// 3 party mtm can be visible in messaging 
+// app by installing 
+// thier sisx mtm on device.
+// This flag is added to help them to allow 
+// their function command( item specific only)
+// to be visible in Stylus menu when 
+// user long tap on their message visible in
+// messaging folder
+// Note: This flag should be set(OR) 
+// only in  3 party mtm RSS file for specific 
+// command. It should be not be set 
+// or reset anywhere else.
+// messaging app will only read this setting.
+#define EMtudCommandItemSpecific	        0x8000
+
 //
 // Key flags - for TMtmUiFunction::iPreferredHotKeyModifiers
 

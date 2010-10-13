@@ -928,7 +928,6 @@ public: // Public member functions
 	// --- Asynchronous Current Entry functions ---
 	IMPORT_C CMsvOperation* ChangeL(const TMsvEntry& aEntry, TRequestStatus& aStatus);
 	IMPORT_C CMsvOperation* ChangeL(const TMsvEntry& aEntry, TSecureId aOwnerId, TRequestStatus& aStatus);
-	IMPORT_C CMsvOperation* ChangeL(const CMsvEntrySelection& aSelection, TBool aMark,TRequestStatus& aStatus);
 	//
 	// --- Asynchronous Child Entry functions ---
 	IMPORT_C CMsvOperation* CreateL(const TMsvEntry& aEntry, TRequestStatus& aStatus);

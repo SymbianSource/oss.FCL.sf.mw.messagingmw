@@ -384,40 +384,6 @@ public:
 
 	TInt GetNonOperationMtmData(TNonOperationMtmDataType& aMtmDataType, TPtrC8& aResultBuffer);
 
-
-	/** Updates a remote selection of id  with relevant data when called by the Message Server.
-	 
-	Implementations should provide this function if the messaging protocol supports 
-	updating of remote entries. If this is not supported, implementations should 
-	leave with KErrNotSupported. 
-	
-	The Server-side MTM implementation must decide what information in the TMsvEntry 
-	is relevant to the remote entry, and translate it appropriately for the specific 
-	protocol. Most of the data contained in the TMsvEntry is specific to the Symbian 
-	OS Message Server, and would probably have no direct correlation with the 
-	protocol's own storage format. Some entry data may however be useful. For 
-	example, if the protocol supports remote renaming of folders, the implementation 
-	could:
-	
-	1. check for a folder type entry
-	
-	2. extract the folder name from aNewEntry.iDetails
-	
-	3. check if the folder name has changed by comparing the new name with iDetails 
-	in the index entry currently; if not, complete with KErrNone
-	
-	4. initiate a protocol-specific action to rename the remote folder
-	
-	The implementation should also always update the local Message Server index 
-	through CMsvServerEntry::ChangeL().
-	
-	@param aSelection  Selection of TMsvId which to update 
-	@param aMark Read and Unread mark value. 
-	@param aStatus Asynchronous completion word for the operation. 
-	
-	@leave KErrNotSupported The Server-side MTM does not support this operation 
-	@leave Other leave codes Dependent on implementation */
-	IMPORT_C virtual TInt ChangeEntriesL( const CMsvEntrySelection& aSelection,TInt aMark, TRequestStatus& aStatus );
 protected:
 	IMPORT_C CBaseServerMtm(CRegisteredMtmDll& aRegisteredMtmDll, CMsvServerEntry* aServerEntry);
 	/** Handles the completion of any asynchronous requests that it makes. It is called 

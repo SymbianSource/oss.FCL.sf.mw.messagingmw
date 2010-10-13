@@ -164,9 +164,6 @@ void CMsvMtmOperation::DoStartL(TBool aCapabilityCheck)
 		case EMtmOpCommand:
 			iServerMtm->StartCommandL(*iSelection, iIntParam, *iDesParam, iStatus);
 			break;
-        case EMtmOpChangeEntries:
-            iServerMtm->ChangeEntriesL(*iSelection,iIntParam,iStatus);
-            break;
 		default:
 			PanicServer(EMsvUnknownMtmOpType);
 			break;

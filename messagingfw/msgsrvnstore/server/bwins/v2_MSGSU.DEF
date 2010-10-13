@@ -719,6 +719,4 @@ EXPORTS
 	?UnpackL@TMsvPackedDriveIdOperation@@QAEXAAV?$RArray@W4TDriveNumber@@@@@Z @ 718 NONAME ABSENT ; void TMsvPackedDriveIdOperation::UnpackL(class RArray<enum TDriveNumber> &)
 	?UpdateDrivePriorityL@CMsvSession@@QAEXW4TDriveNumber@@AAI@Z @ 719 NONAME ABSENT ; void CMsvSession::UpdateDrivePriorityL(enum TDriveNumber, unsigned int &)
 	?UpdateDrivePriorityL@RMsvServerSession@@QAEXW4TDriveNumber@@AAI@Z @ 720 NONAME ABSENT ; void RMsvServerSession::UpdateDrivePriorityL(enum TDriveNumber, unsigned int &)
-	?ChangeEntriesL@CBaseServerMtm@@UAEHABVCMsvEntrySelection@@HAAVTRequestStatus@@@Z @ 721 NONAME ; int CBaseServerMtm::ChangeEntriesL(class CMsvEntrySelection const &, int, class TRequestStatus &)
-	?ChangeL@CMsvEntry@@QAEPAVCMsvOperation@@ABVCMsvEntrySelection@@HAAVTRequestStatus@@@Z @ 722 NONAME ; class CMsvOperation * CMsvEntry::ChangeL(class CMsvEntrySelection const &, int, class TRequestStatus &)
 
