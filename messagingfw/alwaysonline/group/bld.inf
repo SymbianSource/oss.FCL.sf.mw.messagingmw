@@ -26,9 +26,11 @@ PRJ_EXPORTS
 ../conf/alwaysonline_102071F2.crml     MW_LAYER_CRML(alwaysonline_102071F2.crml)
 
 ../rom/AlwaysOnline.iby                CORE_MW_LAYER_IBY_EXPORT_PATH(AlwaysOnline.iby)
+../rom/AlwaysOnlineEMailPlugin.iby     CORE_MW_LAYER_IBY_EXPORT_PATH(AlwaysOnlineEMailPlugin.iby)
+../rom/AlwaysOnlineEMailPluginRsc.iby  LANGUAGE_MW_LAYER_IBY_EXPORT_PATH(AlwaysOnlineEMailPluginRsc.iby)
 
 // Stub installer file which enables eclipsing of always online manager
-../sis/aomanagerstub.sis /epoc32/data/z/system/install/aomanagerstub.SIS
+../sis/aomanagerstub.SIS /epoc32/data/z/system/install/aomanager_stub.sis
 
 PRJ_MMPFILES
 ../AlwaysOnlineManager/group/AlwaysOnlineManagerServer.mmp

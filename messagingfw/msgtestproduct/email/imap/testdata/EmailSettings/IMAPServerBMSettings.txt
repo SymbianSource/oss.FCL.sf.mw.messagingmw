@@ -1,4 +1,0 @@
-ImapServerAddress =  msexchange2k.closedtest.intra
-ImapPathSeperator = /
-
-ImapBearerMobility = 1

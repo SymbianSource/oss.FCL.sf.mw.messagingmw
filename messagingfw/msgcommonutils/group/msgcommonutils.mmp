@@ -30,30 +30,24 @@ CAPABILITY      CAP_GENERAL_DLL
 VERSION 	10.0
 PAGED
 
-//START RESOURCE          msgcommonutils.rss  //depending on vpbk
-//TARGETPATH              RESOURCE_FILES_DIR
-//HEADER
-//LANGUAGE_IDS
-//END
+START RESOURCE          msgcommonutils.rss
+TARGETPATH              RESOURCE_FILES_DIR
+HEADER
+LANGUAGE_IDS
+END
 
 
 SOURCEPATH      ../src
-//SOURCE          contactmatcher.cpp
+SOURCE          contactmatcher.cpp
 SOURCE          msgtextutils.cpp
 SOURCE          MsgSvgUtils.cpp
-
-#ifdef __VOIP
 SOURCE          MsgVoIPExtension.cpp
-#else
-SOURCE          MsgVoIPExtensionStub.cpp
-#endif //VOIP
-
 source          fileprotectionresolver.cpp
-//#ifdef __JAVA_MIDP20
-//source          javaprotectionresolver.cpp
-//#else
+#ifdef __JAVA_MIDP20
+source          javaprotectionresolver.cpp
+#else
 source          javaprotectionresolverstub.cpp
-//#endif
+#endif
 
 USERINCLUDE     ../inc
 USERINCLUDE     ../../../msgfw_plat/msg_common_utils_api/inc
@@ -81,16 +75,12 @@ LIBRARY         svgengine.lib
 
 
 LIBRARY         gdi.lib
-#if defined(__VOIP) 
 LIBRARY         serviceprovidersettings.lib
-#endif // __VOIP
 LIBRARY         commonengine.lib
 LIBRARY         caf.lib
-#ifdef __JAVA_MIDP20
-//LIBRARY         javadrmutils.lib
-#endif
-//LIBRARY         VPbkEng.lib
-//LIBRARY         Pbk2Presentation.lib
+
+LIBRARY         vpbkeng.lib
+LIBRARY         pbk2presentation.lib
 
 
 #if defined( ARMCC )

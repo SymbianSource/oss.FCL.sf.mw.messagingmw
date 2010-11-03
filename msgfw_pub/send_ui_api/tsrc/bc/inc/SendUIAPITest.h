@@ -33,7 +33,7 @@
 #include <TestScripterInternal.h>
 #include <StifTestModule.h>
 #include <TestclassAssert.h>
-#include <CMessageData.h>
+#include <cmessagedata.h>
 
 #include <bc_plat.h>
 

@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CMyClntMtm@@SAPAV1@AAVCRegisteredMtmDll@@AAVCMsvSession@@@Z @ 1 NONAME ; public: static class CMyClntMtm * __cdecl CMyClntMtm::NewL(class CRegisteredMtmDll &,class CMsvSession &)
-

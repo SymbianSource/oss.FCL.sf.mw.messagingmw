@@ -33,9 +33,9 @@ PRJ_EXPORTS
 
 
 // export localised loc file
-../messagingbr/emailbr/clientmtms/loc/imcm.loc  OS_LAYER_LOC_EXPORT_PATH(imcm.loc)
-../messagingbr/emailbr/clientmtms/loc/imcm_default_charset.loc  OS_LAYER_LOC_EXPORT_PATH(imcm_default_charset.loc)
-../messagingbr/frameworkbr/server/loc/msgs.loc  OS_LAYER_LOC_EXPORT_PATH(msgs.loc)
+../messaging/email/clientmtms/loc/imcm.loc  OS_LAYER_LOC_EXPORT_PATH(imcm.loc)
+../messaging/email/clientmtms/loc/imcm_default_charset.loc  OS_LAYER_LOC_EXPORT_PATH(imcm_default_charset.loc)
+../messaging/framework/server/loc/msgs.loc  OS_LAYER_LOC_EXPORT_PATH(msgs.loc)
 
 PRJ_MMPFILES
 ./msgbranched.mmp

@@ -1,3 +1,0 @@
-EmailToAddress=UserName<test@test.com>
-Subject=SubjectEmailTest_4_11_1
-SentToAddress=+44111111111

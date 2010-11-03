@@ -870,7 +870,6 @@ EXPORT_C HBufC16* CMsgTextUtils::ConvertToUnicodeL( const TDesC8& aText, TUint a
     
     //buffer to hold target data and return to caller
     HBufC* resultBuffer = HBufC::NewL( maxLength );
-    _LIT8( KReplaceChar8, "_" );
     
     if ( iCharConv->PrepareToConvertToOrFromL( aCharacterSetIdentifier, iFs ) !=
         CCnvCharacterSetConverter::EAvailable )

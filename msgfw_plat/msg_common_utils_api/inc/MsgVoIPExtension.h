@@ -22,7 +22,7 @@
 #include <e32base.h>
 
 // FORWARD DECLARATIONS
-//class CSPSettings;
+class CSPSettings;
 
 // CLASS DECLARATION
 
@@ -86,8 +86,13 @@ class CMsgVoIPExtension:
          * A Service provider settings
          * Own.  
          */
-       // CSPSettings*  iSPSettings;
-
+        CSPSettings*  iSPSettings;
+        /**
+         * A VOIP support
+	 	 * This member has been added to check if VOIP is enabled via FeatureManager, instead of using  #define __VOIP 
+         * Own.  
+         */
+        TBool iVoIPFeatureSupport;
     };
 #endif      // MsgVoIPEXTENSION_H
 

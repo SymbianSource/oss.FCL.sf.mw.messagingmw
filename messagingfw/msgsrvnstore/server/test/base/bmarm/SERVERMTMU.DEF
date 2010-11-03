@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__9CMySvrMtmR17CRegisteredMtmDllP15CMsvServerEntry @ 1 NONAME ; CMySvrMtm::NewL(CRegisteredMtmDll &, CMsvServerEntry *)
-

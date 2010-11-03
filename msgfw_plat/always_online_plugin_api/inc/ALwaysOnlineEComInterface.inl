@@ -17,7 +17,7 @@
 
 
 #include "AlwaysOnlineEComInterface.h"
-#include "alwaysonlinemanagercommon.h"
+#include "AlwaysOnlineManagerCommon.h"
 
 _LIT8(KAlwaysOnlineManagerImplementationType,"text/*");
 

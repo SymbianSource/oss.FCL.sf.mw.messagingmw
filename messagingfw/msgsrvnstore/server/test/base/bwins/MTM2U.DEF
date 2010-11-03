@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CMyMtm@@SAPAV1@VTUid@@AAVCRegisteredMtmDll@@@Z @ 1 NONAME ; public: static class CMyMtm * __cdecl CMyMtm::NewL(class TUid,class CRegisteredMtmDll &)
-

@@ -7,7 +7,7 @@
   <systemModel>
     <layer name="mw_layer">
       <module name="messagingmw">
-        <unit unitID="MeCo.messagingmw" mrp="" bldFile="&layer_real_source_path;/group" name="messagingmw" />
+        <unit unitID="MeCoDo.messagingmw" mrp="" bldFile="&layer_real_source_path;/group" name="messagingmw" />
       </module>
     </layer>
   </systemModel>

@@ -25,7 +25,7 @@
 #include <AlwaysOnlineManagerClient.h>
 #include <msvapi.h>
 #include <rconnmon.h>
-#include <MuiuMsvSingleOpWatcher.h>
+#include <app/MuiuMsvSingleOpWatcher.h>
 #include <centralrepository.h>
 #include <cenrepnotifyhandler.h>
 
@@ -248,18 +248,21 @@ class CAlwaysOnlineManager :
         void HandleStopPluginL( const TDes8& aParameter );
 
         /**
-        * Handles stopping of plugin with given UID.
+        * Handles stopping of plugin with given implementation UID.
         * @since Series60 3.1
-        * @param aPlugin, UID of plugin
+        * @param aPluginImplementationUid, implementation UID of plugin 
+        *        (implementation_uid in .rss). 
+        *        NOTE: There can be multiple instances of same plugin 
+        *        implementation.
         */
-        void StopPluginL( const TUid& aPlugin );
+        void StopPluginL( const TUid& aPluginImplementationUid );
 
         /**
-        * Unloads the plugin with given UID and sets it as disabled.
+        * Unloads the plugin with given instance UID and sets it as disabled.
         * @since Series60 3.1
-        * @param aPlugin, UID of plugin
+        * @param aPluginInstanceUid, UID of plugin instance
         */
-        void DisablePlugin( const TUid& aPlugin );
+        void DisablePlugin( const TUid& aPluginInstanceUid );
 
         /**
         * Handles the final progress of an operation.

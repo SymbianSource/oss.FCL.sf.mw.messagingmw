@@ -1,3 +1,0 @@
-EXPORTS
-	NewL__8CFindMtmR17CRegisteredMtmDllR11CMsvSession @ 1 NONAME ; CFindMtm::NewL(CRegisteredMtmDll &, CMsvSession &)
-

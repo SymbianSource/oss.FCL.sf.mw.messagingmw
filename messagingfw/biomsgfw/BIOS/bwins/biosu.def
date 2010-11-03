@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CBIOServerMtm@@SAPAV1@AAVCRegisteredMtmDll@@PAVCMsvServerEntry@@@Z @ 1 NONAME ; public: static class CBIOServerMtm * __cdecl CBIOServerMtm::NewL(class CRegisteredMtmDll &,class CMsvServerEntry *)
-

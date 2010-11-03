@@ -1,2 +1,0 @@
-EmailToAddress=UserName<test@test.com>
-SentToAddress=+44111111111

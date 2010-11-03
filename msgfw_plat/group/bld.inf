@@ -18,6 +18,5 @@
 #include "../always_online_plugin_api/group/bld.inf"
 #include "../always_online_client_api/group/bld.inf"
 #include "../msg_common_utils_api/group/bld.inf"
-//#include "../send_ui_plugin_api/group/bld.inf"
-//#include "../send_ui_datautils_api/group/bld.inf"
-#include "../muiu_utils_api/group/bld.inf"
+#include "../send_ui_plugin_api/group/bld.inf"
+#include "../send_ui_datautils_api/group/bld.inf"
