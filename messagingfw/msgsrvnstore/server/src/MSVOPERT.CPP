@@ -233,6 +233,11 @@ const TDesC8& CMsvMtmOperation::Progress()
 //
 	{
 	__ASSERT_DEBUG(iServerMtm, PanicServer(EMsvProgressOnQueuedOp));
+	//Check if Servermtm is NULL than return NULLDesc
+    if(!iServerMtm)
+        {
+        return KNullDesC8();
+        }
 	return iServerMtm->Progress();
 	}
 
@@ -247,6 +252,11 @@ TInt CMsvMtmOperation::SystemProgress(TMsvSystemProgress& aSysProgress)
 //
 	{
 	__ASSERT_DEBUG(iServerMtm, PanicServer(EMsvSystemProgressOnQueuedOp));
+	//Check if Servermtm is NULL than return Error
+	if(!iServerMtm)
+	    {
+	    return KErrGeneral;
+	    }
 	return iServerMtm->SystemProgress(aSysProgress);
 	}
 

@@ -140,6 +140,16 @@ void CSendUiSrAppUi::HandleUpdateSendListL()
         {
         servicesArray.Close();
         CleanupStack::PopAndDestroy( myRep );
+        
+        RProperty::Set( 
+            KPSUidSendUiProperty, 
+            KSendUiUpdateOperation, 
+            KSendUiUpdateOperationDone ); 
+
+        RProperty::Set( 
+            KPSUidSendUiProperty, 
+            KSendUiUpdateRequest, 
+            KSendUiNotInitialized  ); 
         return;
         }
     else

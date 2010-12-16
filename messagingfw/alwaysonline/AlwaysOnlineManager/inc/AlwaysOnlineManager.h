@@ -261,8 +261,10 @@ class CAlwaysOnlineManager :
         * Unloads the plugin with given instance UID and sets it as disabled.
         * @since Series60 3.1
         * @param aPluginInstanceUid, UID of plugin instance
+		* @param aAddPluginToDisableList, add plugin id to disable list or not
         */
-        void DisablePlugin( const TUid& aPluginInstanceUid );
+        void DisablePlugin( const TUid& aPluginImplementationUid , 
+		       TBool aAddPluginToDisableList = ETrue );
 
         /**
         * Handles the final progress of an operation.
@@ -284,6 +286,15 @@ class CAlwaysOnlineManager :
             TUid& aUid,
             TInt& aCommand,
             TDes8& aResult );
+        /**
+		* ImplementationIdFromInstanceId
+		* Transfer ECOM Instance ID(dynamic value in ecom server) to
+		* Implementation ID(defined in RSS file, UID3)
+		* @param aInstanceId, Instance ID
+		* @param aError, indicator the error,KErrNone for tranfer ok.
+		* @return Implementation UID
+		*/
+        TUid ImplementationIdFromInstanceId( TUid aInstanceId, TInt& aError );
 
     //data
     private:

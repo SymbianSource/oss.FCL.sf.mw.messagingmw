@@ -180,7 +180,14 @@ void CAOServerCommandHandler::SetFinalProgressFromResult( TAny* aResponse )
     iFinalProgress.Zero();
 
     iFinalProgress.Append( KAOCmdStart );
-    iFinalProgress.AppendNum( iPlugin.InstanceUid().iUid );
+    TUid pluginId = TUid::Null();
+    TRAPD( err,
+     pluginId = REComSession::GetImplementationUidL( iPlugin.InstanceUid() ) );
+    if ( err != KErrNone )
+        {
+        pluginId = TUid::Null();
+        }
+    iFinalProgress.AppendNum( pluginId.iUid );
     iFinalProgress.Append( KColon );
     iFinalProgress.AppendNum( iCommand );
     iFinalProgress.Append( KColon );

@@ -693,6 +693,10 @@ void CSendUiImpl::GetServicesL( )
             iSendingServices.Append( info );
             CleanupStack::Pop( info);
             }
+        else
+            {
+            CleanupStack::PopAndDestroy( info );
+            }
 
         }
     
@@ -762,7 +766,14 @@ TUid CSendUiImpl::ShowListQueryL(
         {
         return KNullUid;
         }
-    return aListItemUids.At( choice );
+    if ( aListItemUids.Count() > 0 )
+        {
+        return aListItemUids.At( choice );
+        }
+    else
+        {
+        return KNullUid;
+        }
     }
 
 
@@ -877,6 +888,7 @@ TBool CSendUiImpl::CanSendContentL(
                 if ( !(omaDRMLevel & CDRMHelper::EOMA_2_0 ))
                      {
                      result = EFalse;
+                     delete drmHelper;
                      break;
                      }
                 delete drmHelper;

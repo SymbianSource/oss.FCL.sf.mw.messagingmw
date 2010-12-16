@@ -81,18 +81,15 @@ CAlwaysOnlineManager::~CAlwaysOnlineManager()
     
     //we shouldn't never come here while phone is switched on
     if ( iPluginArray )
-        {
-        TInt idx = KErrNotFound;
-        while( iPluginArray->Count() )
-            {
-            idx = iPluginArray->Count() - 1;
-            // Delete object
-            delete iPluginArray->At( idx );
+       {
+        for( TInt i = iPluginArray->Count()-1; i >= 0; i-- )
+           {
+            delete iPluginArray->At( i );
             // Delete element
-            iPluginArray->Delete( idx );
+             iPluginArray->Delete( i );
             }
-        }
-        
+       }
+     
     delete iCenRepControl;
     delete iPluginArray;       
     delete iDisabledPluginUidsArray;
@@ -677,16 +674,8 @@ void CAlwaysOnlineManager::BroadcastClientCommandL(
         case EServerAPIEmailDisableAOEmailPlugin:
         	// Remove UID from plugin array and delete the instance
         	// of the email plugin
-        	iCenRepControl->SetPluginStatus( KAOEmailPluginUid, ETrue );
-        	for( TInt i = 0; i < iPluginArray->Count(); i++ )
-	        	{
-	        	if( KAOEmailPluginUid == iPluginArray->At(i)->InstanceUid() )
-	        		{
-	                delete iPluginArray->At( i );
-	                // Delete element
-	                iPluginArray->Delete( i );	        		
-	        		}
-	        	}
+        	DisablePlugin( KAOEmailPluginUid , ETrue );
+        	invoke = EFalse;
         	break;
         case EServerAPIEmailEnableAOEmailPlugin:
         	iCenRepControl->SetPluginStatus( KAOEmailPluginUid, EFalse );
@@ -800,7 +789,7 @@ void CAlwaysOnlineManager::HandleOpCompletionL( const TDesC8& aProgress )
                     }
                 break;
             case EAOManagerPluginStop:
-                DisablePlugin( id );
+                DisablePlugin( id , EFalse );
                 break;
             default:
                 // Currently, there is no other commands for plugins, which 
@@ -862,14 +851,14 @@ void CAlwaysOnlineManager::HandleStartPluginL( const TDes8& aParameter )
     
     TPckgBuf<TUid> paramPack;
     TUid pluginId;
-    TInt error = KErrNone;
+    TInt error = KErrNotFound;
     
     // Make sure that the parameter length matches Id length
     if ( aParameter.Length() == sizeof( TUid ) )
         {
         paramPack.Copy( aParameter );
         
-        // Get the mailbox id from the packet
+        // Get the pluginId id from the packet
         pluginId = paramPack();
         error = KErrNone;
         }
@@ -879,14 +868,16 @@ void CAlwaysOnlineManager::HandleStartPluginL( const TDes8& aParameter )
         }
 
     // Check if plugin already loaded.
-    for ( TInt i = 0; i < iPluginArray->Count(); i++ )
+    for ( TInt i = 0; error == KErrNone && i < iPluginArray->Count(); i++ )
         {
-        if ( pluginId == iPluginArray->At( i )->InstanceUid() )
+        TInt idError = KErrNone;
+        TUid implmUid = ImplementationIdFromInstanceId(
+                iPluginArray->At( i )->InstanceUid(), idError);
+        if ( idError == KErrNone && pluginId == implmUid )
             {
             KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::HandleStartPluginL() plugin already loaded: 0x%x", pluginId);
             // No need to load a plugin again.
             error = KErrAlreadyExists;
-            break;
             }
         }
 
@@ -942,7 +933,7 @@ void CAlwaysOnlineManager::HandleStopPluginL( const TDes8& aParameter )
         {
         paramPack.Copy( aParameter );
         
-        // Get the mailbox id from the packet
+        // Get the pluginId id from the packet
         pluginId = paramPack();
         StopPluginL( pluginId );
         }
@@ -959,22 +950,24 @@ void CAlwaysOnlineManager::StopPluginL( const TUid& aPluginImplementationUid )
     KAOMANAGER_LOGGER_FN1("CAlwaysOnlineManager::StopPluginL");
     
     // Find the plugin and send stop command.
-    for ( TInt i = 0; i < iPluginArray->Count(); i++ )
+    for ( TInt i = iPluginArray->Count()-1; i >= 0; i-- )
         {
-        TUid id = ( iPluginArray->At( i ) )->InstanceUid();
+        TInt idError = KErrNone;
+        TUid implmUid = ImplementationIdFromInstanceId(
+                iPluginArray->At( i )->InstanceUid(), idError );
 
         // Stop plugin if it has matching implemention UID.
         // Will stop all plugin instances with matching implementation.
-        if ( REComSession::GetImplementationUidL(id) == aPluginImplementationUid )
+        if ( idError == KErrNone && implmUid == aPluginImplementationUid )
             {
             KAOMANAGER_LOGGER_WRITE_FORMAT(
                 "CAlwaysOnlineManager::StopPluginL() Calling stop to plugin: 0x%x", 
-                id );
+                aPluginImplementationUid );
             TBuf8<1> dummyParam;
             InvokeCommandHandlerL( 
                 static_cast<TManagerServerCommands>( EAOManagerPluginStop ), 
                 dummyParam, 
-                i );    
+                i );
             }
         }
     KAOMANAGER_LOGGER_FN2("CAlwaysOnlineManager::StopPluginL");
@@ -984,33 +977,51 @@ void CAlwaysOnlineManager::StopPluginL( const TUid& aPluginImplementationUid )
 // CAlwaysOnlineManager::DisablePlugin
 // ----------------------------------------------------------------------------
 //
-void CAlwaysOnlineManager::DisablePlugin( const TUid& aPluginInstanceUid )
+void CAlwaysOnlineManager::DisablePlugin(
+      const TUid& aPluginImplementationUid , 
+      TBool aAddPluginToDisableList )
     {
     KAOMANAGER_LOGGER_FN1("CAlwaysOnlineManager::DisablePlugin");
     
     // Delete the plugin and mark it disabled.
-    for ( TInt i = 0; i < iPluginArray->Count(); i++ )
+    for ( TInt i = iPluginArray->Count()-1; i >= 0; i-- )
         {
-        TUid id = ( iPluginArray->At( i ) )->InstanceUid();
+        TInt idError = KErrNone;
+        TUid implmUid = ImplementationIdFromInstanceId(
+                iPluginArray->At( i )->InstanceUid(), idError );
         
         // Delete plugin if it has matching instance UID.
-        if ( id == aPluginInstanceUid )
+        if ( implmUid == aPluginImplementationUid )
             {
             KAOMANAGER_LOGGER_WRITE_FORMAT(
                 "CAlwaysOnlineManager::DisablePlugin() Deleting plugin from array: 0x%x", 
-                aPluginInstanceUid);
+                aPluginImplementationUid );
             // Delete object
             delete iPluginArray->At( i );
             // Delete element
             iPluginArray->Delete( i );
             }
         }
-    // Set this plugin as disabled.
-    iCenRepControl->SetPluginStatus( aPluginInstanceUid, ETrue );
     
-    // Refresh the list of disabled plugins UIDs.
-    iCenRepControl->UpdateDisabledPluginsUids( *iDisabledPluginUidsArray );
-    
+    KAOMANAGER_LOGGER_WRITE_FORMAT(
+    		"CAlwaysOnlineManager::DisablePlugin() Add plugin to disable list or not: %x",
+    		aAddPluginToDisableList );
+	if( aAddPluginToDisableList )
+	{
+	  TInt index = -1;
+      TKeyArrayFix key( 0, ECmpTInt32 );
+      TInt  result( iDisabledPluginUidsArray->Find( aPluginImplementationUid, key, index ) );
+      KAOMANAGER_LOGGER_WRITE_FORMAT(
+      		"CAlwaysOnlineManager::DisablePlugin() found in iDisabledPluginUidsArray: %x",
+      		!result );
+	  if(result != 0 )
+		  {
+  	       // Set this plugin as disabled.
+           iCenRepControl->SetPluginStatus( aPluginImplementationUid, ETrue );
+           // Refresh the list of disabled plugins UIDs.
+           iCenRepControl->UpdateDisabledPluginsUids( *iDisabledPluginUidsArray );
+		  }
+    }
     
     KAOMANAGER_LOGGER_FN2("CAlwaysOnlineManager::DisablePlugin");
     }
@@ -1045,5 +1056,21 @@ void CAlwaysOnlineManager::HandleNotifyError(
         KAOMANAGER_LOGGER_WRITE_FORMAT("CAlwaysOnlineManager::HandleNotifyError() failed err:%d", err );
         }
     }
+
+// ----------------------------------------------------------------------------
+// CAlwaysOnlineManager::ImplementationIdFromInstanceId
+// ----------------------------------------------------------------------------    
+//
+TUid CAlwaysOnlineManager::ImplementationIdFromInstanceId( TUid aInstanceId, TInt& aError )
+{
+    TUid ret = TUid::Null();
+    TRAPD( err, ret = REComSession::GetImplementationUidL( aInstanceId ) );
+    aError = err;
+    if ( err != KErrNone )
+        {
+        ret = TUid::Null();
+        }
+    return ret;
+}
 
 //EOF
